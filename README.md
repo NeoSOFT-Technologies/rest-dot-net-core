@@ -1,1 +1,1 @@
-# rest-dot-net-core-boilerplate
+# rest-dot-net-core
