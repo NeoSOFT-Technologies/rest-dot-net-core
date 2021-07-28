@@ -14,18 +14,20 @@ namespace GloboTicket.TicketManagement.Api
     public class Program
     {
         public async static Task Main(string[] args)
-        {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+        {   
+
+            //SERILOG IMPLEMENTATION
+
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile(
+                    $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json",
+                    optional: true)
                 .Build();
 
-            //Log.Logger = new LoggerConfiguration()
-            //    .ReadFrom.Configuration(config)
-            //    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day) 
-            //    .CreateLogger();
-
             Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(config)
+                .ReadFrom.Configuration(configuration)
                 .CreateLogger();
 
             var host = CreateHostBuilder(args).Build();
