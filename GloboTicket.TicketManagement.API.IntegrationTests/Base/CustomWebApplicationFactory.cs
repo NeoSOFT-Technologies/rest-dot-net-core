@@ -35,6 +35,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
                     try
                     {
                         Utilities.InitializeDbForTests(context);
+                        
                     }
                     catch (Exception ex)
                     {
