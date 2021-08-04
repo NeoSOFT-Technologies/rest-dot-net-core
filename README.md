@@ -5,7 +5,7 @@ This is a solution template for creating a Single Page App (SPA) with Angular an
 
 * ASP.NET Core 3.1
 * [Entity Framework Core 3.1](https://docs.microsoft.com/en-us/ef/core/)
-* [MediatR](https://github.com/jbogard/MediatR)
+* [MediatR](https://www.programmingwithwolfgang.com/mediator-pattern-in-asp-net-core-3-1/)
 * [AutoMapper](https://automapper.org/)
 * [FluentValidation](https://fluentvalidation.net/)
 * [NUnit](https://nunit.org/), [FluentAssertions](https://fluentassertions.com/), [Moq](https://github.com/moq) & [Respawn](https://github.com/jbogard/Respawn)
