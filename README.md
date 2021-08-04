@@ -12,6 +12,19 @@ This is a solution template for creating a Single Page App (SPA) with Angular an
 * [Docker](https://www.docker.com/)
 * [Seri Logger](https://serilog.net/)
 
+## Build & Run
+
+Change Connectionstring in appsettings.json 
+
+Run below commands in Package manager console
+
+1 update-database -Context GloboTicketIdentityDbContext
+
+2 update-database -Context GloboTicketDbContext
+
+<img  width="800" height="400" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/main/.github/migration.PNG" /> 
+
+
 ## Overview
    <img  width="800" height="400" src="https://raw.githubusercontent.com/shreedhar-ww/rest-dot-net-core-boilerplate/main/.github/overview.png" /> 
 <br/>
