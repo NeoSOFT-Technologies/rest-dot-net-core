@@ -28,14 +28,14 @@ Run below commands in Package manager console
 
 2 update-database -Context GloboTicketDbContext
 
-<img  width="800" height="400" src="https://raw.githubusercontent.com/shreedhar-ww/rest-dot-net-core-boilerplate/main/.github/migration.PNG" /> 
+<img  width="800" height="400" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/migration.PNG" /> 
 
 
 
 ## Overview
-   <img  width="800" height="400" src="https://raw.githubusercontent.com/shreedhar-ww/rest-dot-net-core-boilerplate/main/.github/overview.png" /> 
+   <img  width="800" height="400" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/overview.png" /> 
 <br/>
-   <img align="right" width="300" height="300" src="https://raw.githubusercontent.com/shreedhar-ww/rest-dot-net-core-boilerplate/main/.github/cleanarch.png" />  
+   <img align="right" width="300" height="300" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/cleanarch.png" />  
 
 ### Domain
 
