@@ -28,7 +28,7 @@ Run below commands in Package manager console
 
 2 update-database -Context GloboTicketDbContext
 
-<img  width="800" height="400" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/migration.PNG" /> 
+<img  width="800" height="300" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/migration.PNG" /> 
 
 
 
