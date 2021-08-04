@@ -25,6 +25,7 @@ namespace GloboTicket.TicketManagement.Persistence.IntegrationTests
             _globoTicketDbContext = new GloboTicketDbContext(dbContextOptions, _loggedInUserServiceMock.Object);
         }
 
+
         //[Fact]
         //public async void Save_SetCreatedByProperty()
         //{
