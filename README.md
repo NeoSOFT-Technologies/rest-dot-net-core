@@ -1,4 +1,4 @@
-# Rest-Dot-Net-core
+# Rest-Dot-Net-core-Boilerplate
 
 This is a solution template for creating a Single Page App (SPA) with Angular and ASP.NET Core following the principles of Clean Architecture. 
 ## Technologies
@@ -11,6 +11,12 @@ This is a solution template for creating a Single Page App (SPA) with Angular an
 * [NUnit](https://nunit.org/), [FluentAssertions](https://fluentassertions.com/), [Moq](https://github.com/moq) & [Respawn](https://github.com/jbogard/Respawn)
 * [Docker](https://www.docker.com/)
 * [Seri Logger](https://serilog.net/)
+* API Versioning
+* Swagger UI.
+* JWT Token Authentication
+* Global Error Handler Middleware
+* CQRS ( Command Query Responsibility Segregation)
+* Generic Repository Pattern
 
 ## Build & Run
 
@@ -22,7 +28,8 @@ Run below commands in Package manager console
 
 2 update-database -Context GloboTicketDbContext
 
-<img  width="800" height="400" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/main/.github/migration.PNG" /> 
+<img  width="800" height="400" src="https://raw.githubusercontent.com/shreedhar-ww/rest-dot-net-core-boilerplate/main/.github/migration.PNG" /> 
+
 
 
 ## Overview
@@ -44,7 +51,7 @@ This layer contains classes for accessing external resources such as file system
 
 ### WebUI
 
-This layer is a single page application based on  Angular/React and ASP.NET Core 3.1. This layer depends on both the Application and Infrastructure layers, however, the dependency on Infrastructure is only to support dependency injection. Therefore only *Startup.cs* should reference Infrastructure.
+This layer is a single page application based on Angular 10 and ASP.NET Core 5. This layer depends on both the Application and Infrastructure layers, however, the dependency on Infrastructure is only to support dependency injection. Therefore only *Startup.cs* should reference Infrastructure.
 
 
 ## License
