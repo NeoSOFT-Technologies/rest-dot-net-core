@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  globoticket.ticketmanagement.api:
-    image: ${DOCKER_REGISTRY-}globoticketticketmanagementapi
-    build:
-      context: .
-      dockerfile: src/API/GloboTicket.TicketManagement.Api/Dockerfile
