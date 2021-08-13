@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
@@ -21,14 +21,12 @@
 		<PackageReference Include="Moq" Version="4.15.2" />
 		<PackageReference Include="Shouldly" Version="4.0.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.10" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.10" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\GloboTicket.TicketManagement.Api\GloboTicket.TicketManagement.Api.csproj" />
-		<ProjectReference Include="..\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
-		<ProjectReference Include="..\GloboTicket.TicketManagement.Domain\GloboTicket.TicketManagement.Domain.csproj" />
-		<ProjectReference Include="..\GloboTicket.TicketManagement.Persistence\GloboTicket.TicketManagement.Persistence.csproj" />
+	  <ProjectReference Include="..\..\src\Core\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
+	  <ProjectReference Include="..\..\src\Core\GloboTicket.TicketManagement.Domain\GloboTicket.TicketManagement.Domain.csproj" />
+	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Persistence\GloboTicket.TicketManagement.Persistence.csproj" />
 	</ItemGroup>
 
 </Project>

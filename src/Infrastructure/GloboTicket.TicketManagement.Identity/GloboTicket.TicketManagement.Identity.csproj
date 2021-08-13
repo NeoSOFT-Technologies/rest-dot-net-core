@@ -20,10 +20,10 @@
 	</ItemGroup>
  
 	<ItemGroup>
-	  <ProjectReference Include="..\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
+	  <Folder Include="Migrations\" />
 	</ItemGroup>
  
 	<ItemGroup>
-	  <Folder Include="Migrations\" />
+	  <ProjectReference Include="..\..\Core\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
 	</ItemGroup>
 </Project>

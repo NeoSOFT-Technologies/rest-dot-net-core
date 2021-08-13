@@ -14,7 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
+    <Folder Include="Currency\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
   </ItemGroup>
 
 </Project>
