@@ -8,16 +8,21 @@ using GloboTicket.TicketManagement.Application.Contracts;
 using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 using System.Collections.Generic;
 
 namespace GloboTicket.TicketManagement.Api
@@ -49,6 +54,8 @@ namespace GloboTicket.TicketManagement.Api
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
+            services.AddHealthcheckExtensionService(Configuration);
+
         } 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
@@ -62,6 +69,8 @@ namespace GloboTicket.TicketManagement.Api
 
             app.UseRouting();
             app.UseAuthentication();
+
+           
 
             app.UseSwagger();
 
@@ -77,6 +86,7 @@ namespace GloboTicket.TicketManagement.Api
                 }
             });
 
+
             app.UseCustomExceptionHandler();
 
             app.UseCors("Open");
@@ -88,6 +98,19 @@ namespace GloboTicket.TicketManagement.Api
                 endpoints.MapControllers();
             });
 
+            app.UseEndpoints(endpoints =>
+            {
+                //adding endpoint of health check for the health check ui in UI format
+                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+
+                //map healthcheck ui endpoing - default is /healthchecks-ui/
+                endpoints.MapHealthChecksUI();
+
+            });
         }
     }
 
