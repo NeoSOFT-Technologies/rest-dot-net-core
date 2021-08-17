@@ -27,15 +27,17 @@ Run below commands in Package manager console
 1 update-database -Context GloboTicketIdentityDbContext
 
 2 update-database -Context GloboTicketDbContext
+                                    
 
-<img  width="800" height="300" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/migration.PNG" /> 
+<img  width="800" height="300" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/main/.github/migration.PNG" /> 
 
 
 
 ## Overview
-   <img  width="800" height="400" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/overview.png" /> 
+   <img  width="800" height="400" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/main/.github/overview.png" /> 
 <br/>
-   <img align="right" width="300" height="300" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/Neo-Dotnetcore-Boilerplate/.github/cleanarch.png" />  
+                                                   
+   <img align="right" width="300" height="300" src="https://github.com/NeoSOFT-Technologies/rest-dot-net-core/blob/main/.github/cleanarch.png" />  
 
 ### Domain
 
