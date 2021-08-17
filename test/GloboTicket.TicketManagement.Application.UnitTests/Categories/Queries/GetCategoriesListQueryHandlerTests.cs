@@ -37,14 +37,12 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Queries
         //[Fact]
         //public async Task GetCategoriesListTest()
         //{
-        //    var handler = new GetCategoriesListQueryHandler(_mapper, _mockCategoryRepository.Object , _logger);
+        //    //var handler = new GetCategoriesListQueryHandler(_mapper, _mockCategoryRepository.Object, null);
 
-        //    var result = await handler.Handle(new GetCategoriesListQuery(), CancellationToken.None);
+        //    //var result = await handler.Handle(new GetCategoriesListQuery(), CancellationToken.None);
 
-        //    result.ShouldBeOfType<Response<IEnumerable<CategoryListVm>>>();
+        //    //result.ShouldBeOfType<Response<IEnumerable<CategoryListVm>>>();
 
-
-           
         //}
     }
 }
