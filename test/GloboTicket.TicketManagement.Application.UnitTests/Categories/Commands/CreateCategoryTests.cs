@@ -38,5 +38,17 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
             var allCategories = await _mockCategoryRepository.Object.ListAllAsync();
             allCategories.Count.ShouldBe(5);
         }
+
+
+        [Fact]
+        public async Task Handle_ValidCategory_AddedToCategoriesRepo1()
+        {
+            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
+
+            await handler.Handle(new CreateCategoryCommand() { Name = "Test" }, CancellationToken.None);
+
+            var allCategories = await _mockCategoryRepository.Object.ListAllAsync();
+            allCategories.Count.ShouldBe(5);
+        }
     }
 }
