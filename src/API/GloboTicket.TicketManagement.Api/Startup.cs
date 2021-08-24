@@ -111,6 +111,7 @@ namespace GloboTicket.TicketManagement.Api
                 endpoints.MapHealthChecksUI();
 
             });
+
         }
     }
 
