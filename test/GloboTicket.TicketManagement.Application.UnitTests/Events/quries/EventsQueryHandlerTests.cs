@@ -26,18 +26,18 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.quries
         private readonly Mock<IAsyncRepository<Category>> _mockCategoryRepository;
         private readonly Mock<ILogger<GetEventDetailQueryHandler>> _logger;
 
-        public GetEventDetailQueryHandlerTest()
-        {
-            _mockEventRepository = RepositoryMocks.GetEventRepository();
-            _mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
-            _logger = new Mock<ILogger<GetEventDetailQueryHandler>>();
-            var configurationProvider = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<MappingProfile>();
-            });
+        //public GetEventDetailQueryHandlerTest()
+        //{
+        //    _mockEventRepository = RepositoryMocks.GetEventRepository();
+        //    _mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+        //    _logger = new Mock<ILogger<GetEventDetailQueryHandler>>();
+        //    var configurationProvider = new MapperConfiguration(cfg =>
+        //    {
+        //        cfg.AddProfile<MappingProfile>();
+        //    });
 
-            _mapper = configurationProvider.CreateMapper();
-        }
+        //    _mapper = configurationProvider.CreateMapper();
+        //}
 
         [Fact]
         public async Task GetEventListTest()
