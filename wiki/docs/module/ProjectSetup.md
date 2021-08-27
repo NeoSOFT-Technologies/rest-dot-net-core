@@ -1,4 +1,4 @@
-# Vix File Setup
+# Vsix File Setup
 
 https://user-images.githubusercontent.com/80381121/131111034-7c79b167-bf5f-44fc-bbc0-a3e99c87714d.mp4
 
