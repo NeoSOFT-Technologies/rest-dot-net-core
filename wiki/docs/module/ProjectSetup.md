@@ -1,6 +1,6 @@
 # Vsix File Setup
 
-https://user-images.githubusercontent.com/80381121/131111034-7c79b167-bf5f-44fc-bbc0-a3e99c87714d.mp4
+https://user-images.githubusercontent.com/80381121/131312199-bd92278a-efa3-4819-b456-1b0d0756d4d6.mp4
 
 
 # Project Setup
