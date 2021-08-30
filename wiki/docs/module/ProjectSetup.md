@@ -25,6 +25,10 @@ https://user-images.githubusercontent.com/80381121/131301143-1e7af816-014f-4bce-
 https://user-images.githubusercontent.com/80381121/131328544-199d5833-c5c7-4769-81a7-50d32b01a3ae.mp4
 
 
+# Email
+
+https://user-images.githubusercontent.com/80381121/131332892-e4e1637f-8bdf-4f2e-945b-a7344025791e.mp4
+
 
 # CSV Download
 
