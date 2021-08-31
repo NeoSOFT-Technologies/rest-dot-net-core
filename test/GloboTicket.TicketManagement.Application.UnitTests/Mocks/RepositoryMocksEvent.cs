@@ -24,8 +24,6 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
                     ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
                     CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
                 }
-
-
             };
 
             var mockEventRepository = new Mock<IEventRepository>();
