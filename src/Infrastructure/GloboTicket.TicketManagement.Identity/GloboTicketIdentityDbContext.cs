@@ -9,5 +9,11 @@ namespace GloboTicket.TicketManagement.Identity
         public GloboTicketIdentityDbContext(DbContextOptions<GloboTicketIdentityDbContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GloboTicketIdentityDbContext).Assembly);
+        }
     }
 }

@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Api.Controllers.v2
@@ -38,6 +37,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v2
         }
 
         [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpGet("allwithevents", Name = "GetCategoriesWithEvents")]
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]
