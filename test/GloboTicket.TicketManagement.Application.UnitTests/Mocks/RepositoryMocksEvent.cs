@@ -29,7 +29,6 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
             var mockEventRepository = new Mock<IEventRepository>();
             mockEventRepository.Setup(repo => repo.ListAllAsync()).ReturnsAsync(EventList);
             mockEventRepository.Setup(repo => repo.GetByIdAsync(Guid.Parse("ADC42C09-08C1-4D2C-9F96-2D15BB1AF299")));
-
             mockEventRepository.Setup(repo => repo.AddAsync(It.IsAny<GloboTicket.TicketManagement.Domain.Entities.Event>())).ReturnsAsync(
                 (GloboTicket.TicketManagement.Domain.Entities.Event Event) =>
                 {
