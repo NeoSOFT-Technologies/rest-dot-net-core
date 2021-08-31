@@ -2,7 +2,7 @@
 
 namespace GloboTicket.TicketManagement.Application.Models.Authentication
 {
-    public class AuthenticationResponse
+    public class RefreshTokenResponse
     {
         public string Message { get; set; }
         public bool IsAuthenticated { get; set; }

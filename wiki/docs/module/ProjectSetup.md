@@ -19,6 +19,12 @@ https://user-images.githubusercontent.com/80381121/131328478-b930cc44-03e4-459b-
 https://user-images.githubusercontent.com/80381121/131336267-27fe6895-547f-4dbb-b53a-36ba565cd133.mp4
 
 
+# Authentication
+
+https://user-images.githubusercontent.com/80381121/131446207-fefd32a4-a444-4098-8ac4-115f932a692f.mp4
+
+
+
 # Logger
 
 https://user-images.githubusercontent.com/80381121/131301143-1e7af816-014f-4bce-a2d8-601de3e8c4f8.mp4
@@ -29,6 +35,10 @@ https://user-images.githubusercontent.com/80381121/131301143-1e7af816-014f-4bce-
 
 https://user-images.githubusercontent.com/80381121/131440657-c25ab68a-22eb-40d3-9759-d1cdc2234da0.mp4
 
+
+# Request-Response
+
+https://user-images.githubusercontent.com/80381121/131446251-202c9f33-78f1-4fe1-afa2-6706b09f2f05.mp4
 
 
 
