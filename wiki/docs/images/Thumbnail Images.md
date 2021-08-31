@@ -5,3 +5,7 @@
 # DB-Setup
 ![DB_Setup](https://user-images.githubusercontent.com/80381121/131449143-7a275327-8653-46aa-bf21-2b66fb2d104e.png)
 
+
+# Swagger
+
+![Swagger](https://user-images.githubusercontent.com/80381121/131449735-092ae94b-f40f-4aea-a0d3-60de671797cf.png)
