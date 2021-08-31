@@ -21,6 +21,7 @@ namespace GloboTicket.TicketManagement.Identity.Seed
             if (user == null)
             {
                 await userManager.CreateAsync(applicationUser, "User123!@#");
+                await userManager.AddToRoleAsync(applicationUser, "Administrator");
             }
         }
     }
