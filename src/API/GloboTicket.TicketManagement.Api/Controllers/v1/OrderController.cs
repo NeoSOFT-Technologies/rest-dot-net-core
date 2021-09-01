@@ -26,7 +26,6 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v1
         {
             var getOrdersForMonthQuery = new GetOrdersForMonthQuery() { Date = date, Page = page, Size = size };
             var dtos = await _mediator.Send(getOrdersForMonthQuery);
-
             return Ok(dtos);
         }
     }

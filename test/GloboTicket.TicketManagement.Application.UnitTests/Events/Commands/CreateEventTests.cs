@@ -28,7 +28,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
 
         public CreateEventTests()
         {
-            _mockEventRepository = RepositoryMocksEvent.GetEventRepository();
+            _mockEventRepository = EventRepositoryMocks.GetEventRepository();
             var configurationProvider = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<MappingProfile>();

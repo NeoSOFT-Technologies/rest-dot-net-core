@@ -19,7 +19,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
 
         public CreateCategoryTests()
         {
-            _mockCategoryRepository = RepositoryMocks.GetCategoryRepository();
+            _mockCategoryRepository = CategoryRepositoryMocks.GetCategoryRepository();
             var configurationProvider = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<MappingProfile>();

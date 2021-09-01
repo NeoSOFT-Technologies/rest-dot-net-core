@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
 {
-    public class RepositoryMocksEvent
+    public class EventRepositoryMocks
     {
         public static Mock<IEventRepository> GetEventRepository()
         {
