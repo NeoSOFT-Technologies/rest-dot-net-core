@@ -9,7 +9,8 @@
 
 # Swagger
 
-![Swagger](https://user-images.githubusercontent.com/80381121/131449735-092ae94b-f40f-4aea-a0d3-60de671797cf.png)
+![Swagger](https://user-images.githubusercontent.com/80381121/131610890-64e6f273-da39-430c-b2f3-67ccc105d87b.png)
+
 
 # Logger
 
