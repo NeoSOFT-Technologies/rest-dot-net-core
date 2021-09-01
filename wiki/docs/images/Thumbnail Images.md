@@ -19,6 +19,13 @@
 ![Swagger](https://user-images.githubusercontent.com/80381121/131610890-64e6f273-da39-430c-b2f3-67ccc105d87b.png)
 
 
+
+# Authentication 
+
+![Authentication](https://user-images.githubusercontent.com/80381121/131614682-2d5ffdac-995c-492b-9ac0-be1383eef142.png)
+
+
+
 # Logger
 
 ![Logger2](https://user-images.githubusercontent.com/80381121/131611498-0eb4d2be-d51f-418f-b70b-9ed9384509c8.png)
