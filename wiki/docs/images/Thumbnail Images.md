@@ -24,3 +24,7 @@
 ![Logger2](https://user-images.githubusercontent.com/80381121/131611498-0eb4d2be-d51f-418f-b70b-9ed9384509c8.png)
 
 
+# HealthCheck
+
+![HealthCheck](https://user-images.githubusercontent.com/80381121/131614116-278b0caa-e280-4fe8-a274-e4c96ef2d69f.png)
+
