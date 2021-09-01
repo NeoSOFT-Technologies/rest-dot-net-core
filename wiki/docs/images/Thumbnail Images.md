@@ -14,5 +14,6 @@
 
 # Logger
 
-![Logger2](https://user-images.githubusercontent.com/80381121/131451233-2029c093-3f87-4685-b8cb-ce9ba6c7a34a.png)
+![Logger2](https://user-images.githubusercontent.com/80381121/131611498-0eb4d2be-d51f-418f-b70b-9ed9384509c8.png)
+
 
