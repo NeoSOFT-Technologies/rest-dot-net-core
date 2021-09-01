@@ -5,5 +5,7 @@
 # Swagger1
 ![Swagger_1](https://user-images.githubusercontent.com/80381121/131655656-f53c6782-cd17-4108-98e1-801fe95bfd58.png)
 
+# Swagger2
+![Swagger_2](https://user-images.githubusercontent.com/80381121/131657420-31f4019c-2ca5-4213-adca-792fafaee399.png)
 
 
