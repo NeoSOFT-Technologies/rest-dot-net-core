@@ -4,7 +4,8 @@
 
 
 # DB-Setup
-![DB_Setup](https://user-images.githubusercontent.com/80381121/131449143-7a275327-8653-46aa-bf21-2b66fb2d104e.png)
+
+![DB_Setup](https://user-images.githubusercontent.com/80381121/131612048-13619dc0-5604-4637-8036-b508e56c3ba4.png)
 
 
 # Swagger
