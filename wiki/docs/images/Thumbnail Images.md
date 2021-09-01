@@ -3,6 +3,12 @@
 ![VSIX](https://user-images.githubusercontent.com/80381121/131610265-7fd6c1b1-42bf-4a48-a036-68e78a50b9d8.png)
 
 
+# Project-Setup
+
+![ProjectSetup](https://user-images.githubusercontent.com/80381121/131613698-630e7eb2-a7f5-4d5d-8cab-c37cf6822f1e.png)
+
+
+
 # DB-Setup
 
 ![DB_Setup](https://user-images.githubusercontent.com/80381121/131612349-fd6d0ed9-d381-4517-99b3-ec6130923091.png)
