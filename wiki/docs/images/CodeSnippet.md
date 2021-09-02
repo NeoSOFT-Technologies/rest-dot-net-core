@@ -2,7 +2,7 @@
 
 ![Swagger](https://user-images.githubusercontent.com/80381121/131624965-8348c7f3-d37c-41ef-9903-bdbd2e5c7ceb.PNG)
 
-![Swagger_1](https://user-images.githubusercontent.com/80381121/131655656-f53c6782-cd17-4108-98e1-801fe95bfd58.png)
+![Swagger_1](https://user-images.githubusercontent.com/80381121/131788871-f4183899-60a9-4dd1-91b9-f15264bef2e6.png)
 
 ![Swagger_2](https://user-images.githubusercontent.com/80381121/131657420-31f4019c-2ca5-4213-adca-792fafaee399.png)
 
