@@ -30,15 +30,23 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Queries
         }
 
         [Fact]
-        public async Task Get_Categories_List_With_Events()
+        public async Task Get_CategoriesList_WithEvents_IncludeHistory()
         {
             var handler = new GetCategoriesListWithEventsQueryHandler(_mapper, _mockCategoryRepository.Object);
 
-            var result1 = await handler.Handle(new GetCategoriesListWithEventsQuery(){ IncludeHistory = true }, CancellationToken.None);
-            var result2 = await handler.Handle(new GetCategoriesListWithEventsQuery() { IncludeHistory = false }, CancellationToken.None);
+            var result = await handler.Handle(new GetCategoriesListWithEventsQuery(){ IncludeHistory = true }, CancellationToken.None);
             
-            result1.ShouldBeOfType<Response<IEnumerable<CategoryEventListVm>>>();
-            result2.ShouldBeOfType<Response<IEnumerable<CategoryEventListVm>>>();
+            result.ShouldBeOfType<Response<IEnumerable<CategoryEventListVm>>>();
+        }
+
+        [Fact]
+        public async Task Get_CategoriesList_WithEvents_DoNotIncludeHistory()
+        {
+            var handler = new GetCategoriesListWithEventsQueryHandler(_mapper, _mockCategoryRepository.Object);
+
+            var result = await handler.Handle(new GetCategoriesListWithEventsQuery() { IncludeHistory = false }, CancellationToken.None);
+
+            result.ShouldBeOfType<Response<IEnumerable<CategoryEventListVm>>>();
         }
     }
 }
