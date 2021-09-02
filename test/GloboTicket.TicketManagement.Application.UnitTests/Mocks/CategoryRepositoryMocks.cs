@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
 {
-    public class RepositoryMocks
+    public class CategoryRepositoryMocks
     {
         public static Mock<IAsyncRepository<Category>> GetCategoryRepository()
         {
