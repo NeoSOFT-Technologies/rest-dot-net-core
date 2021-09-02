@@ -25,7 +25,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Queries
         private readonly Mock<IEventRepository> _mockEventRepository;
         private readonly ILogger<GetEventsListQueryHandler> _logger;
         //private readonly ILogger<CreateEventCommandHandler> _logger;
-        private readonly Mock<IAsyncRepository<Category>> _mockCategoryRepository;
+        private readonly Mock<ICategoryRepository> _mockCategoryRepository;
 
         public GetEventListQueryHandlerTests()
         {

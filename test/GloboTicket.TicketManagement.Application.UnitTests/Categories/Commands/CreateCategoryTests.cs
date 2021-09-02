@@ -15,7 +15,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
     public class CreateCategoryTests
     {
         private readonly IMapper _mapper;
-        private readonly Mock<IAsyncRepository<Category>> _mockCategoryRepository;
+        private readonly Mock<ICategoryRepository> _mockCategoryRepository;
 
         public CreateCategoryTests()
         {

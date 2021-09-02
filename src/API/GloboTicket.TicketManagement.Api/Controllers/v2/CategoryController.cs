@@ -54,7 +54,6 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v2
         {
             var response = await _mediator.Send(createCategoryCommand);
             return Ok(response);
-            //test
         }
     }
 }
