@@ -54,8 +54,8 @@ namespace GloboTicket.TicketManagement.Api
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
-            services.AddHealthcheckExtensionService(Configuration);
-
+           services.AddHealthcheckExtensionService(Configuration);
+         
         } 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
@@ -111,8 +111,18 @@ namespace GloboTicket.TicketManagement.Api
                 endpoints.MapHealthChecksUI();
 
             });
-
+             Migrate(app);
         }
+
+
+        private static void Migrate(IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<GloboTicketDbContext>();
+
+            context.Database.EnsureCreated();
+        }
+
     }
 
 }
