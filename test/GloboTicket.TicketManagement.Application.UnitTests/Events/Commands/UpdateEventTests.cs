@@ -36,7 +36,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
             var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object);
             var newEvent = new Domain.Entities.Event
             {
-                EventId = Guid.Parse("{ADC42C09-08C1-4D2C-9F96-2D15BB1AF299}"),
+                EventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
                 Name = "Test1",
                 Price = 25,
                 Artist = "test",
@@ -46,7 +46,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
                 CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
             };
 
-            var oldEvent = await _mockEventRepository.Object.GetByIdAsync(Guid.Parse("{ADC42C09-08C1-4D2C-9F96-2D15BB1AF299}"));
+            var oldEvent = await _mockEventRepository.Object.GetByIdAsync(Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"));
             await handler.Handle(new UpdateEventCommand
             {
                 EventId = newEvent.EventId,
@@ -60,7 +60,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
             }, CancellationToken.None);
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
 
-            allEvents.Count.ShouldBe(1);
+            allEvents.Count.ShouldBe(2);
             allEvents.ShouldContain(oldEvent);
             oldEvent.ShouldBeEquivalentTo(newEvent);
         }

@@ -1,31 +1,31 @@
 ﻿using AutoMapper;
-using Castle.Core.Logging;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
-using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
 using GloboTicket.TicketManagement.Application.Profiles;
 using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Application.UnitTests.Mocks;
 using GloboTicket.TicketManagement.Domain.Entities;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Shouldly;
+using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Queries
+namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
 {
-    public class GetCategoriesListQueryHandlerTests
+    public class GetEventDetailQueryHandlerTests
     {
         private readonly IMapper _mapper;
+        private readonly Mock<IEventRepository> _mockEventRepository;
         private readonly Mock<ICategoryRepository> _mockCategoryRepository;
-        private readonly Mock<ILogger<GetCategoriesListQueryHandler>> _logger;
 
-        public GetCategoriesListQueryHandlerTests()
+        public GetEventDetailQueryHandlerTests()
         {
+            _mockEventRepository = EventRepositoryMocks.GetEventRepository();
             _mockCategoryRepository = CategoryRepositoryMocks.GetCategoryRepository();
-            _logger = new Mock<ILogger<GetCategoriesListQueryHandler>>();
             var configurationProvider = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<MappingProfile>();
@@ -35,14 +35,13 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Queries
         }
 
         [Fact]
-        public async Task GetCategoriesListTest()
+        public async Task Handle_GetEventDetail_FromEventsRepo()
         {
-            var handler = new GetCategoriesListQueryHandler(_mapper, _mockCategoryRepository.Object, _logger.Object);
+            var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object);
 
-            var result = await handler.Handle(new GetCategoriesListQuery(), CancellationToken.None);
-
-            result.ShouldBeOfType<Response<IEnumerable<CategoryListVm>>>();
-            result.Data.ShouldNotBeEmpty();
+            var result = await handler.Handle(new GetEventDetailQuery() { Id = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}") }, CancellationToken.None);
+            
+            result.ShouldBeOfType<Response<EventDetailVm>>();
         }
     }
 }

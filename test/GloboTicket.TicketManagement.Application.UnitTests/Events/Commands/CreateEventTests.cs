@@ -54,7 +54,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
             }, CancellationToken.None);
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
-            allEvents.Count.ShouldBe(2);
+            allEvents.Count.ShouldBe(3);
         }
 
     }

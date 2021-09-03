@@ -29,17 +29,17 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         }
 
         [Fact]
-        public async Task Handle_DeletedFromEventsRepo()
+        public async Task Handle_Deleted_FromEventsRepo()
         {
             var handler = new DeleteEventCommandHandler(_mapper, _mockEventRepository.Object);
-            var eventId = Guid.Parse("{ADC42C09-08C1-4D2C-9F96-2D15BB1AF299}");
+            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}");
 
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
             await handler.Handle(new DeleteEventCommand() { EventId = eventId }, CancellationToken.None);
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
 
             allEvents.ShouldNotContain(oldEvent);
-            allEvents.Count.ShouldBe(0);
+            allEvents.Count.ShouldBe(1);
         }
     }
 }

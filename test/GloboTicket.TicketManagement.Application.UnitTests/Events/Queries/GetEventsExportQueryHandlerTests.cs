@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
-using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
-using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsExport;
 using GloboTicket.TicketManagement.Application.Profiles;
-using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Application.UnitTests.Mocks;
-using GloboTicket.TicketManagement.Domain.Entities;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Shouldly;
 using System;
@@ -16,14 +13,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Queries
+namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
 {
-    public class GetEventListQueryHandlerTests
+    public class GetEventsExportQueryHandlerTests
     {
         private readonly IMapper _mapper;
         private readonly Mock<IEventRepository> _mockEventRepository;
+        private readonly Mock<ICsvExporter> _csvExporter;
 
-        public GetEventListQueryHandlerTests()
+        public GetEventsExportQueryHandlerTests()
         {
             _mockEventRepository = EventRepositoryMocks.GetEventRepository();
             var configurationProvider = new MapperConfiguration(cfg =>
@@ -32,17 +30,17 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Queries
             });
 
             _mapper = configurationProvider.CreateMapper();
+            _csvExporter = CsvExporterMocks.GetCsvExporter();
         }
 
-       
         [Fact]
-        public async Task Handle_GetEventList_FromEventsRepo()
+        public async Task Handle_GetEventsExport_FromEventsRepo()
         {
-            var handler = new GetEventsListQueryHandler(_mapper, _mockEventRepository.Object);
+            var handler = new GetEventsExportQueryHandler(_mapper, _mockEventRepository.Object, _csvExporter.Object);
 
-            var result = await handler.Handle(new GetEventsListQuery(), CancellationToken.None);
+            var result = await handler.Handle(new GetEventsExportQuery(), CancellationToken.None);
 
-            result.ShouldBeOfType<Response<IEnumerable<EventListVm>>>();
+            result.ShouldBeOfType<EventExportFileVm>();
             result.Data.ShouldNotBeEmpty();
         }
     }

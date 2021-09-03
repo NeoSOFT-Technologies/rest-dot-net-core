@@ -119,7 +119,11 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
             var mockCategoryRepository = new Mock<ICategoryRepository>();
 
             mockCategoryRepository.Setup(repo => repo.ListAllAsync()).ReturnsAsync(categories);
-
+            mockCategoryRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(
+                (Guid CategoryId) =>
+                {
+                    return categories.SingleOrDefault(x => x.CategoryId == CategoryId);
+                });
             mockCategoryRepository.Setup(repo => repo.GetCategoriesWithEvents(It.IsAny<bool>())).ReturnsAsync((bool includePassedEvents) =>
             {
                 if (!includePassedEvents)
@@ -129,7 +133,6 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
                 }
                 return categories;
             });
-
             mockCategoryRepository.Setup(repo => repo.AddAsync(It.IsAny<Category>())).ReturnsAsync(
                 (Category category) =>
                 {
