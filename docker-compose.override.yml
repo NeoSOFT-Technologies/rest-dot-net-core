@@ -45,6 +45,7 @@ services:
     working_dir: /src
     command:
       [
+       "chmod +x ./scripts/wait-for-it.sh",
         "./scripts/wait-for-it.sh",
         "sql-server-database:1433",
         "--",
