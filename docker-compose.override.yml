@@ -45,7 +45,7 @@ services:
     working_dir: /src
     command:
       [
-        "src/api/globoticket.ticketmanagement.api/scripts/wait-for-it.sh",
+        "src/scripts/wait-for-it.sh",
         "sql-server-database:1433",
         "--",
         "dotnet",
