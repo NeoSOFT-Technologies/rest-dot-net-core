@@ -14,4 +14,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Execute tests
         working-directory: ./src
-        run: docker-compose up --exit-code-from globoticket.ticketmanagement.api.integrationtests globoticket.ticketmanagement.api.integrationtests
+        run: docker-compose up --exit-code-from docker-compose up --exit-code-from integration-tests integration-tests
