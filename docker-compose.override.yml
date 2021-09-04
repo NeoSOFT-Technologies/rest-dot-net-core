@@ -44,8 +44,7 @@ services:
       - ../test:/test
     working_dir: /src
     command:
-      [
-       
+      [       
         "./scripts/wait-for-it.sh",
         "sql-server-database:1433",
         "--",
