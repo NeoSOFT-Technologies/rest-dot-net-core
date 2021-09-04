@@ -26,32 +26,36 @@ services:
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro 
     depends_on:
       - sqldata
-   #   - migrations
-   #migrations:
-   # build: 
-   #   context: .
-   #   dockerfile: src/API/GloboTicket.TicketManagement.Api/Migrations.Dockerfile
 
-   globoticket.ticketmanagement.api.integrationtests:
-    container_name: globoticket.ticketmanagement.api.integrationtests      
+   #globoticket.ticketmanagement.api.integrationtests:
+   #    environment:
+   #       - ASPNETCORE_ENVIRONMENT=Development          
+   #       - ConnectionStrings__GloboTicketTicketManagementConnectionString=Data Source=sql-server-database,1433; Initial Catalog=TimeSheets; User Id=sa; Password=Pass@word
+   #       - ConnectionStrings__GloboTicketIdentityConnectionString=Data Source=sql-server-database,1433; Initial Catalog=GloboTicketIdentityDb; User Id=sa; Password=Pass@wor
+   #    depends_on:
+   #    - sqldata
+   integration-tests:
+    container_name: integration-tests
+    image: mcr.microsoft.com/dotnet/sdk:3.1
     environment:
-      - ConnectionStrings__GloboTicketTicketManagementConnectionString=Data Source=sql-server-database,1433; Initial Catalog=TimeSheets; User Id=sa; Password=Pass@word
+      - ConnectionStrings__TimeSheetContext=Data Source=sql-server-database; Initial Catalog=TimeSheets; User Id=sa; Password=1AvenueCodePassword*
     volumes:
       - .:/src
       - ../test:/test
-    working_dir: /src    
+    working_dir: /src
     command:
       [
-        "src/API/GloboTicket.TicketManagement.Api/Scripts/wait-for-it.sh",
+        "src/api/globoticket.ticketmanagement.api/scripts/wait-for-it.sh",
         "sql-server-database:1433",
         "--",
         "dotnet",
         "test",
-        "../test/GloboTicket.TicketManagement.API.IntegrationTests.csproj"
+        "test/GloboTicket.TicketManagement.API.IntegrationTests/GloboTicket.TicketManagement.API.IntegrationTests.csproj"
       ]
     depends_on:
       - sqldata
-
+   
 volumes:
   eshop-sqldata:
     external: false
+

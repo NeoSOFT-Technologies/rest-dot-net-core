@@ -18,9 +18,10 @@ services:
   #    dockerfile: test/GloboTicket.TicketManagement.API.IntegrationTests/Dockerfile
 
 
-  globoticket.ticketmanagement.api.integrationtests:
-    image: ${DOCKER_REGISTRY-}globoticketticketmanagementapiintegrationtests
-    build:
-      context: .
-      dockerfile: test/GloboTicket.TicketManagement.API.IntegrationTests/Dockerfile
+
+  #globoticket.ticketmanagement.api.integrationtests:
+  #  image: ${DOCKER_REGISTRY-}globoticketticketmanagementapiintegrationtests
+  #  build:
+  #    context: .
+  #    dockerfile: test/GloboTicket.TicketManagement.API.IntegrationTests/Dockerfile
 
