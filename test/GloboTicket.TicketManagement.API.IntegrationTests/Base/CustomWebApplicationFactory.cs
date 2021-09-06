@@ -19,10 +19,15 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
         private readonly DbFixture _dbFixture;
 
         public CustomWebApplicationFactory()
-        { _dbFixture = new DbFixture(); }
+        { 
+            
+            _dbFixture = new DbFixture(); 
+        
+        }
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            
 
             builder.ConfigureAppConfiguration((context, config) =>
             {
