@@ -49,6 +49,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
         [Fact]
         public async Task ReturnsSuccessResult()
         {
+
             var client = _factory.GetAnonymousClient();
 
             var response = await client.GetAsync("/api/V1/category/all");
