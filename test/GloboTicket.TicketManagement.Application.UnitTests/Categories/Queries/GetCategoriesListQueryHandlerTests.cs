@@ -21,7 +21,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Queries
         private readonly IMapper _mapper;
         private readonly Mock<ICategoryRepository> _mockCategoryRepository;
         private readonly Mock<ILogger<GetCategoriesListQueryHandler>> _logger;
-
+         
         public GetCategoriesListQueryHandlerTests()
         {
             _mockCategoryRepository = CategoryRepositoryMocks.GetCategoryRepository();

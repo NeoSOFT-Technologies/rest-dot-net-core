@@ -10,30 +10,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
+      - name: Check out code 🛎
         uses: actions/checkout@v2
-    
-      - name: Start dependencies (docker-compose)
-        run: |
-          docker-compose up -d  
+      
+      - name: Setup .NET 3.1 🔧
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
 
-      - name: Wait for SQL Server container
+      - name: Start SQL Server
+        run: |
+          docker run -d -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M' -e 'MSSQL_PID=Express' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest
+          
+      - name: Sleep for 5 seconds 😴
         uses: jakejarvis/wait-action@master
         with:
           time: '5s'
-      
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
-        with:
-         dotnet-version: 3.1.x
-    
-      - name: Restore NuGet packages
-        run: dotnet restore
 
-      - name: Build
+      - name: Restore dependencies 🛠
+        run: dotnet restore
+      
+      - name: Build app 🚀
         run: dotnet build -c Release --no-restore
-    
-      - name: Test
+
+      - name: Run automated tests 🧪
+        env:
+          ConnectionStrings__DefaultConnection: Server=localhost;Database=CiCdDemo_Test;User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M
         run: dotnet test -c Release --no-build
 
 
