@@ -50,13 +50,14 @@ namespace GloboTicket.TicketManagement.Identity.Services
             if (!result.Succeeded)
             {
                 throw new Exception($"Credentials for '{request.Email} aren't valid'.");
+               
             }
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
 
             if (user.RefreshTokens.Any(a => a.IsActive))
             {
-                var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
+                var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive).FirstOrDefault();
                 response.RefreshToken = activeRefreshToken.Token;
                 response.RefreshTokenExpiration = activeRefreshToken.Expires;
             }
@@ -188,7 +189,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
                 if (user.RefreshTokens.Any(a => a.IsActive))
                 {
-                    var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
+                    var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive).FirstOrDefault();
                     response.RefreshToken = activeRefreshToken.Token;
                     response.RefreshTokenExpiration = activeRefreshToken.Expires;
                 }
