@@ -41,5 +41,13 @@
 
 
 # Clean-Architecture
-
 ![Cleanarch](https://user-images.githubusercontent.com/80381121/132321466-f08ab7f0-d129-4a86-8970-20174bf27800.png)
+
+
+# Environmental Configuration
+
+![EnvVar1](https://user-images.githubusercontent.com/80381121/132337748-174a1c4a-16a6-4e1e-af32-127079d60b5f.png)
+![EnvVar2](https://user-images.githubusercontent.com/80381121/132337785-94e6f466-0e73-4f8d-ad31-82f4d6613135.png)
+![EnvVar3](https://user-images.githubusercontent.com/80381121/132340212-2c2d2a84-bc91-46c4-bacf-d715dd046ad3.png)
+
+
