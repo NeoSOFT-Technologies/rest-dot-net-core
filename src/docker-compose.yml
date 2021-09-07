@@ -1,17 +1,44 @@
-version: '3.4'
- 
-
-networks:
-  blogapp-network:
-
+version: "3.4"
 services:
-  
-  blogapp-sqlserver:
-    image: "mcr.microsoft.com/mssql/server"
-    ports:
-      - "1433:1433"
+  timesheets-api:
+    container_name: timesheets-api
+    image: mcr.microsoft.com/dotnet/sdk:3.1
+    build:
+      context: .
+      dockerfile: API/GloboTicket.TicketManagement.Api/Dockerfile
     environment:
-        SA_PASSWORD: "2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M"
-        ACCEPT_EULA: "Y"
-    networks:
-      - blogapp-network
+      - ConnectionStrings__GloboTicketTicketManagementConnectionString=Data Source=sql-server-database; Initial Catalog=TimeSheets; User Id=sa; Password=1AvenueCodePassword*
+ 
+  #   depends_on:
+  #     - sql-server-database
+  #   command: "dotnet run"
+  #   ports:
+  #     - "8001:8081"
+  # sql-server-database:
+  #   container_name: sql-server-database
+  #   image: mcr.microsoft.com/mssql/server
+  #   environment:
+  #     SA_PASSWORD: 1AvenueCodePassword*
+  #     ACCEPT_EULA: "Y"
+  #   ports:
+  #     - "1433:1433"
+  # integration-tests:
+  #   container_name: integration-tests
+  #   image: mcr.microsoft.com/dotnet/sdk:5.0
+  #   environment:
+  #     - ConnectionStrings__TimeSheetContext=Data Source=sql-server-database; Initial Catalog=TimeSheets; User Id=sa; Password=1AvenueCodePassword*
+  #   volumes:
+  #     - .:/src
+  #     - ../test:/test
+  #   working_dir: /src
+  #   command:
+  #     [
+  #       "./Scripts/wait-for-it.sh",
+  #       "sql-server-database:1433",
+  #       "--",
+  #       "dotnet",
+  #       "test",
+  #       "../test/Timesheets.Tests.csproj"
+  #     ]
+  #   depends_on:
+  #     - sql-server-database

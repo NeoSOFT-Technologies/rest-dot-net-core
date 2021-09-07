@@ -49,12 +49,13 @@ namespace GloboTicket.TicketManagement.Api
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddControllers();
+            services.AddDataProtection();
             services.AddCors(options =>
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
            services.AddHealthcheckExtensionService(Configuration);
-         
+            services.AddDataProtection();
         } 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
