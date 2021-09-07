@@ -1,7 +1,8 @@
-﻿using AutoMapper;
+﻿using AutoMapper; 
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+ 
 
 namespace GloboTicket.TicketManagement.Application
 {
@@ -11,7 +12,7 @@ namespace GloboTicket.TicketManagement.Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
-
+        
             return services;
         }
     }
