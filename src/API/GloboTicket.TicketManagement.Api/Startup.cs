@@ -75,9 +75,7 @@ namespace GloboTicket.TicketManagement.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthentication();
-
-           
+            app.UseAuthentication();          
 
             app.UseSwagger();
 
@@ -92,7 +90,6 @@ namespace GloboTicket.TicketManagement.Api
                     options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                 }
             });
-
 
             app.UseCustomExceptionHandler();
 
@@ -118,10 +115,7 @@ namespace GloboTicket.TicketManagement.Api
                 endpoints.MapHealthChecksUI();
 
             });           
-        }
-
-
-       
+        }       
 
     }
 
