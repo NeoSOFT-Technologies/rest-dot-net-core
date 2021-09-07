@@ -28,12 +28,6 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             return Ok(await _authenticationService.RegisterAsync(request));
         }
 
-        [HttpPost("token")]
-        public async Task<IActionResult> GetTokenAsync(AuthenticationRequest request)
-        {
-            return Ok(await _authenticationService.GetTokenAsync(request));
-        }
-
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshTokenAsync(RefreshTokenRequest request)
         {

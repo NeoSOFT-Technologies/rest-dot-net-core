@@ -39,7 +39,6 @@ namespace GloboTicket.TicketManagement.Api
 
                 try
                 {
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     Log.Information("Application Starting");
                 }
                 catch (Exception ex)

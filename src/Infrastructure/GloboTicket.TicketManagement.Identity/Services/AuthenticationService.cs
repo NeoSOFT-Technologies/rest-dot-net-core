@@ -57,7 +57,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
             if (user.RefreshTokens.Any(a => a.IsActive))
             {
-                var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive).FirstOrDefault();
+                var activeRefreshToken = user.RefreshTokens.FirstOrDefault(a => a.IsActive);
                 response.RefreshToken = activeRefreshToken.Token;
                 response.RefreshTokenExpiration = activeRefreshToken.Expires;
             }
@@ -168,47 +168,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
                 };
             }
         }
-
-        public async Task<AuthenticationResponse> GetTokenAsync(AuthenticationRequest request)
-        {
-            var response = new AuthenticationResponse();
-            var user = await _userManager.FindByEmailAsync(request.Email);
-            if (user == null)
-            {
-                response.IsAuthenticated = false;
-                response.Message = $"No Accounts Registered with {request.Email}.";
-                return response;
-            }
-            if (await _userManager.CheckPasswordAsync(user, request.Password))
-            {
-                response.IsAuthenticated = true;
-                JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
-                response.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-                response.Email = user.Email;
-                response.UserName = user.UserName;
-
-                if (user.RefreshTokens.Any(a => a.IsActive))
-                {
-                    var activeRefreshToken = user.RefreshTokens.Where(a => a.IsActive).FirstOrDefault();
-                    response.RefreshToken = activeRefreshToken.Token;
-                    response.RefreshTokenExpiration = activeRefreshToken.Expires;
-                }
-                else
-                {
-                    var refreshToken = GenerateRefreshToken();
-                    response.RefreshToken = refreshToken.Token;
-                    response.RefreshTokenExpiration = refreshToken.Expires;
-                    user.RefreshTokens.Add(refreshToken);
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
-                }
-                return response;
-            }
-            response.IsAuthenticated = false;
-            response.Message = $"Incorrect Credentials for user {user.Email}.";
-            return response;
-        }
-
+        
         public async Task<RefreshTokenResponse> RefreshTokenAsync(RefreshTokenRequest request)
         {
             var response = new RefreshTokenResponse();
