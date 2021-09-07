@@ -7,17 +7,13 @@ namespace GloboTicket.TicketManagement.Application.Profiles
 {
     public class EventVmCustomMapper : ITypeConverter<Event, EventListVm>
     {
-        private readonly IDataProtector _protector;
-
-        public EventVmCustomMapper(IDataProtectionProvider provider)
-        {
-            _protector = provider.CreateProtector("");
-        }
         public EventListVm Convert(Event source, EventListVm destination, ResolutionContext context)
         {
+            var dataProtectionProvider = DataProtectionProvider.Create("Test");
+            var protector = dataProtectionProvider.CreateProtector("Test");
             EventListVm dest = new EventListVm()
             {
-                EventId = _protector.Protect(source.EventId.ToString()),
+                EventId = protector.Protect(source.EventId.ToString()),
                 Name = source.Name,
                 ImageUrl = source.ImageUrl,
                 Date = source.Date

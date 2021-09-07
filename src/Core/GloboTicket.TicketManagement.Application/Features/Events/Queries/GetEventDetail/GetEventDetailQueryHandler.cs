@@ -16,20 +16,20 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
         private readonly IAsyncRepository<Event> _eventRepository;
         private readonly IAsyncRepository<Category> _categoryRepository;
         private readonly IMapper _mapper;
-        
-        private readonly IDataProtector _protector;
-        public GetEventDetailQueryHandler(IMapper mapper, IAsyncRepository<Event> eventRepository, IAsyncRepository<Category> categoryRepository, IDataProtectionProvider provider)
+
+        public GetEventDetailQueryHandler(IMapper mapper, IAsyncRepository<Event> eventRepository, IAsyncRepository<Category> categoryRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
             _categoryRepository = categoryRepository;
-            _protector = provider.CreateProtector("");
         }
 
         public async Task<Response<EventDetailVm>> Handle(GetEventDetailQuery request, CancellationToken cancellationToken)
         {
-           
-            string id = _protector.Unprotect(request.Id);
+            var dataProtectionProvider = DataProtectionProvider.Create("Test");
+            var protector = dataProtectionProvider.CreateProtector("Test");
+            string id = protector.Unprotect(request.Id);
+
             var @event = await _eventRepository.GetByIdAsync(new Guid(id));
             var eventDetailDto = _mapper.Map<EventDetailVm>(@event);
 
