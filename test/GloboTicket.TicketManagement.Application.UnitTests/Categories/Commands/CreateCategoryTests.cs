@@ -15,7 +15,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
     public class CreateCategoryTests
     {
         private readonly IMapper _mapper;
-        private readonly Mock<IAsyncRepository<Category>> _mockCategoryRepository;
+        private readonly Mock<ICategoryRepository> _mockCategoryRepository;
 
         public CreateCategoryTests()
         {
@@ -41,14 +41,16 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
 
 
         [Fact]
-        public async Task Handle_ValidCategory_AddedToCategoriesRepo1()
+        public async Task Handle_InValidCategory_AddedToCategoriesRepo()
         {
             var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
 
-            await handler.Handle(new CreateCategoryCommand() { Name = "Test" }, CancellationToken.None);
+            var result = await handler.Handle(new CreateCategoryCommand() { Name = "" }, CancellationToken.None);
 
             var allCategories = await _mockCategoryRepository.Object.ListAllAsync();
-            allCategories.Count.ShouldBe(5);
+            allCategories.Count.ShouldBe(4);
+            result.Errors.Count.ShouldNotBe(0);
+            result.Succeeded.ShouldBe(false);
         }
     }
 }

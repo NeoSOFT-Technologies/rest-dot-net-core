@@ -19,3 +19,33 @@
 # Refresh-Token
 
 ![RefreshTokenWorkflow](https://user-images.githubusercontent.com/80381121/131812399-f6ffedd2-9a21-4459-9930-091b09b247c9.png)
+
+
+# Versioning
+
+![Versioning1](https://user-images.githubusercontent.com/80381121/131978375-68e2005f-1ff0-4b81-907d-343e081612d5.png)
+![Versioning2](https://user-images.githubusercontent.com/80381121/131978400-0c51daf3-b20b-4a71-a2b8-efa91f5b1af4.png)
+
+
+
+# Request-Response
+
+![RequestResponse1](https://user-images.githubusercontent.com/80381121/131999166-a313c858-7c08-450b-930b-2768395b30f1.png)
+![RequestResponse2](https://user-images.githubusercontent.com/80381121/131999184-d392b8b6-5923-4409-b3b6-0e05b3d34d27.png)
+![RequestResponse3](https://user-images.githubusercontent.com/80381121/132000154-ac154a79-e785-4706-b587-b2671212daf6.png)
+
+
+
+# Authentication
+![Authentication1](https://user-images.githubusercontent.com/80381121/132170410-8cf684a9-62c1-4dc3-a42e-8684d07584d7.png)
+
+
+# Clean-Architecture
+![Cleanarch](https://user-images.githubusercontent.com/80381121/132321466-f08ab7f0-d129-4a86-8970-20174bf27800.png)
+
+
+# Environmental Configuration
+
+![EnvVar1](https://user-images.githubusercontent.com/80381121/132337748-174a1c4a-16a6-4e1e-af32-127079d60b5f.png)
+![EnvVar2](https://user-images.githubusercontent.com/80381121/132337785-94e6f466-0e73-4f8d-ad31-82f4d6613135.png)
+

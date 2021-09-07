@@ -12,10 +12,10 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
 {
     public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand,Response<Guid>>
     {
-        private readonly IAsyncRepository<Event> _eventRepository;
+        private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
 
-        public UpdateEventCommandHandler(IMapper mapper, IAsyncRepository<Event> eventRepository)
+        public UpdateEventCommandHandler(IMapper mapper, IEventRepository eventRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
@@ -42,7 +42,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
              await _eventRepository.UpdateAsync(eventToUpdate);
 
             return new Response<Guid>(request.EventId, "Updated successfully ");
-             //return Unit.Value;
+          
         }
     }
 }

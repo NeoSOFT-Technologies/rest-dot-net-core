@@ -4,6 +4,8 @@ using GloboTicket.TicketManagement.Application.Exceptions;
 using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.DataProtection;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,12 +26,16 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
 
         public async Task<Response<EventDetailVm>> Handle(GetEventDetailQuery request, CancellationToken cancellationToken)
         {
-            var @event = await _eventRepository.GetByIdAsync(request.Id);
+            var dataProtectionProvider = DataProtectionProvider.Create("Test");
+            var protector = dataProtectionProvider.CreateProtector("Test");
+            string id = protector.Unprotect(request.Id);
+
+            var @event = await _eventRepository.GetByIdAsync(new Guid(id));
             var eventDetailDto = _mapper.Map<EventDetailVm>(@event);
 
             var category = await _categoryRepository.GetByIdAsync(@event.CategoryId);
 
-            if (category == null)
+            if (category == null)   
             {
                 throw new NotFoundException(nameof(Event), request.Id);
             }

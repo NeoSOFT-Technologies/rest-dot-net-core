@@ -29,6 +29,7 @@ namespace GloboTicket.TicketManagement.Api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,8 +39,15 @@ namespace GloboTicket.TicketManagement.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // AddSwagger(services);
-
+            string Urls = Configuration.GetSection("URLWhiteListings").GetSection("URLs").Value;
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins(Urls);
+                                  });
+            });
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
@@ -50,12 +58,13 @@ namespace GloboTicket.TicketManagement.Api
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddControllers();
+            services.AddDataProtection();
             services.AddCors(options =>
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
-            services.AddHealthcheckExtensionService(Configuration);
-
+           services.AddHealthcheckExtensionService(Configuration);
+            
         } 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
@@ -111,8 +120,18 @@ namespace GloboTicket.TicketManagement.Api
                 endpoints.MapHealthChecksUI();
 
             });
-
+            // Migrate(app);
         }
+
+
+        private static void Migrate(IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<GloboTicketDbContext>();
+
+            context.Database.EnsureCreated();
+        }
+
     }
 
 }

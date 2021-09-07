@@ -19,9 +19,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Queries
     public class GetCategoriesListQueryHandlerTests
     {
         private readonly IMapper _mapper;
-        private readonly Mock<IAsyncRepository<Category>> _mockCategoryRepository;
+        private readonly Mock<ICategoryRepository> _mockCategoryRepository;
         private readonly Mock<ILogger<GetCategoriesListQueryHandler>> _logger;
-
+         
         public GetCategoriesListQueryHandlerTests()
         {
             _mockCategoryRepository = CategoryRepositoryMocks.GetCategoryRepository();
@@ -42,7 +42,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Queries
             var result = await handler.Handle(new GetCategoriesListQuery(), CancellationToken.None);
 
             result.ShouldBeOfType<Response<IEnumerable<CategoryListVm>>>();
-
+            result.Data.ShouldNotBeEmpty();
         }
     }
 }

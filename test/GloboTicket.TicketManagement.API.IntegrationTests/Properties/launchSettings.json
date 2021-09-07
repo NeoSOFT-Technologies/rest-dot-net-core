@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GloboTicket.TicketManagement.API.IntegrationTests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

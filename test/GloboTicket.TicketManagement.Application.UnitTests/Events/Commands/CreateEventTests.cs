@@ -38,7 +38,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         }
 
         [Fact]
-        public async Task Handle_ValidEvent_AddedToEventRepo1()
+        public async Task Handle_ValidEvent_AddedToEventRepo()
         {
             var handler = new CreateEventCommandHandler(_mapper,_mockEventRepository.Object, _emailService,_logger);
 
@@ -54,7 +54,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
             }, CancellationToken.None);
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
-            allEvents.Count.ShouldBe(2);
+            allEvents.Count.ShouldBe(3);
         }
 
     }

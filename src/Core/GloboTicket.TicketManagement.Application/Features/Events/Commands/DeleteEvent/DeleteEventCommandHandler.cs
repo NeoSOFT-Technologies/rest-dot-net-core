@@ -11,10 +11,10 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Dele
 {
     public class DeleteEventCommandHandler : IRequestHandler<DeleteEventCommand>
     {
-        private readonly IAsyncRepository<Event> _eventRepository;
+        private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
         
-        public DeleteEventCommandHandler(IMapper mapper, IAsyncRepository<Event> eventRepository)
+        public DeleteEventCommandHandler(IMapper mapper, IEventRepository eventRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;

@@ -13,11 +13,11 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
 {
     public class GetEventsExportQueryHandler : IRequestHandler<GetEventsExportQuery, EventExportFileVm>
     {
-        private readonly IAsyncRepository<Event> _eventRepository;
+        private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
         private readonly ICsvExporter _csvExporter;
 
-        public GetEventsExportQueryHandler(IMapper mapper, IAsyncRepository<Event> eventRepository, ICsvExporter csvExporter)
+        public GetEventsExportQueryHandler(IMapper mapper, IEventRepository eventRepository, ICsvExporter csvExporter)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;

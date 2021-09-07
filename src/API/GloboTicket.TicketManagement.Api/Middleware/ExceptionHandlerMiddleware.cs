@@ -67,14 +67,7 @@ namespace GloboTicket.TicketManagement.Api.Middleware
             }
 
             context.Response.StatusCode = (int)httpStatusCode;
-
-            //if (result == string.Empty)
-            //{
-            //    result = JsonConvert.SerializeObject(new { error = exception.Message });
-            //}
-
-
-
+                       
             return context.Response.WriteAsync(result);
         }
 

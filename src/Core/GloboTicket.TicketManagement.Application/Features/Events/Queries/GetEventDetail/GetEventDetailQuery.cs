@@ -6,6 +6,6 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
 {
     public class GetEventDetailQuery: IRequest<Response<EventDetailVm>>
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

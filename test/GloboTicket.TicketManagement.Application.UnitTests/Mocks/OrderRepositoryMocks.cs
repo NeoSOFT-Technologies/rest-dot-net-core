@@ -76,7 +76,6 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
             mockOrderRepository.Setup(repo => repo.GetPagedOrdersForMonth(Convert.ToDateTime("2021-08-26 10:44:09.5406918"), 1, 2)).ReturnsAsync(
                 orders.Where(x => x.OrderPlaced.Month == Convert.ToDateTime("2021-08-26 10:44:09.5406918").Month && x.OrderPlaced.Year == Convert.ToDateTime("2021-08-26 10:44:09.5406918").Year)
                 .Skip((1 - 1) * 2).Take(2).ToList());
-
             mockOrderRepository.Setup(repo => repo.GetTotalCountOfOrdersForMonth(Convert.ToDateTime("2021-08-26 10:44:09.5406918"))).ReturnsAsync(
                 orders.Count(x => x.OrderPlaced.Month == Convert.ToDateTime("2021-08-26 10:44:09.5406918").Month && x.OrderPlaced.Year == Convert.ToDateTime("2021-08-26 10:44:09.5406918").Year));
 

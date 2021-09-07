@@ -39,6 +39,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Orders.Queries
 
             result.ShouldBeOfType<PagedResponse<IEnumerable<OrdersForMonthDto>>>();
             result.Data.ShouldBeOfType<List<OrdersForMonthDto>>();
+            result.Data.ShouldNotBeEmpty();
         }
     }
 }
