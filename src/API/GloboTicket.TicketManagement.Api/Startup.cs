@@ -56,7 +56,7 @@ namespace GloboTicket.TicketManagement.Api
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
            services.AddHealthcheckExtensionService(Configuration);
-            services.AddDataProtection();
+            
         } 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)

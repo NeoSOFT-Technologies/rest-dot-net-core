@@ -28,9 +28,10 @@ namespace GloboTicket.TicketManagement.Api.SwaggerHelper
 
 		private static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
 		{
+			var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 			var info = new OpenApiInfo()
 			{
-				Title = "Web API",
+				Title = "Env:"+ environment +"-"+ "Web API",
 				Version = description.ApiVersion.ToString(),
 			};
 

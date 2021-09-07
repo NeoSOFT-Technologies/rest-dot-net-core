@@ -9,9 +9,9 @@ namespace GloboTicket.TicketManagement.Infrastructure.EncryptDecrypt
     public class EncryptionDecryption
     {
         //This function for Encryption which accepts the plain text and Key and return Encrypted string
-        public static string EncryptString(string clearText, string EncryptionKey)
+        public static string EncryptString(string clearText)
         {
-
+            string EncryptionKey = "";
             byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
             using (Aes encryptor = Aes.Create())
             {
@@ -34,9 +34,9 @@ namespace GloboTicket.TicketManagement.Infrastructure.EncryptDecrypt
 
 
         //This function for Decryption which accepts Encrypted string and Key and return plain text string
-        public static string DecryptString(string cipherText, string EncryptionKey)
+        public static string DecryptString(string cipherText)
         {
-
+            string EncryptionKey = "";
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             using (Aes encryptor = Aes.Create())
             {
