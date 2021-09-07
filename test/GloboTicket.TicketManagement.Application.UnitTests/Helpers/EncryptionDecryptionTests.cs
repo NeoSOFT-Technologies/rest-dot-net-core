@@ -12,8 +12,8 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Helpers
         {
             string originalString = "Test";
 
-            string encryptedString = EncryptionDecryption.EncryptString(originalString, "MAKV2SPBNI99212");
-            string decryptedString = EncryptionDecryption.DecryptString(encryptedString, "MAKV2SPBNI99212");
+            string encryptedString = EncryptionDecryption.EncryptString(originalString);
+            string decryptedString = EncryptionDecryption.DecryptString(encryptedString);
 
             decryptedString.ShouldBeEquivalentTo(originalString);
         }
