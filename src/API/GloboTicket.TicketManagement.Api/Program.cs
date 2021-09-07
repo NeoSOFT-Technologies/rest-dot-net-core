@@ -40,8 +40,6 @@ namespace GloboTicket.TicketManagement.Api
                 try
                 {
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-
-                    // await Identity.Seed.UserCreator.SeedAsync(userManager);
                     Log.Information("Application Starting");
                 }
                 catch (Exception ex)
