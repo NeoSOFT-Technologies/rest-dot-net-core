@@ -18,7 +18,7 @@ namespace GloboTicket.TicketManagement.Api
 
             //SERILOG IMPLEMENTATION
 
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile(
@@ -35,7 +35,7 @@ namespace GloboTicket.TicketManagement.Api
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                
 
                 try
                 {

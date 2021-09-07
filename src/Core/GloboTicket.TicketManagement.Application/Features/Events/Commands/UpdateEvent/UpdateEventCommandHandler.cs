@@ -42,7 +42,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
              await _eventRepository.UpdateAsync(eventToUpdate);
 
             return new Response<Guid>(request.EventId, "Updated successfully ");
-             //return Unit.Value;
+          
         }
     }
 }

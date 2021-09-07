@@ -12,60 +12,39 @@ using System.Net.Http;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
 {
-    public class CustomWebApplicationFactory
-            : WebApplicationFactory<Startup>
+    public class CustomWebApplicationFactory<TStartup>
+            : WebApplicationFactory<TStartup> where TStartup : class
     {
-
-        private readonly DbFixture _dbFixture;
-
-        public CustomWebApplicationFactory()
-        { 
-            
-            _dbFixture = new DbFixture(); 
-        
-        }
-
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            
-
-            builder.ConfigureAppConfiguration((context, config) =>
+            builder.ConfigureServices(services =>
             {
-                config.AddInMemoryCollection(new[]
+
+                services.AddDbContext<GloboTicketDbContext>(options =>
                 {
-                    new KeyValuePair<string, string>(
-                        "ConnectionStrings:BlogConnection", _dbFixture.ConnString)
+                    options.UseInMemoryDatabase("GloboTicketDbContextInMemoryTest");
                 });
+
+                var sp = services.BuildServiceProvider();
+
+                using (var scope = sp.CreateScope())
+                {
+                    var scopedServices = scope.ServiceProvider;
+                    var context = scopedServices.GetRequiredService<GloboTicketDbContext>();
+                    var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+
+                    context.Database.EnsureCreated();
+
+                    try
+                    {
+                        Utilities.InitializeDbForTests(context);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError(ex, $"An error occurred seeding the database with test messages. Error: {ex.Message}");
+                    }
+                };
             });
-
-            //builder.ConfigureServices(services =>
-            //{
-
-            //    services.AddDbContext<GloboTicketDbContext>(options =>
-            //    {
-            //        options.UseInMemoryDatabase("GloboTicketDbContextInMemoryTest");
-            //    });
-
-            //    var sp = services.BuildServiceProvider();
-
-            //    using (var scope = sp.CreateScope())
-            //    {
-            //        var scopedServices = scope.ServiceProvider;
-            //        var context = scopedServices.GetRequiredService<GloboTicketDbContext>();
-            //        var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
-
-            //        context.Database.EnsureCreated();
-
-            //        try
-            //        {
-            //            Utilities.InitializeDbForTests(context);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            logger.LogError(ex, $"An error occurred seeding the database with test messages. Error: {ex.Message}");
-            //        }
-            //    };
-            //});
         }
 
         public HttpClient GetAnonymousClient()

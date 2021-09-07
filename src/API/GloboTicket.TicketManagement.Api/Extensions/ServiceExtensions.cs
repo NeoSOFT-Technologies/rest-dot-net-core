@@ -45,13 +45,7 @@ namespace GloboTicket.TicketManagement.Api.Extensions
                       }
                     });
 
-                //c.SwaggerDoc("v1", new OpenApiInfo
-                //{
-                //    Version = "v1",
-                //    Title = "GloboTicket Ticket Management API",
-
-                //});
-
+                
                 c.OperationFilter<FileResultContentTypeOperationFilter>();
             });
         }

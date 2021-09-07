@@ -29,6 +29,7 @@ namespace GloboTicket.TicketManagement.Api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,8 +39,15 @@ namespace GloboTicket.TicketManagement.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // AddSwagger(services);
-
+            string Urls = Configuration.GetSection("URLWhiteListings").GetSection("URLs").Value;
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins(Urls);
+                                  });
+            });
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);

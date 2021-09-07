@@ -5,6 +5,7 @@ using GloboTicket.TicketManagement.Application.Profiles;
 using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Application.UnitTests.Mocks;
 using GloboTicket.TicketManagement.Domain.Entities;
+using Microsoft.AspNetCore.DataProtection;
 using Moq;
 using Shouldly;
 using System;
@@ -13,6 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
+using System.Linq;
 
 namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
 {
@@ -38,9 +40,13 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
         public async Task Handle_GetEventDetail_FromEventsRepo()
         {
             var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object);
+            var eventId = _mockEventRepository.Object.ListAllAsync().Result.FirstOrDefault().EventId;
+            var dataProtectionProvider = DataProtectionProvider.Create("Test");
+            var protector = dataProtectionProvider.CreateProtector("Test");
+            string id = protector.Protect(eventId.ToString());
 
-            var result = await handler.Handle(new GetEventDetailQuery() { Id = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}") }, CancellationToken.None);
-            
+            var result = await handler.Handle(new GetEventDetailQuery() { Id = id }, CancellationToken.None);
+
             result.ShouldBeOfType<Response<EventDetailVm>>();
         }
     }

@@ -23,7 +23,6 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
 
         public async Task<Response<IEnumerable<EventListVm>>> Handle(GetEventsListQuery request, CancellationToken cancellationToken)
         {
-           
             var allEvents = (await _eventRepository.ListAllAsync()).OrderBy(x => x.Date);
             var eventList = _mapper.Map<List<EventListVm>>(allEvents);
             var response = new Response<IEnumerable<EventListVm>>(eventList);
