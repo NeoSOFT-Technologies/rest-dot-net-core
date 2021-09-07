@@ -34,8 +34,6 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v1
         {
             _logger.LogInformation("GetAllCategories Initiated");
             var dtos = await _mediator.Send(new GetCategoriesListQuery());
-
-            var env1 = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             _logger.LogInformation("GetAllCategories Completed");
             return Ok(dtos);
         }

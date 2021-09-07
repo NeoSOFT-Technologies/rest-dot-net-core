@@ -34,9 +34,7 @@ namespace GloboTicket.TicketManagement.Api
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             string Urls = Configuration.GetSection("URLWhiteListings").GetSection("URLs").Value;
@@ -119,18 +117,11 @@ namespace GloboTicket.TicketManagement.Api
                 //map healthcheck ui endpoing - default is /healthchecks-ui/
                 endpoints.MapHealthChecksUI();
 
-            });
-            // Migrate(app);
+            });           
         }
 
 
-        private static void Migrate(IApplicationBuilder app)
-        {
-            using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
-            using var context = serviceScope.ServiceProvider.GetService<GloboTicketDbContext>();
-
-            context.Database.EnsureCreated();
-        }
+       
 
     }
 

@@ -11,8 +11,7 @@ namespace GloboTicket.TicketManagement.Persistence
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            var EncryptedString = configuration.GetConnectionString("GloboTicketTicketManagementConnectionString");
-            //var key = configuration.GetConnectionString("KeyValue");
+        
             //var encrypted = EncryptionDecryption.EncryptString(EncryptedString, key);
             //var decrypted = EncryptionDecryption.DecryptString(encrypted, key);
 
