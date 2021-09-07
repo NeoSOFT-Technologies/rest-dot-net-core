@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GloboTicket.TicketManagement.Infrastructure.EncryptDecrypt
 {
-    public static class EncryptionDecryption
+    public class EncryptionDecryption
     {
         //This function for Encryption which accepts the plain text and Key and return Encrypted string
         public static string EncryptString(string clearText, string EncryptionKey=null)
