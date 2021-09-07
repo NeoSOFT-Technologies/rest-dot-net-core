@@ -1,0 +1,53 @@
+version: '3.4'
+
+services:
+
+   sqldata:
+    container_name: sql-server-database
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - eshop-sqldata:/var/opt/mssql
+
+   globoticket.ticketmanagement.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ConnectionStrings__GloboTicketTicketManagementConnectionString=Data Source=sql-server-database,1433; Initial Catalog=TimeSheets; User Id=sa; Password=Pass@word
+      - ConnectionStrings__GloboTicketIdentityConnectionString=Data Source=sql-server-database,1433; Initial Catalog=GloboTicketIdentityDb; User Id=sa; Password=Pass@word
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro 
+    depends_on:
+      - sqldata
+
+   globoticket.ticketmanagement.api.integrationtests:
+    container_name: globoticket.ticketmanagement.api.integrationtests      
+    environment:
+      - ConnectionStrings__GloboTicketTicketManagementConnectionString=Data Source=sql-server-database,1433; Initial Catalog=TimeSheets; User Id=sa; Password=Pass@word
+    volumes:
+      - .:/src
+      - ../test:/test
+    working_dir: /src    
+    command:
+      [
+        "src/scripts/wait-for-it.sh",
+        "sql-server-database:1433",
+        "--",
+        "dotnet",
+        "test",
+        "../test/GloboTicket.TicketManagement.API.IntegrationTests/GloboTicket.TicketManagement.API.IntegrationTests.csproj"
+      ]
+    depends_on:
+      - sqldata
+
+
+volumes:
+  eshop-sqldata:
+    external: false

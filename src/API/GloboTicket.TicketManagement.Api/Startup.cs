@@ -34,9 +34,7 @@ namespace GloboTicket.TicketManagement.Api
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
             string Urls = Configuration.GetSection("URLWhiteListings").GetSection("URLs").Value;

@@ -1,15 +1,19 @@
-version: "3.7"
+version: '3'
 
-networks:
-  blogapp-network:
-  
 services:
-  blogapp-sqlserver:
-    image: "mcr.microsoft.com/mssql/server"
-    ports:
-      - "1433:1433"
-    environment:
-        SA_PASSWORD: "2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M"
-        ACCEPT_EULA: "Y"
-    networks:
-      - blogapp-network
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2019-latest 
+
+  globoticket.ticketmanagement.api:
+    image: ${DOCKER_REGISTRY-}globoticketticketmanagementapi
+    build:
+      context: .
+      dockerfile: src/API/GloboTicket.TicketManagement.Api/Dockerfile
+
+
+  globoticket.ticketmanagement.api.integrationtests:
+    image: ${DOCKER_REGISTRY-}globoticketticketmanagementapiintegrationtests
+    build:
+      context: .
+      dockerfile: test/GloboTicket.TicketManagement.API.IntegrationTests/Dockerfile
