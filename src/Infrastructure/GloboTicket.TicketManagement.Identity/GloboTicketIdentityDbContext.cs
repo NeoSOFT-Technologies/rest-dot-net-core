@@ -10,10 +10,10 @@ namespace GloboTicket.TicketManagement.Identity
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GloboTicketIdentityDbContext).Assembly);
+            base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(typeof(GloboTicketIdentityDbContext).Assembly);
         }
     }
 }

@@ -21,10 +21,8 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
     {
         private readonly IMapper _mapper;
         private readonly Mock<IEventRepository> _mockEventRepository;
-
-        private readonly IEventRepository _eventRepository;
         private readonly IEmailService _emailService;
-        private readonly ILogger<CreateEventCommandHandler> _logger;
+        private readonly Mock<ILogger<CreateEventCommandHandler>> _logger;
 
         public CreateEventTests()
         {
@@ -34,13 +32,14 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 cfg.AddProfile<MappingProfile>();
             });
 
+            _logger = new Mock<ILogger<CreateEventCommandHandler>>();
             _mapper = configurationProvider.CreateMapper();
         }
 
         [Fact]
         public async Task Handle_ValidEvent_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper,_mockEventRepository.Object, _emailService,_logger);
+            var handler = new CreateEventCommandHandler(_mapper,_mockEventRepository.Object, _emailService,_logger.Object);
 
             await handler.Handle(new CreateEventCommand()
             {

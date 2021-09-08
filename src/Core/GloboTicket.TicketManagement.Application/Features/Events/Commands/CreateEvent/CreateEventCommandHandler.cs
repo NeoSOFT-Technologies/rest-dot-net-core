@@ -30,6 +30,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
 
         public async Task<Response<Guid>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Handle Initiated");
             var validator = new CreateEventCommandValidator(_eventRepository);
             var validationResult = await validator.ValidateAsync(request);
             
@@ -41,8 +42,8 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
             @event = await _eventRepository.AddAsync(@event);
 
             var response = new Response<Guid>(@event.EventId , "Inserted successfully ");
-           
-            
+
+            _logger.LogInformation("Handle Completed");
 
             return response;
         }

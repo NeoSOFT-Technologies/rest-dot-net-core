@@ -17,7 +17,9 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
 
         public Task<bool> IsEventNameAndDateUnique(string name, DateTime eventDate)
         {
+            _logger.LogInformation("GetCategoriesWithEvents Initiated");
             var matches =  _dbContext.Events.Any(e => e.Name.Equals(name) && e.Date.Date.Equals(eventDate.Date));
+            _logger.LogInformation("GetCategoriesWithEvents Completed");
             return Task.FromResult(matches);
         }
     }
