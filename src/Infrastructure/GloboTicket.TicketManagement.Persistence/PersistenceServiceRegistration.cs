@@ -11,9 +11,8 @@ namespace GloboTicket.TicketManagement.Persistence
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-        
-            //var encrypted = EncryptionDecryption.EncryptString(EncryptedString, key);
-            //var decrypted = EncryptionDecryption.DecryptString(encrypted, key);
+
+           
 
             //Below lines of code is incomment when we put encrypted string into configuration files or at the time of deployemnt
             //Time being the code is commented because the connection string is locally configured.
