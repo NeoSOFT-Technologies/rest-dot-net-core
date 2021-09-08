@@ -14,11 +14,7 @@ namespace GloboTicket.TicketManagement.Persistence
 
            
 
-            //Below lines of code is incomment when we put encrypted string into configuration files or at the time of deployemnt
-            //Time being the code is commented because the connection string is locally configured.
-
-            //services.AddDbContext<GloboTicketDbContext>(options =>
-            //    options.UseSqlServer(decrypted.ToString()));
+           
             services.AddDbContext<GloboTicketDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("GloboTicketTicketManagementConnectionString")));
 
