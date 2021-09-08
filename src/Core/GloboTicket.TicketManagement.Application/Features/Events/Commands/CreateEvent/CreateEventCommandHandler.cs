@@ -41,6 +41,19 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
 
             @event = await _eventRepository.AddAsync(@event);
 
+            //Sending email notification to admin address
+            var email = new Email() { To = "gill@snowball.be", Body = $"A new event was created: {request}", Subject = "A new event was created" };
+
+            try
+            {
+                await _emailService.SendEmail(email);
+            }
+            catch (Exception ex)
+            {
+                //this shouldn't stop the API from doing else so this can be logged
+                _logger.LogError($"Mailing about event {@event.EventId} failed due to an error with the mail service: {ex.Message}");
+            }
+
             var response = new Response<Guid>(@event.EventId , "Inserted successfully ");
 
             _logger.LogInformation("Handle Completed");
