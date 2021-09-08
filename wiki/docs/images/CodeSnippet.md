@@ -51,3 +51,6 @@
 ![EnvVar3](https://user-images.githubusercontent.com/80381121/132340212-2c2d2a84-bc91-46c4-bacf-d715dd046ad3.png)
 
 
+# Folw of Control
+
+![MediatorPattern](https://user-images.githubusercontent.com/80381121/132456808-2efdceba-5728-4291-92d7-b9b1e9e314c1.png)
