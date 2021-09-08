@@ -16,7 +16,7 @@ namespace GloboTicket.TicketManagement.Api.Extensions
             .AddSqlServer(configuration["ConnectionStrings:GloboTicketIdentityConnectionString"], tags: new[] {
                 "db",
                 "all"})
-            .AddUrlGroup(new Uri("https://localhost:44318/weatherforecast"), tags: new[] {
+            .AddUrlGroup(new Uri(configuration["API:WeatertherInfo"]), tags: new[] {
                 "testdemoUrl",
                 "all"
             });

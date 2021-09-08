@@ -21,8 +21,6 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
     {
         private readonly IMapper _mapper;
         private readonly Mock<IEventRepository> _mockEventRepository;
-
-        private readonly IEventRepository _eventRepository;
         private readonly IEmailService _emailService;
         private readonly ILogger<CreateEventCommandHandler> _logger;
 
