@@ -7,8 +7,8 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Helpers
 {
     public class EncryptionDecryptionTests
     {
-      //  [Fact]
-        public async Task EncryptDecrypt()
+        [Fact]
+        public void  EncryptDecrypt()
         {
             string originalString = "Test";
 
