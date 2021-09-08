@@ -53,5 +53,25 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
             allEvents.Count.ShouldBe(3);
         }
+
+        [Fact]
+        public async Task Handle_InValidEvent_NotAddedToEventRepo()
+        {
+            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object);
+
+            await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            {
+                Name = "Test",
+                Price = 0,
+                Artist = "test",
+                Date = new DateTime(2027, 1, 18),
+                Description = "description",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
+                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+            }, CancellationToken.None));
+
+            var allEvents = await _mockEventRepository.Object.ListAllAsync();
+            allEvents.Count.ShouldBe(2);
+        }
     }
 }
