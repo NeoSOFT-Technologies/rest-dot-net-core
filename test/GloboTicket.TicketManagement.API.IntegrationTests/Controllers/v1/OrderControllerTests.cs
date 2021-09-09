@@ -1,16 +1,13 @@
-﻿using GloboTicket.TicketManagement.Api;
-using GloboTicket.TicketManagement.API.IntegrationTests.Base;
+﻿using GloboTicket.TicketManagement.API.IntegrationTests.Base;
 using GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForMonth;
 using GloboTicket.TicketManagement.Application.Responses;
 using Newtonsoft.Json;
 using Shouldly;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
+namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
     [Collection("Database")]
     public class OrderControllerTests : IClassFixture<WebApplicationFactory>

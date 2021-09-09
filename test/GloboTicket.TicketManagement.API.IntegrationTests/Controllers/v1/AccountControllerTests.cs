@@ -1,10 +1,7 @@
-﻿using GloboTicket.TicketManagement.Api;
-using GloboTicket.TicketManagement.API.IntegrationTests.Base;
+﻿using GloboTicket.TicketManagement.API.IntegrationTests.Base;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
 using Newtonsoft.Json;
 using Shouldly;
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +18,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             _factory = factory;
         }
 
-       // [Fact]
+        [Fact]
         public async Task Post_Authenticate_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
@@ -36,7 +33,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 
             HttpContent content = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("/api​/v1​/account​/authenticate", content);
+            var response = await client.PostAsync("/api/v1/Account/authenticate", content);
 
             response.EnsureSuccessStatusCode();
 
@@ -49,17 +46,17 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.RefreshToken.ShouldNotBeNull();
         }
 
-        //[Fact]
+        [Fact]
         public async Task Post_Register_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
 
             var request = new RegistrationRequest()
             {
-                FirstName = "Apoorv",
-                LastName = "Rane",
-                Email = "apoorv@test.com",
-                UserName = "apoorv",
+                FirstName = "Fname",
+                LastName = "Lname",
+                Email = "fname@test.com",
+                UserName = "fname.lname",
                 Password = "User123!@#"
             };
 
@@ -67,7 +64,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 
             HttpContent content = new StringContent(requestJson, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("/api​/v1​/account​/register", content);
+            var response = await client.PostAsync("/api/v1/Account/register", content);
 
             response.EnsureSuccessStatusCode();
 
@@ -78,7 +75,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.UserId.ShouldNotBeNull();
         }
 
-       // [Fact]
+       //[Fact]
         public async Task Post_RefreshToken_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
@@ -105,7 +102,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.RefreshToken.ShouldNotBeNull();
         }
 
-       // [Fact]
+       //[Fact]
         public async Task Post_RevokeToken_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();

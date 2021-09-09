@@ -35,7 +35,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
 
             var category = await _categoryRepository.GetByIdAsync(@event.CategoryId);
 
-            if (category == null)   
+            if (category == null)
             {
                 throw new NotFoundException(nameof(Event), request.Id);
             }

@@ -1,5 +1,4 @@
 ﻿using GloboTicket.TicketManagement.Api;
-using GloboTicket.TicketManagement.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +24,15 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
                 config.AddInMemoryCollection(new[]
                 {
                     new KeyValuePair<string, string>(
-                        "ConnectionStrings:GloboTicketTicketManagementConnectionString", _dbFixture.ConnString)
+                        "ConnectionStrings:GloboTicketTicketManagementConnectionString", _dbFixture.ApplicationConnString),
+                });
+            });
+            builder.ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddInMemoryCollection(new[]
+                {
+                    new KeyValuePair<string, string>(
+                        "ConnectionStrings:GloboTicketIdentityConnectionString", _dbFixture.IdentityConnString)
                 });
             });
         }

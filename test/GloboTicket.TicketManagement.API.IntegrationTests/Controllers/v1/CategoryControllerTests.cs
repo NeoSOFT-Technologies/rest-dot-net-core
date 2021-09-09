@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Text;
 using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 
-namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
+namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
     [Collection("Database")]
     public class CategoryControllerTests : IClassFixture<WebApplicationFactory>
