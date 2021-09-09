@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
+    [Collection("Database")]
     public class EventControllerTests : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly WebApplicationFactory<Startup> _factory;

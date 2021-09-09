@@ -12,6 +12,7 @@ using Xunit;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
 {
+    [Collection("Database")]
     public class OrderControllerTests : IClassFixture<WebApplicationFactory>
     { 
         private readonly WebApplicationFactory _factory;
