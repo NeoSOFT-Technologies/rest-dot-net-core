@@ -122,12 +122,12 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
         }
 
         [Fact]
-        public async Task Delete_Event_ReturnsSuccessResult()
+        public async Task Delete_Event_ReturnsNoContentResult()
         {
             var client = _factory.CreateClient();
             var eventId = await GetFirstEventId();
             var response = await client.DeleteAsync("/api/V1/events/" + eventId);
-            response.EnsureSuccessStatusCode();
+            response.StatusCode.ShouldBe(System.Net.HttpStatusCode.NoContent);
         }
 
         private async Task<string> GetFirstEventId()
