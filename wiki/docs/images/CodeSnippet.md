@@ -66,5 +66,6 @@
 ![UnitTest4](https://user-images.githubusercontent.com/80381121/132644495-1d150a4e-830d-4925-8c1a-d940063d3262.png)
 ![UnitTest5(FullCode)](https://user-images.githubusercontent.com/80381121/132644514-d210b05b-4f5f-44f1-bb1a-bd500861818c.png)
 ![UnitTest6(Fact)](https://user-images.githubusercontent.com/80381121/132644526-53121074-50d6-461f-927a-0bee5b0e8e1a.png)
-
+![UnitTest7(CiBuild)](https://user-images.githubusercontent.com/80381121/132665200-f6575c58-bb9c-4619-bde2-0abf38d4276b.png)
+![UnitTest8(SonarCloudCode)](https://user-images.githubusercontent.com/80381121/132665221-d94930b4-989e-4d03-9fb5-0b49ed48d1a6.png)
 
