@@ -26,18 +26,26 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
         [Fact]
         public async Task Get_CategoriesList_ReturnsSuccessResult()
         {
+            //var client = _factory.CreateClient();
+
+            //var response = await client.GetAsync("/api/V1/category/all");
+
+            //response.EnsureSuccessStatusCode();
+
+            //var responseString = await response.Content.ReadAsStringAsync();
+
+            //var result = JsonConvert.DeserializeObject<Response<IEnumerable<CategoryListVm>>>(responseString);
+
+            //result.Data.ShouldBeOfType<List<CategoryListVm>>();
+            //result.Data.ShouldNotBeEmpty();
             var client = _factory.CreateClient();
-
-            var response = await client.GetAsync("/api/V1/category/all");
-
+            var response = await client.GetAsync("/api/V1/events/all");
             response.EnsureSuccessStatusCode();
-
             var responseString = await response.Content.ReadAsStringAsync();
-
-            var result = JsonConvert.DeserializeObject<Response<IEnumerable<CategoryListVm>>>(responseString);
-
-            result.Data.ShouldBeOfType<List<CategoryListVm>>();
+            var result = JsonConvert.DeserializeObject<Response<IEnumerable<EventListVm>>>(responseString);
+            result.Data.ShouldBeOfType<List<EventListVm>>();
             result.Data.ShouldNotBeEmpty();
+
         }
 
         [Fact]
