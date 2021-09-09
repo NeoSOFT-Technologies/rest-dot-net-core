@@ -10,6 +10,7 @@ using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCa
 using System.Net.Http;
 using System.Text;
 using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
 {
