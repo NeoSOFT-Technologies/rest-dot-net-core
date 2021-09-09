@@ -59,3 +59,12 @@
 # TestCase
 ![TestCase1](https://user-images.githubusercontent.com/80381121/132640329-39cd1c6b-7e9a-4408-acbe-5c787e4e6239.png)
 
+# UnitCase
+![UnitTest1](https://user-images.githubusercontent.com/80381121/132644449-b189505d-8757-4411-ab99-5203f4620b92.png)
+![UnitTest2](https://user-images.githubusercontent.com/80381121/132644462-e2be87f0-5d9b-4769-8443-238b3028495b.png)
+![UnitTest3](https://user-images.githubusercontent.com/80381121/132644482-155c41d6-380a-4e9b-91de-ec282d61ba60.png)
+![UnitTest4](https://user-images.githubusercontent.com/80381121/132644495-1d150a4e-830d-4925-8c1a-d940063d3262.png)
+![UnitTest5(FullCode)](https://user-images.githubusercontent.com/80381121/132644514-d210b05b-4f5f-44f1-bb1a-bd500861818c.png)
+![UnitTest6(Fact)](https://user-images.githubusercontent.com/80381121/132644526-53121074-50d6-461f-927a-0bee5b0e8e1a.png)
+
+
