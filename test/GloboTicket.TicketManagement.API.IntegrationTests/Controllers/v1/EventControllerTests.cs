@@ -32,15 +32,10 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
         public async Task Get_EventsList_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
-
             var response = await client.GetAsync("/api/V1/events");
-
             response.EnsureSuccessStatusCode();
-
             var responseString = await response.Content.ReadAsStringAsync();
-
             var result = JsonConvert.DeserializeObject<Response<IEnumerable<EventListVm>>>(responseString);
-
             result.Data.ShouldBeOfType<List<EventListVm>>();
             result.Data.ShouldNotBeEmpty();
         }
