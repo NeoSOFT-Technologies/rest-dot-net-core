@@ -15,22 +15,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
-    public class EventControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class EventControllerTests : IClassFixture<WebApplicationFactory<Startup>>
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
+        private readonly WebApplicationFactory<Startup> _factory;
 
-        public EventControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public EventControllerTests(WebApplicationFactory<Startup> factory)
         {
             _factory = factory;
         }
 
-        //[Fact]
+        [Fact]
         public async Task Get_EventsList_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
+            var client = _factory.CreateClient();
 
             var response = await client.GetAsync("/api/V1/events");
 
@@ -44,24 +45,18 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.Data.ShouldNotBeEmpty();
         }
 
-       // [Fact]
+        [Fact]
         public async Task Get_EventDetail_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
-
+            var client = _factory.CreateClient();
             var eventList = await client.GetAsync("/api/V1/events");
             var eventListString = await eventList.Content.ReadAsStringAsync();
             var eventListResult = JsonConvert.DeserializeObject<Response<IEnumerable<EventListVm>>>(eventListString);
             var eventId = eventListResult.Data.FirstOrDefault().EventId;
-
             var response = await client.GetAsync("/api/V1/events/" + eventId);
-
             response.EnsureSuccessStatusCode();
-
             var responseString = await response.Content.ReadAsStringAsync();
-
             var result = JsonConvert.DeserializeObject<Response<EventDetailVm>>(responseString);
-
             result.Data.ShouldBeOfType<EventDetailVm>();
             result.Data.ShouldNotBeNull();
         }
@@ -83,11 +78,10 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
         //    result.ShouldNotBeNull();
         //}
 
-        //[Fact]
+        [Fact]
         public async Task Post_Event_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
-
+            var client = _factory.CreateClient();
             var @event = new CreateEventCommand()
             {
                 Name = "Test Name",
@@ -98,19 +92,12 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                 CategoryId = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}")
             };
-
             var eventJson = JsonConvert.SerializeObject(@event);
-
             HttpContent content = new StringContent(eventJson, Encoding.UTF8, "application/json");
-
             var response = await client.PostAsync("/api/v1/events", content);
-
             response.EnsureSuccessStatusCode();
-
             var responseString = await response.Content.ReadAsStringAsync();
-
             var result = JsonConvert.DeserializeObject<Response<Guid>>(responseString);
-
             result.Succeeded.ShouldBeEquivalentTo(true);
             result.Data.ShouldBeOfType<Guid>();
             result.Errors.ShouldBeNull();

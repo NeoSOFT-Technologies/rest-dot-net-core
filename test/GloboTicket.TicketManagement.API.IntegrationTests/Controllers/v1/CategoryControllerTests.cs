@@ -1,4 +1,3 @@
-using GloboTicket.TicketManagement.Api;
 using GloboTicket.TicketManagement.API.IntegrationTests.Base;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicket.TicketManagement.Application.Responses;
@@ -8,20 +7,18 @@ using System.Threading.Tasks;
 using Xunit;
 using Shouldly;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
-using GloboTicket.TicketManagement.Domain.Entities;
 using System.Net.Http;
 using System.Text;
-using System;
 using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
 {
     [Collection("Database")]
-    public class CategoryControllerTests : IClassFixture<BlogWebApplicationFactory>
+    public class CategoryControllerTests : IClassFixture<WebApplicationFactory>
     {
-        private readonly BlogWebApplicationFactory _factory;
+        private readonly WebApplicationFactory _factory;
 
-        public CategoryControllerTests(BlogWebApplicationFactory factory)
+        public CategoryControllerTests(WebApplicationFactory factory)
         {
             _factory = factory;
         }
@@ -77,7 +74,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
             result.Data.ShouldNotBeEmpty();
         }
 
-       // [Fact]
+        [Fact]
         public async Task Post_Category_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
