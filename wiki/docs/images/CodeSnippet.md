@@ -69,3 +69,7 @@
 ![UnitTest7(CiBuild)](https://user-images.githubusercontent.com/80381121/132665200-f6575c58-bb9c-4619-bde2-0abf38d4276b.png)
 ![UnitTest8(SonarCloudCode)](https://user-images.githubusercontent.com/80381121/132665221-d94930b4-989e-4d03-9fb5-0b49ed48d1a6.png)
 
+
+# IntegrationTest
+![IntegrationTest1](https://user-images.githubusercontent.com/80381121/133065904-4a72785e-1755-4d62-aee9-1361d59db06a.png)
+
