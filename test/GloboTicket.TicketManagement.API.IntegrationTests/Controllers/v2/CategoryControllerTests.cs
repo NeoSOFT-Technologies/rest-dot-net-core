@@ -24,7 +24,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v2
             _factory = factory;
         }
 
-        //[Fact]
+        [Fact]
         public async Task Get_CategoriesList_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();

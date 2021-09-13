@@ -1,7 +1,7 @@
 ﻿version: "3.7"
 
 networks:
-  blogapp-network:
+  clean-network:
   
 services:
   blogapp-sqlserver:
@@ -12,4 +12,4 @@ services:
         SA_PASSWORD: "2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M"
         ACCEPT_EULA: "Y"
     networks:
-      - blogapp-network
+      - clean-network
