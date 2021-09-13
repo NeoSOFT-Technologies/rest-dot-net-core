@@ -82,4 +82,6 @@
 ![IntegrationTest4](https://user-images.githubusercontent.com/80381121/133066051-95a39061-5cde-4dfb-946b-71360948a2dd.png)
 ![IntegrationTest5(cmd)](https://user-images.githubusercontent.com/80381121/133066061-243052b3-91ce-475f-9f0b-90e47def664c.png)
 ![IntegrationTest6(fact)](https://user-images.githubusercontent.com/80381121/133075978-ad39b06f-5e73-46ed-a4b7-42a97ec19175.png)
+![IntegrationTest7(build)](https://user-images.githubusercontent.com/80381121/133089485-a4a1d9c8-f1a4-4cb0-b176-335038353d62.png)
+
 
