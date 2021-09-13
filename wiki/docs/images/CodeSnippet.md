@@ -20,6 +20,11 @@
 
 ![RefreshTokenWorkflow](https://user-images.githubusercontent.com/80381121/131812399-f6ffedd2-9a21-4459-9930-091b09b247c9.png)
 
+# Security
+![Security1](https://user-images.githubusercontent.com/80381121/133088149-d1878ff7-9b18-4a92-b795-55f4e851c1d8.png)
+![Security2](https://user-images.githubusercontent.com/80381121/133088161-498a8444-a693-4f9f-98ff-499f79f8d251.png)
+
+
 
 # Versioning
 
