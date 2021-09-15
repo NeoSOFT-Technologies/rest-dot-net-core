@@ -44,3 +44,7 @@
 # DevOps
 ![DevOps](https://user-images.githubusercontent.com/80381121/133252159-0779c0c9-e78a-4326-bba4-4254a4b44121.png)
 
+# Integration Testing
+
+![IntegrationTestThumbnail](https://user-images.githubusercontent.com/80381121/133378350-a688960f-cc2e-425e-90c0-35a9f9fd2701.png)
+
