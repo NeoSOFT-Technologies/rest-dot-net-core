@@ -69,6 +69,10 @@ https://user-images.githubusercontent.com/80381121/131802049-5f4c8263-505a-4343-
 
 https://user-images.githubusercontent.com/80381121/133373316-9e187f71-8248-4ba8-a492-ea7b48fbfafc.mp4
 
+# Integration Testing
+
+https://user-images.githubusercontent.com/80381121/133377797-d2c95245-d2c3-4e3d-ae9d-65dc77ea1b41.mp4
+
 
 # DevOps Tests
 
