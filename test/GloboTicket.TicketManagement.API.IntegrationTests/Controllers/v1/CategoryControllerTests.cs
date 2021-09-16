@@ -1,4 +1,3 @@
-using GloboTicket.TicketManagement.Api;
 using GloboTicket.TicketManagement.API.IntegrationTests.Base;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicket.TicketManagement.Application.Responses;
@@ -8,28 +7,26 @@ using System.Threading.Tasks;
 using Xunit;
 using Shouldly;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
-using GloboTicket.TicketManagement.Domain.Entities;
 using System.Net.Http;
 using System.Text;
-using System;
 using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 
-namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
+namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
-
-    public class CategoryControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    [Collection("Database")]
+    public class CategoryControllerTests : IClassFixture<WebApplicationFactory>
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
+        private readonly WebApplicationFactory _factory;
 
-        public CategoryControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public CategoryControllerTests(WebApplicationFactory factory)
         {
             _factory = factory;
         }
 
-        //[Fact]
+        [Fact]
         public async Task Get_CategoriesList_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
+            var client = _factory.CreateClient();
 
             var response = await client.GetAsync("/api/V1/category/all");
 
@@ -41,12 +38,13 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
 
             result.Data.ShouldBeOfType<List<CategoryListVm>>();
             result.Data.ShouldNotBeEmpty();
+
         }
 
-       // [Fact]
+        [Fact]
         public async Task Get_CategoriesListWithEvents_IncludeHistory_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
+            var client = _factory.CreateClient();
 
             var response = await client.GetAsync("/api/v1/Category/allwithevents?includeHistory=true");
 
@@ -60,10 +58,10 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
             result.Data.ShouldNotBeEmpty();
         }
 
-       // [Fact]
+       [Fact]
         public async Task Get_CategoriesListWithEvents_DoNotIncludeHistory_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
+            var client = _factory.CreateClient();
 
             var response = await client.GetAsync("/api/v1/Category/allwithevents?includeHistory=false");
 
@@ -77,10 +75,10 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
             result.Data.ShouldNotBeEmpty();
         }
 
-       // [Fact]
+        [Fact]
         public async Task Post_Category_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
+            var client = _factory.CreateClient();
 
             var category = new CreateCategoryCommand()
             {
