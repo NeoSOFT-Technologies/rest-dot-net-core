@@ -89,6 +89,7 @@
 ![IntegrationTest8(CiBuild)](https://user-images.githubusercontent.com/80381121/133094269-fbba8560-a6ee-402c-9403-713f08c79d59.png)
 ![IntegrationTest(Build1)](https://user-images.githubusercontent.com/80381121/133247975-a247154e-d47e-4e34-969b-64da2b1d042c.png)
 ![IntegrationTest(Build2)](https://user-images.githubusercontent.com/80381121/133247986-e957621b-d486-4a42-adec-9eaa69f4cdb1.png)
+![IntegrationTestWorkflow](https://user-images.githubusercontent.com/80381121/133588771-ce11a689-03fa-4aac-a4f0-98b9697bf771.png)
 
 
 
