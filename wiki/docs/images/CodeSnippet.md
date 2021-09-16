@@ -20,6 +20,12 @@
 
 ![RefreshTokenWorkflow](https://user-images.githubusercontent.com/80381121/131812399-f6ffedd2-9a21-4459-9930-091b09b247c9.png)
 
+# Security
+![Security1](https://user-images.githubusercontent.com/80381121/133088149-d1878ff7-9b18-4a92-b795-55f4e851c1d8.png)
+![Security2](https://user-images.githubusercontent.com/80381121/133088161-498a8444-a693-4f9f-98ff-499f79f8d251.png)
+![Security3](https://user-images.githubusercontent.com/80381121/133202362-6a6f8340-c20e-4db1-8212-1415a56af97c.png)
+
+
 
 # Versioning
 
@@ -52,5 +58,41 @@
 
 
 # Folw of Control
-
+![FlowControl](https://user-images.githubusercontent.com/80381121/132514242-452bfc15-700a-49db-8151-1c6857a2b23b.png)
 ![MediatorPattern](https://user-images.githubusercontent.com/80381121/132456808-2efdceba-5728-4291-92d7-b9b1e9e314c1.png)
+
+
+# TestCase
+![TestCase1](https://user-images.githubusercontent.com/80381121/132640329-39cd1c6b-7e9a-4408-acbe-5c787e4e6239.png)
+
+# UnitTest
+![UnitTest1](https://user-images.githubusercontent.com/80381121/132644449-b189505d-8757-4411-ab99-5203f4620b92.png)
+![UnitTest2](https://user-images.githubusercontent.com/80381121/132644462-e2be87f0-5d9b-4769-8443-238b3028495b.png)
+![UnitTest3](https://user-images.githubusercontent.com/80381121/132644482-155c41d6-380a-4e9b-91de-ec282d61ba60.png)
+![UnitTest4](https://user-images.githubusercontent.com/80381121/132666884-3905c65c-6a2e-49ed-abcd-b57bdbc7ea17.png)
+![UnitTest5(FullCode)](https://user-images.githubusercontent.com/80381121/132644514-d210b05b-4f5f-44f1-bb1a-bd500861818c.png)
+![UnitTest6(Fact)](https://user-images.githubusercontent.com/80381121/132644526-53121074-50d6-461f-927a-0bee5b0e8e1a.png)
+![UnitTest7(CiBuild)](https://user-images.githubusercontent.com/80381121/132665200-f6575c58-bb9c-4619-bde2-0abf38d4276b.png)
+![UnitTest8(SonarCloudCode)](https://user-images.githubusercontent.com/80381121/132665221-d94930b4-989e-4d03-9fb5-0b49ed48d1a6.png)
+![UnitTest9(SonarCloudPage)](https://user-images.githubusercontent.com/80381121/133204897-fe0226af-bc7d-40b0-a298-4a37682d3fb4.png)
+![UnitTest10(SonarCloudList)](https://user-images.githubusercontent.com/80381121/133204906-570ce667-0994-4ae8-bffd-5a861cf318db.png)
+
+
+# IntegrationTest
+![IntegrationTest1](https://user-images.githubusercontent.com/80381121/133065904-4a72785e-1755-4d62-aee9-1361d59db06a.png)
+![IntegrationTest2](https://user-images.githubusercontent.com/80381121/133066041-6c77d01d-7732-4278-943f-a0adc958e6fd.png)
+![IntegrationTest3](https://user-images.githubusercontent.com/80381121/133066047-110a09f2-773f-450c-ba9d-c0611f8a2b32.png)
+![IntegrationTest4](https://user-images.githubusercontent.com/80381121/133066051-95a39061-5cde-4dfb-946b-71360948a2dd.png)
+![IntegrationTest5(cmd)](https://user-images.githubusercontent.com/80381121/133066061-243052b3-91ce-475f-9f0b-90e47def664c.png)
+![IntegrationTest6(fact)](https://user-images.githubusercontent.com/80381121/133075978-ad39b06f-5e73-46ed-a4b7-42a97ec19175.png)
+![IntegrationTest7(build)](https://user-images.githubusercontent.com/80381121/133089485-a4a1d9c8-f1a4-4cb0-b176-335038353d62.png)
+![IntegrationTest8(CiBuild)](https://user-images.githubusercontent.com/80381121/133094269-fbba8560-a6ee-402c-9403-713f08c79d59.png)
+![IntegrationTest(Build1)](https://user-images.githubusercontent.com/80381121/133247975-a247154e-d47e-4e34-969b-64da2b1d042c.png)
+![IntegrationTest(Build2)](https://user-images.githubusercontent.com/80381121/133247986-e957621b-d486-4a42-adec-9eaa69f4cdb1.png)
+
+
+
+# DevOps
+
+![DevOpsTest](https://user-images.githubusercontent.com/80381121/133241274-16eb679d-7d5c-4d37-bf0c-974d6511f55b.png)
+

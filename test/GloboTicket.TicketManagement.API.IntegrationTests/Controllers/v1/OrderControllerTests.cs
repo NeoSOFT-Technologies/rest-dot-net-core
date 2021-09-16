@@ -1,30 +1,27 @@
-﻿using GloboTicket.TicketManagement.Api;
-using GloboTicket.TicketManagement.API.IntegrationTests.Base;
+﻿using GloboTicket.TicketManagement.API.IntegrationTests.Base;
 using GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForMonth;
 using GloboTicket.TicketManagement.Application.Responses;
 using Newtonsoft.Json;
 using Shouldly;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
+namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
-    public class OrderControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
-    {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
-
-        public OrderControllerTests(CustomWebApplicationFactory<Startup> factory)
+    [Collection("Database")]
+    public class OrderControllerTests : IClassFixture<WebApplicationFactory>
+    { 
+        private readonly WebApplicationFactory _factory;
+        public OrderControllerTests(WebApplicationFactory factory)
         {
             _factory = factory;
         }
 
-       // [Fact]
+         [Fact]
         public async Task Get_OrdersForMonth_ReturnsSuccessResult()
         {
-            var client = _factory.GetAnonymousClient();
+            var client = _factory.CreateClient();
 
             var response = await client.GetAsync("/api/v1/order?date=2021-08-26&page=1&size=3");
 
