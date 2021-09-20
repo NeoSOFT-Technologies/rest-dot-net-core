@@ -1,9 +1,11 @@
 ﻿using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GloboTicket.TicketManagement.Application.Exceptions
 {
+    [Serializable]
     public class ValidationException : ApplicationException
     {
         public List<string> ValdationErrors { get; set; }
@@ -16,6 +18,11 @@ namespace GloboTicket.TicketManagement.Application.Exceptions
             {
                 ValdationErrors.Add(validationError.ErrorMessage);
             }
+        }
+
+        protected ValidationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
         }
     }
 }

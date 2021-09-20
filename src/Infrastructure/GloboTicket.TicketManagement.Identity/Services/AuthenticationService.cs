@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -49,8 +50,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
             if (!result.Succeeded)
             {
-                throw new Exception($"Credentials for '{request.Email} aren't valid'.");
-               
+                throw new AuthenticationException($"Credentials for '{request.Email} aren't valid'.");
             }
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
@@ -86,7 +86,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
             if (existingUser != null)
             {
-                throw new Exception($"Username '{request.UserName}' already exists.");
+                throw new ArgumentException($"Username '{request.UserName}' already exists.");
             }
 
             var user = new ApplicationUser
@@ -116,7 +116,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
             }
             else
             {
-                throw new ApplicationException($"Email {request.Email } already exists.");
+                throw new ArgumentException($"Email {request.Email } already exists.");
             }
         }
 
