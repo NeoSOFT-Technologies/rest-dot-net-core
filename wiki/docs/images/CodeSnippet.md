@@ -89,6 +89,8 @@
 ![IntegrationTest8(CiBuild)](https://user-images.githubusercontent.com/80381121/133094269-fbba8560-a6ee-402c-9403-713f08c79d59.png)
 ![IntegrationTest(Build1)](https://user-images.githubusercontent.com/80381121/133247975-a247154e-d47e-4e34-969b-64da2b1d042c.png)
 ![IntegrationTest(Build2)](https://user-images.githubusercontent.com/80381121/133247986-e957621b-d486-4a42-adec-9eaa69f4cdb1.png)
+
+
 ![IntegrationTestWorkflow](https://user-images.githubusercontent.com/80381121/133588771-ce11a689-03fa-4aac-a4f0-98b9697bf771.png)
 
 
@@ -104,7 +106,7 @@
 ![CI_StagesIT1](https://user-images.githubusercontent.com/80381121/133996709-d31491e2-5d4f-458e-9487-fd36f258572d.png)
 ![CI_StagesSQ1](https://user-images.githubusercontent.com/80381121/133997390-44b9611b-0a9a-4d0c-899c-a687fb329896.png)
 ![CI_StagesSQ2](https://user-images.githubusercontent.com/80381121/133996859-2263a56d-c863-4cd1-aa51-b96df9fb5282.png)
-
+![CI_QG](https://user-images.githubusercontent.com/80381121/133997917-f2c12cac-5c15-455b-b7ce-c7b70115aaaa.png)
 
 
 
