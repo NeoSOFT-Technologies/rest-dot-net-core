@@ -10,6 +10,10 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\v2\IntegrationDemo.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
@@ -35,6 +39,10 @@
 	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Identity\GloboTicket.TicketManagement.Identity.csproj" />
 	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Infrastructure\GloboTicket.TicketManagement.Infrastructure.csproj" />
 	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Persistence\GloboTicket.TicketManagement.Persistence.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Controllers\v2\" />
 	</ItemGroup>
 
 </Project>

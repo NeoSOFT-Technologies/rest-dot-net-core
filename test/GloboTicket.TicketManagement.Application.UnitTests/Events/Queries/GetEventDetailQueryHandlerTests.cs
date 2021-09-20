@@ -48,7 +48,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
             var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object, mockDataProtectionProvider.Object);
             var eventId = _mockEventRepository.Object.ListAllAsync().Result.FirstOrDefault().EventId;    
 
-            var result = await handler.Handle(new GetEventDetailQuery() { Id = eventId.ToString() }, CancellationToken.None); ;
+            var result = await handler.Handle(new GetEventDetailQuery() { Id = eventId.ToString() }, CancellationToken.None);
 
             result.ShouldBeOfType<Response<EventDetailVm>>();
         }

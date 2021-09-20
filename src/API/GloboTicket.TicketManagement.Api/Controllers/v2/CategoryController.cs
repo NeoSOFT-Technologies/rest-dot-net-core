@@ -25,7 +25,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v2
             _logger = logger;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpGet("all", Name = "GetAllCategories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult> GetAllCategories()
@@ -37,7 +37,6 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v2
         }
 
         [Authorize]
-        [Authorize(Roles = "Administrator")]
         [HttpGet("allwithevents", Name = "GetCategoriesWithEvents")]
         [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]

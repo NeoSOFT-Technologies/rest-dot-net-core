@@ -1,55 +1,48 @@
 ﻿using GloboTicket.TicketManagement.Api;
-using GloboTicket.TicketManagement.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
+using Xunit;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
 {
-    public class CustomWebApplicationFactory<TStartup>
-            : WebApplicationFactory<TStartup> where TStartup : class
+
+    [Collection("Database")]
+    public class WebApplicationFactory : WebApplicationFactory<Startup>
     {
+        private readonly DbFixture _dbFixture;
+
+        public WebApplicationFactory(DbFixture dbFixture)
+            => _dbFixture = dbFixture;
+
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            builder.ConfigureServices(services =>
+            builder.UseEnvironment("Test"); 
+            builder.ConfigureAppConfiguration((context, config) =>
             {
-
-                services.AddDbContext<GloboTicketDbContext>(options =>
+                config.AddInMemoryCollection(new[]
                 {
-                    options.UseInMemoryDatabase("GloboTicketDbContextInMemoryTest");
+                    new KeyValuePair<string, string>(
+                        "ConnectionStrings:GloboTicketTicketManagementConnectionString", _dbFixture.ApplicationConnString),
                 });
-
-                var sp = services.BuildServiceProvider();
-
-                using (var scope = sp.CreateScope())
-                {
-                    var scopedServices = scope.ServiceProvider;
-                    var context = scopedServices.GetRequiredService<GloboTicketDbContext>();
-                    var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
-
-                    context.Database.EnsureCreated();
-
-                    try
-                    {
-                        Utilities.InitializeDbForTests(context);
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.LogError(ex, $"An error occurred seeding the database with test messages. Error: {ex.Message}");
-                    }
-                };
             });
-        }
-
-        public HttpClient GetAnonymousClient()
-        {
-            return CreateClient();
+            builder.ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddInMemoryCollection(new[]
+                {
+                    new KeyValuePair<string, string>(
+                        "ConnectionStrings:GloboTicketIdentityConnectionString", _dbFixture.IdentityConnString)
+                });
+            });
+            builder.ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddInMemoryCollection(new[]
+                {
+                    new KeyValuePair<string, string>(
+                        "ConnectionStrings:GloboTicketHealthCheckConnectionString", _dbFixture.HealthCheckConnString)
+                });
+            });
         }
     }
 }

@@ -1,34 +1,46 @@
-﻿using GloboTicket.TicketManagement.Persistence;
+﻿using GloboTicket.TicketManagement.Identity;
+using GloboTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System; 
 using Xunit;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
 {
-    /// <summary>
-    /// A collection fixture that is responsible for creating and dropping the database
-    /// https://xunit.net/docs/shared-context
-    /// </summary>
     public class DbFixture : IDisposable
     {
-        private readonly GloboTicketDbContext _dbContext;
-        public readonly string BlogDbName = $"Blog-{Guid.NewGuid()}";
-        public readonly string ConnString;
+        private readonly  GloboTicketDbContext _applicationDbContext;
+        private readonly GloboTicketIdentityDbContext _identityDbContext;
+        public readonly string ApplicationDbName = $"Application-{Guid.NewGuid()}";
+        public readonly string IdentityDbName = $"Identity-{Guid.NewGuid()}";
+        public readonly string HealthCheckDbName = $"HealthCheck";
+        public readonly string HealthCheckConnString;
+        public readonly string ApplicationConnString;
+        public readonly string IdentityConnString;
 
         private bool _disposed;
 
         public DbFixture()
         {
-            ConnString = $"Server=localhost,1433;Database={BlogDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
+            ApplicationConnString = $"Server=localhost,1433;Database={ApplicationDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
+            IdentityConnString = $"Server=localhost,1433;Database={IdentityDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
+            HealthCheckConnString = $"Server=localhost,1433;Database={HealthCheckDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
 
-            var builder = new DbContextOptionsBuilder<GloboTicketDbContext>();
+            var applicationBuilder = new DbContextOptionsBuilder<GloboTicketDbContext>();
+            var identityBuilder = new DbContextOptionsBuilder<GloboTicketIdentityDbContext>();
 
-            builder.UseSqlServer(ConnString);
-            _dbContext = new GloboTicketDbContext(builder.Options);
+            applicationBuilder.UseSqlServer(ApplicationConnString);
+            _applicationDbContext = new GloboTicketDbContext(applicationBuilder.Options);
 
-            _dbContext.Database.Migrate();
+            _applicationDbContext.Database.Migrate();
+
+            identityBuilder.UseSqlServer(IdentityConnString);
+            _identityDbContext = new GloboTicketIdentityDbContext(identityBuilder.Options);
+
+            _identityDbContext.Database.Migrate();
+
+            SeedIdentity seed = new SeedIdentity(_identityDbContext);
+            seed.SeedUsers();
+            seed.SeedUserRoles();
         }
 
         public void Dispose()
@@ -44,9 +56,9 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
                 if (disposing)
                 {
                     // remove the temp db from the server once all tests are done
-                    _dbContext.Database.EnsureDeleted();
+                    _applicationDbContext.Database.EnsureDeleted();
+                    _identityDbContext.Database.EnsureDeleted();
                 }
-
                 _disposed = true;
             }
         }
