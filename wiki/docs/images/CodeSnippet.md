@@ -98,6 +98,8 @@
 # DevOps
 ![DevOpsTest](https://user-images.githubusercontent.com/80381121/133241274-16eb679d-7d5c-4d37-bf0c-974d6511f55b.png)
 ![CiPipelineWorkflow](https://user-images.githubusercontent.com/80381121/133959927-f5df7b57-d412-460e-8f76-13c41df6e15d.png)
+![CiPipelineUpdated](https://user-images.githubusercontent.com/80381121/134003217-4461220f-56ee-4549-82e2-c65b88f93b87.png)
+
 
 ![CI_Stages1](https://user-images.githubusercontent.com/80381121/133996661-96fff99a-559f-41c5-b818-8cf3aad49b2a.png)
 ![CI_StagesBuild1](https://user-images.githubusercontent.com/80381121/133996677-8789a6b7-8926-4bb8-9d19-ef043dd221c3.png)
