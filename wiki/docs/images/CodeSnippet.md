@@ -94,6 +94,6 @@
 
 
 # DevOps
-
 ![DevOpsTest](https://user-images.githubusercontent.com/80381121/133241274-16eb679d-7d5c-4d37-bf0c-974d6511f55b.png)
+![CiPipelineWorkflow](https://user-images.githubusercontent.com/80381121/133959927-f5df7b57-d412-460e-8f76-13c41df6e15d.png)
 
