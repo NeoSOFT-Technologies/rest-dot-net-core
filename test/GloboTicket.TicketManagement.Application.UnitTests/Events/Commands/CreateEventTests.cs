@@ -2,9 +2,6 @@
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using GloboTicket.TicketManagement.Domain.Entities;
 using GloboTicket.TicketManagement.Application.UnitTests.Mocks;
 using GloboTicket.TicketManagement.Application.Profiles;
 using Xunit;
@@ -21,7 +18,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
     {
         private readonly IMapper _mapper;
         private readonly Mock<IEventRepository> _mockEventRepository;
-        private readonly IEmailService _emailService;
+        private readonly Mock<IEmailService> _emailService;
         private readonly Mock<ILogger<CreateEventCommandHandler>> _logger;
 
         public CreateEventTests()
@@ -34,13 +31,14 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
 
             _logger = new Mock<ILogger<CreateEventCommandHandler>>();
             _mapper = configurationProvider.CreateMapper();
+            _emailService = EmailServiceMocks.GetEmailService();
         }
 
         [Fact]
         public async Task Handle_ValidEvent_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper,_mockEventRepository.Object, _emailService,_logger.Object);
-
+            var handler = new CreateEventCommandHandler(_mapper,_mockEventRepository.Object, _emailService.Object, _logger.Object);
+            
             await handler.Handle(new CreateEventCommand()
             {
                 Name = "Test",
@@ -55,6 +53,5 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
             allEvents.Count.ShouldBe(3);
         }
-
     }
 }
