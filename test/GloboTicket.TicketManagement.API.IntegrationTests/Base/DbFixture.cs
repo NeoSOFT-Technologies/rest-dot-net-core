@@ -12,6 +12,8 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
         private readonly GloboTicketIdentityDbContext _identityDbContext;
         public readonly string ApplicationDbName = $"Application-{Guid.NewGuid()}";
         public readonly string IdentityDbName = $"Identity-{Guid.NewGuid()}";
+        public readonly string HealthCheckDbName = $"HealthCheck";
+        public readonly string HealthCheckConnString;
         public readonly string ApplicationConnString;
         public readonly string IdentityConnString;
 
@@ -21,6 +23,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
         {
             ApplicationConnString = $"Server=localhost,1433;Database={ApplicationDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
             IdentityConnString = $"Server=localhost,1433;Database={IdentityDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
+            HealthCheckConnString = $"Server=localhost,1433;Database={HealthCheckDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
 
             var applicationBuilder = new DbContextOptionsBuilder<GloboTicketDbContext>();
             var identityBuilder = new DbContextOptionsBuilder<GloboTicketIdentityDbContext>();
