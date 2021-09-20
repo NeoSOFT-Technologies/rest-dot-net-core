@@ -75,56 +75,6 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.UserId.ShouldNotBeNull();
         }
 
-       //[Fact]
-        public async Task Post_RefreshToken_ReturnsSuccessResult()
-        {
-            var client = _factory.CreateClient();
-
-            var request = new RefreshTokenRequest()
-            {
-                Token = "m5U+6YUCnxCinVmqMTGPoY1X1xUIPHe/P0HF5OR6KlQ="
-            };
-
-            var requestJson = JsonConvert.SerializeObject(request);
-
-            HttpContent content = new StringContent(requestJson, Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync("/api​/v1​/account​/refresh-token", content);
-
-            response.EnsureSuccessStatusCode();
-
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            var result = JsonConvert.DeserializeObject<RefreshTokenResponse>(responseString);
-
-            result.IsAuthenticated.ShouldBeEquivalentTo(true);
-            result.Token.ShouldNotBeNull();
-            result.RefreshToken.ShouldNotBeNull();
-        }
-
-       //[Fact]
-        public async Task Post_RevokeToken_ReturnsSuccessResult()
-        {
-            var client = _factory.CreateClient();
-
-            var request = new RevokeTokenRequest()
-            {
-                Token = "m5U+6YUCnxCinVmqMTGPoY1X1xUIPHe/P0HF5OR6KlQ="
-            };
-
-            var requestJson = JsonConvert.SerializeObject(request);
-
-            HttpContent content = new StringContent(requestJson, Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync("/api​/v1​/account​/revoke-token", content);
-
-            response.EnsureSuccessStatusCode();
-
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            var result = JsonConvert.DeserializeObject<RevokeTokenResponse>(responseString);
-
-            result.IsRevoked.ShouldBeEquivalentTo(true);
-        }
+       
     }
 }

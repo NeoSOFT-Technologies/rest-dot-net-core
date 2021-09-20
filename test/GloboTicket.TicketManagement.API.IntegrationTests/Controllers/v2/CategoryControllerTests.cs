@@ -24,26 +24,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v2
             _factory = factory;
         }
 
-       // [Fact]
-        public async Task Get_CategoriesList_ReturnsSuccessResult()
-        {
-            var client = _factory.CreateClient();
-
-            var authenticationResponse = await AuthenticateAsync("Administrator");
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationResponse.Token);
-
-            var response = await client.GetAsync("/api/v2/category/all");
-
-            response.EnsureSuccessStatusCode();
-
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            var result = JsonConvert.DeserializeObject<Response<IEnumerable<CategoryListVm>>>(responseString);
-
-            result.Data.ShouldBeOfType<List<CategoryListVm>>();
-            result.Data.ShouldNotBeEmpty();
-        }
+       
 
         [Fact]
         public async Task Get_CategoriesList_ReturnsUnauthorizedResult()
@@ -55,19 +36,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v2
             response.StatusCode.ShouldBe(System.Net.HttpStatusCode.Unauthorized);
         }
 
-        //[Fact]
-        public async Task Get_CategoriesList_ReturnsForbiddenResult()
-        {
-            var client = _factory.CreateClient();
-
-            var authenticationResponse = await AuthenticateAsync("Viewer");
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationResponse.Token);
-
-            var response = await client.GetAsync("/api/v2/category/all");
-
-            response.StatusCode.ShouldBe(System.Net.HttpStatusCode.Forbidden);
-        }
+        
 
         [Fact]
         public async Task Get_CategoriesListWithEvents_IncludeHistory_ReturnsSuccessResult()
