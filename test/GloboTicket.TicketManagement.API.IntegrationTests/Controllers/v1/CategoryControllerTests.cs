@@ -33,9 +33,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             response.EnsureSuccessStatusCode();
 
             var responseString = await response.Content.ReadAsStringAsync();
-
             var result = JsonConvert.DeserializeObject<Response<IEnumerable<CategoryListVm>>>(responseString);
-
             result.Data.ShouldBeOfType<List<CategoryListVm>>();
             result.Data.ShouldNotBeEmpty();
 
