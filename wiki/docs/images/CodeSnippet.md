@@ -97,3 +97,15 @@
 ![DevOpsTest](https://user-images.githubusercontent.com/80381121/133241274-16eb679d-7d5c-4d37-bf0c-974d6511f55b.png)
 ![CiPipelineWorkflow](https://user-images.githubusercontent.com/80381121/133959927-f5df7b57-d412-460e-8f76-13c41df6e15d.png)
 
+![CI_Stages1](https://user-images.githubusercontent.com/80381121/133996661-96fff99a-559f-41c5-b818-8cf3aad49b2a.png)
+![CI_StagesBuild1](https://user-images.githubusercontent.com/80381121/133996677-8789a6b7-8926-4bb8-9d19-ef043dd221c3.png)
+![CI_StagesBuild2](https://user-images.githubusercontent.com/80381121/133996681-9fe5cfaf-c5c5-4459-9207-595c5c96019d.png)
+![CI_StagesCQ1](https://user-images.githubusercontent.com/80381121/133996687-9571b6c8-eeae-4f96-a555-c4929cc98515.png)
+![CI_StagesIT1](https://user-images.githubusercontent.com/80381121/133996709-d31491e2-5d4f-458e-9487-fd36f258572d.png)
+![CI_StagesSQ1](https://user-imag![CI_StagesSQ2](https://user-images.githubusercontent.com/80381121/133996725-158851f2-2f28-432a-b64f-aba3f1097ad8.png)
+es.githubusercontent.com/80381121/133996720-8f842833-0682-4489-a960-a607c0e9c76a.png)
+
+
+
+
+
