@@ -79,3 +79,5 @@ https://user-images.githubusercontent.com/80381121/133377797-d2c95245-d2c3-4e3d-
 https://user-images.githubusercontent.com/80381121/133250570-8f819ded-caca-4ed3-939b-102fa154bc48.mp4
 
 
+# NeoVSIXFile
+[NeoCTWizard.zip](https://github.com/NeoSOFT-Technologies/rest-dot-net-core/files/7196013/NeoCTWizard.zip)
