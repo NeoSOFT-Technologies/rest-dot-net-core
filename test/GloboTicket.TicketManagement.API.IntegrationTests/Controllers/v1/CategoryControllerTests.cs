@@ -29,7 +29,6 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             var client = _factory.CreateClient();
 
             var response = await client.GetAsync("/api/V1/category/all");
-
             response.EnsureSuccessStatusCode();
 
             var responseString = await response.Content.ReadAsStringAsync();
