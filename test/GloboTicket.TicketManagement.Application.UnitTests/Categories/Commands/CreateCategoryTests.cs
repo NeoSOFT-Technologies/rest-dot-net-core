@@ -39,18 +39,28 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
             allCategories.Count.ShouldBe(5);
         }
 
-
         [Fact]
-        public async Task Handle_InValidCategory_AddedToCategoriesRepo()
+        public async Task Handle_EmptyCategory_AddedToCategoriesRepo()
         {
             var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
 
             var result = await handler.Handle(new CreateCategoryCommand() { Name = "" }, CancellationToken.None);
 
             var allCategories = await _mockCategoryRepository.Object.ListAllAsync();
-            allCategories.Count.ShouldBe(4);
-            result.Errors.Count.ShouldNotBe(0);
-            result.Succeeded.ShouldBe(false);
+
+            Assert.Equal("name is required.", result.Errors[0].ToLower());
+        }
+
+        [Fact]
+        public async Task Handle_CategoryLength_GreaterThan_10_AddedToCategoryRepository()
+        {
+            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
+
+            var result = await handler.Handle(new CreateCategoryCommand() { Name = "TEST123456780" }, CancellationToken.None);
+
+            var allCategories = await _mockCategoryRepository.Object.ListAllAsync();
+
+            Assert.Equal("name must not exceed 10 characters.", result.Errors[0].ToLower());
         }
     }
 }
