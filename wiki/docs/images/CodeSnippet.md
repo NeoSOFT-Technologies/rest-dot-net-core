@@ -67,6 +67,9 @@
 
 # TestCase
 ![TestCase1](https://user-images.githubusercontent.com/80381121/132640329-39cd1c6b-7e9a-4408-acbe-5c787e4e6239.png)
+![TestCase2](https://user-images.githubusercontent.com/80381121/134328869-f4b21b78-4ae7-4897-877a-ce86f3a89e12.png)
+![TestCase3](https://user-images.githubusercontent.com/80381121/134328873-cb892629-49bd-4026-a9fc-fe34d8b664ac.png)
+
 
 # UnitTest
 ![UnitTest1](https://user-images.githubusercontent.com/80381121/132644449-b189505d-8757-4411-ab99-5203f4620b92.png)
