@@ -39,3 +39,12 @@
 # CSV
 
 ![CSV](https://user-images.githubusercontent.com/80381121/131616548-6fc8b784-3e04-436d-aab2-0d7865186904.png)
+
+
+# DevOps
+![DevOps](https://user-images.githubusercontent.com/80381121/133252159-0779c0c9-e78a-4326-bba4-4254a4b44121.png)
+
+# Integration Testing
+
+![IntegrationTestThumbnail](https://user-images.githubusercontent.com/80381121/133378350-a688960f-cc2e-425e-90c0-35a9f9fd2701.png)
+

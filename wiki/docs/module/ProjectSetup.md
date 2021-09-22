@@ -11,7 +11,7 @@ https://user-images.githubusercontent.com/80381121/132301809-1cb8aee4-54a2-40c1-
 
 # Database Setup
 
-https://user-images.githubusercontent.com/80381121/131328478-b930cc44-03e4-459b-880a-e49e4c2bbe5f.mp4
+https://user-images.githubusercontent.com/80381121/134120429-24dffb45-1ab5-4a25-b831-77f5763d58da.mp4
 
 
 # Swagger
@@ -65,5 +65,19 @@ https://user-images.githubusercontent.com/80381121/131328602-469b420f-c4f0-43a2-
 https://user-images.githubusercontent.com/80381121/131802049-5f4c8263-505a-4343-aa9b-0527d6899a61.mp4
 
 
+# Unit Testing
+
+https://user-images.githubusercontent.com/80381121/133373316-9e187f71-8248-4ba8-a492-ea7b48fbfafc.mp4
+
+# Integration Testing
+
+https://user-images.githubusercontent.com/80381121/133377797-d2c95245-d2c3-4e3d-ae9d-65dc77ea1b41.mp4
 
 
+# DevOps Tests
+
+https://user-images.githubusercontent.com/80381121/133250570-8f819ded-caca-4ed3-939b-102fa154bc48.mp4
+
+
+# NeoVSIXFile
+[NeoCTWizard.zip](https://github.com/NeoSOFT-Technologies/rest-dot-net-core/files/7196013/NeoCTWizard.zip)
