@@ -1,5 +1,8 @@
-# Swagger
+# Database Setup
+![DB_SetupSecret](https://user-images.githubusercontent.com/80381121/134319610-546835cd-4e9b-403f-a0e1-75ea00eba477.png)
 
+
+# Swagger
 ![Swagger](https://user-images.githubusercontent.com/80381121/131624965-8348c7f3-d37c-41ef-9903-bdbd2e5c7ceb.PNG)
 ![Swagger_1](https://user-images.githubusercontent.com/80381121/131788871-f4183899-60a9-4dd1-91b9-f15264bef2e6.png)
 ![Swagger_2](https://user-images.githubusercontent.com/80381121/131657420-31f4019c-2ca5-4213-adca-792fafaee399.png)
@@ -64,6 +67,9 @@
 
 # TestCase
 ![TestCase1](https://user-images.githubusercontent.com/80381121/132640329-39cd1c6b-7e9a-4408-acbe-5c787e4e6239.png)
+![TestCase2](https://user-images.githubusercontent.com/80381121/134328869-f4b21b78-4ae7-4897-877a-ce86f3a89e12.png)
+![TestCase3](https://user-images.githubusercontent.com/80381121/134328873-cb892629-49bd-4026-a9fc-fe34d8b664ac.png)
+
 
 # UnitTest
 ![UnitTest1](https://user-images.githubusercontent.com/80381121/132644449-b189505d-8757-4411-ab99-5203f4620b92.png)

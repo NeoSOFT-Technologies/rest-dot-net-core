@@ -41,10 +41,10 @@ namespace GloboTicket.TicketManagement.Api
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins(Urls);
-                                  });
+                    builder =>
+                    {
+                        builder.WithOrigins(Urls).AllowAnyHeader().AllowAnyMethod();
+                    });
             });
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
@@ -57,12 +57,7 @@ namespace GloboTicket.TicketManagement.Api
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddControllers();
             services.AddDataProtection();
-            services.AddCors(options =>
-            {
-                options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            });
-           services.AddHealthcheckExtensionService(Configuration);
-            
+            services.AddHealthcheckExtensionService(Configuration);
         } 
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
