@@ -80,4 +80,6 @@ https://user-images.githubusercontent.com/80381121/133250570-8f819ded-caca-4ed3-
 
 
 # NeoVSIXFile
-[NeoCTWizard.zip](https://github.com/NeoSOFT-Technologies/rest-dot-net-core/files/7196013/NeoCTWizard.zip)
+[NeoCTWizard (1).zip](https://github.com/NeoSOFT-Technologies/rest-dot-net-core/files/7244086/NeoCTWizard.1.zip)
+
+
