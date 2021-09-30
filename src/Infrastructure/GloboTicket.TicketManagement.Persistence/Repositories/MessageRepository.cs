@@ -19,15 +19,10 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
 
         public  Task<List<Notification>> GetAllNotifications()
         {
-
-           var Allnotifications =  _dbContext.NotificationMaster.Include(x => x.NotificationCode).ToListAsync();
+            _logger.LogInformation("GetAllNotifications Initiated");
+            var Allnotifications =  _dbContext.NotificationMaster.Include(x => x.NotificationCode).ToListAsync();
+            _logger.LogInformation("GetAllNotifications Completed");
             return Allnotifications;
-
-          
         }
-
-      
-        
-
     }
 }
