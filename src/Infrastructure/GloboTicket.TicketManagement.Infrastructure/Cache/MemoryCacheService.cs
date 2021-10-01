@@ -9,12 +9,11 @@ namespace GloboTicket.TicketManagement.Infrastructure.Cache
     public class MemoryCacheService : ICacheService
     {
         private readonly IMemoryCache _memoryCache;
-        private readonly CacheConfiguration _cacheConfig;
-        private MemoryCacheEntryOptions _cacheOptions;
+        private readonly MemoryCacheEntryOptions _cacheOptions;
         public MemoryCacheService(IMemoryCache memoryCache, IOptions<CacheConfiguration> cacheConfig)
         {
             _memoryCache = memoryCache;
-            _cacheConfig = cacheConfig.Value;
+            var _cacheConfig = cacheConfig.Value;
             if (_cacheConfig != null)
             {
                 _cacheOptions = new MemoryCacheEntryOptions

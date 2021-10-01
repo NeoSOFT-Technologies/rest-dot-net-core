@@ -139,7 +139,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
 
-            result.ValdationErrors[0].ToLower().ShouldBe("'date' must be greater than '" + DateTime.Now + "'.");
+            result.ValdationErrors[0].ToLower().ShouldBe("'date' must be greater than '" + DateTime.Now.ToString().ToLower() + "'.");
             allEvents.Count.ShouldBe(2);
         }
 
