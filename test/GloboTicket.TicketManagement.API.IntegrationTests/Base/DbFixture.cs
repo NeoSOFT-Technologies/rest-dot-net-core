@@ -1,7 +1,9 @@
-﻿using GloboTicket.TicketManagement.Identity;
+﻿using GloboTicket.TicketManagement.Domain.Entities;
+using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System; 
+using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
@@ -32,6 +34,37 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
             _applicationDbContext = new GloboTicketDbContext(applicationBuilder.Options);
 
             _applicationDbContext.Database.Migrate();
+
+            var messages = new List<Notification>
+            {
+                new Notification
+                {
+                    NotificationId = Guid.NewGuid(),
+                    NotificationCode = "1",
+                    NotificationMessage = "{PropertyName} is required.",
+                    CreatedDate = DateTime.Now
+                },
+                new Notification
+                {
+                    NotificationId = Guid.NewGuid(),
+                    NotificationCode = "2",
+                    NotificationMessage = "{PropertyName} must not exceed {MaxLength} characters.",
+                    CreatedDate = DateTime.Now
+                },
+                new Notification
+                {
+                    NotificationId = Guid.NewGuid(),
+                    NotificationCode = "3",
+                    NotificationMessage = "An event with the same name and date already exists.",
+                    CreatedDate = DateTime.Now
+                }
+            };
+
+            foreach(var item in messages)
+            {
+                _applicationDbContext.Add(item);
+            }
+            _applicationDbContext.SaveChanges();
 
             identityBuilder.UseSqlServer(IdentityConnString);
             _identityDbContext = new GloboTicketIdentityDbContext(identityBuilder.Options);

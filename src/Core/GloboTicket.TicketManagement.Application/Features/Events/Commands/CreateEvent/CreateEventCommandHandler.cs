@@ -7,6 +7,7 @@ using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,20 +19,23 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
         private readonly ILogger<CreateEventCommandHandler> _logger;
+        private readonly IMessageRepository _messageRepository;
 
-
-        public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService, ILogger<CreateEventCommandHandler> logger)
+        public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService, ILogger<CreateEventCommandHandler> logger, IMessageRepository messageRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
             _emailService = emailService;
             _logger = logger;
+            _messageRepository = messageRepository;
         }
 
         public async Task<Response<Guid>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Handle Initiated");
-            var validator = new CreateEventCommandValidator(_eventRepository);
+            IReadOnlyList<Notification> messages = await _messageRepository.GetAllNotifications();
+
+            var validator = new CreateEventCommandValidator(_eventRepository, messages);
             var validationResult = await validator.ValidateAsync(request);
             
             if (validationResult.Errors.Count > 0)

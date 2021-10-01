@@ -1,5 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
+using GloboTicket.TicketManagement.Application.Models.Cache;
 using GloboTicket.TicketManagement.Application.Models.Mail;
+using GloboTicket.TicketManagement.Infrastructure.Cache;
 using GloboTicket.TicketManagement.Infrastructure.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,9 @@ namespace GloboTicket.TicketManagement.Infrastructure
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
             services.AddTransient<ICsvExporter, CsvExporter>();
             services.AddTransient<IEmailService, EmailService>();
+            services.Configure<CacheConfiguration>(configuration.GetSection("CacheConfiguration"));
+            services.AddMemoryCache();
+            services.AddTransient<ICacheService, MemoryCacheService>();
             return services;
         }
     }

@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Castle.Core.Logging;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicket.TicketManagement.Application.Profiles;
 using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Application.UnitTests.Mocks;
-using GloboTicket.TicketManagement.Domain.Entities;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Shouldly;

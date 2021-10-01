@@ -5,6 +5,7 @@ using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,16 +15,17 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
+        private readonly IMessageRepository _messageRepository;
 
-        public UpdateEventCommandHandler(IMapper mapper, IEventRepository eventRepository)
+        public UpdateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IMessageRepository messageRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
+            _messageRepository = messageRepository;
         }
 
         public async Task<Response<Guid>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
-
             var eventToUpdate = await _eventRepository.GetByIdAsync(request.EventId);
 
             if (eventToUpdate == null)
@@ -31,7 +33,8 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
                 throw new NotFoundException(nameof(Event), request.EventId);
             }
 
-            var validator = new UpdateEventCommandValidator();
+            IReadOnlyList<Notification> messages = await _messageRepository.GetAllNotifications();
+            var validator = new UpdateEventCommandValidator(messages);
             var validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.Errors.Count > 0)

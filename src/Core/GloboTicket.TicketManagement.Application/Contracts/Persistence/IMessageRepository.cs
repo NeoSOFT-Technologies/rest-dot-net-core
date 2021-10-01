@@ -8,8 +8,6 @@ namespace GloboTicket.TicketManagement.Application.Contracts.Persistence
 {
     public interface IMessageRepository : IAsyncRepository<Notification>
     {
-        public Task<List<Notification>> GetAllNotifications();
-
-
+        public Task<IReadOnlyList<Notification>> GetAllNotifications();
     }
 }

@@ -43,6 +43,22 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
                         "ConnectionStrings:GloboTicketHealthCheckConnectionString", _dbFixture.HealthCheckConnString)
                 });
             });
+            builder.ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddInMemoryCollection(new[]
+                {
+                    new KeyValuePair<string, string>(
+                        "CacheConfiguration:AbsoluteExpirationInHours", "1")
+                });
+            });
+            builder.ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddInMemoryCollection(new[]
+                {
+                    new KeyValuePair<string, string>(
+                        "CacheConfiguration:SlidingExpirationInMinutes", "30")
+                });
+            });
         }
     }
 }

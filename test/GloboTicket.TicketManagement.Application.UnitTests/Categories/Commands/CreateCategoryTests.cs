@@ -16,10 +16,12 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
     {
         private readonly IMapper _mapper;
         private readonly Mock<ICategoryRepository> _mockCategoryRepository;
+        private readonly Mock<IMessageRepository> _mockMessageRepository;
 
         public CreateCategoryTests()
         {
             _mockCategoryRepository = CategoryRepositoryMocks.GetCategoryRepository();
+            _mockMessageRepository = MessageRepositoryMocks.GetMessageRepository();
             var configurationProvider = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<MappingProfile>();
@@ -29,9 +31,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
         }
 
         [Fact]
-        public async Task Handle_ValidCategory_AddedToCategoriesRepo()
+        public async Task Handle_ValidCategory_AddedToCategoryRepository()
         {
-            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
+            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object, _mockMessageRepository.Object);
 
             var result = await handler.Handle(new CreateCategoryCommand() { Name = "Test" }, CancellationToken.None);
 
@@ -44,9 +46,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
         }
 
         [Fact]
-        public async Task Handle_EmptyCategory_AddedToCategoriesRepo()
+        public async Task Handle_EmptyCategory_AddedToCategoryRepository()
         {
-            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
+            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object, _mockMessageRepository.Object);
 
             var result = await handler.Handle(new CreateCategoryCommand() { Name = "" }, CancellationToken.None);
 
@@ -62,7 +64,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
         [Fact]
         public async Task Handle_CategoryLength_GreaterThan_10_AddedToCategoryRepository()
         {
-            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
+            var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object, _mockMessageRepository.Object);
 
             var result = await handler.Handle(new CreateCategoryCommand() { Name = "TEST123456780" }, CancellationToken.None);
 
