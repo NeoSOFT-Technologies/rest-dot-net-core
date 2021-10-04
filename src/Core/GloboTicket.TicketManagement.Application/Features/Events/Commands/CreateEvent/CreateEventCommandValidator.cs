@@ -40,9 +40,9 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
             return !(await _eventRepository.IsEventNameAndDateUnique(e.Name, e.Date));
         }
 
-        private string GetMessage(string ErrorCode, string Lang)
+        private string GetMessage(string Code, string Lang)
         {
-            return _messageRepository.GetMessage(ErrorCode, Lang).Result.ToString();
+            return _messageRepository.GetMessage(Code, Lang).Result.MessageContent.ToString();
         }
     }
 }

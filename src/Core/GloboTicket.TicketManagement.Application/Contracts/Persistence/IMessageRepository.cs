@@ -5,6 +5,6 @@ namespace GloboTicket.TicketManagement.Application.Contracts.Persistence
 {
     public interface IMessageRepository : IAsyncRepository<Message>
     {
-        public Task<string> GetMessage(string ErrorCode, string Lang);
+        public Task<Message> GetMessage(string Code, string Lang);
     }
 }

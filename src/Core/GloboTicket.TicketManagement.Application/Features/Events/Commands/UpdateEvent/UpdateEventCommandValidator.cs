@@ -21,9 +21,9 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
                 .GreaterThan(0);
         }
 
-        private string GetMessage(string ErrorCode, string Lang)
+        private string GetMessage(string Code, string Lang)
         {
-            return _messageRepository.GetMessage(ErrorCode, Lang).Result.ToString();
+            return _messageRepository.GetMessage(Code, Lang).Result.MessageContent.ToString();
         }
     }
 }

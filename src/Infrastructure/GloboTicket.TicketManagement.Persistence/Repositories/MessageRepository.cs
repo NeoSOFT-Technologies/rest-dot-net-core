@@ -20,7 +20,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
             _cacheService = cacheService;
         }
 
-        public async Task<string> GetMessage(string ErrorCode, string Lang)
+        public async Task<Message> GetMessage(string Code, string Lang)
         {
             _logger.LogInformation("GetAllNotifications Initiated");
             if (!_cacheService.TryGet(cacheKey, out IReadOnlyList<Message> cachedList))
@@ -28,15 +28,8 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
                 cachedList = await _dbContext.Set<Message>().ToListAsync();
                 _cacheService.Set(cacheKey, cachedList);
             }
-            var error = cachedList.FirstOrDefault(x => x.ErrorCode == ErrorCode && x.Language == Lang);
-            if(error == null)
-            {
-                cachedList = await _dbContext.Set<Message>().ToListAsync();
-                _cacheService.Set(cacheKey, cachedList);
-                error = cachedList.FirstOrDefault(x => x.ErrorCode == ErrorCode && x.Language == Lang);
-            }
             _logger.LogInformation("GetAllNotifications Completed");
-            return error.ErrorMessage;
+            return cachedList.FirstOrDefault(x => x.Code == Code && x.Language == Lang);
         }
     }
 }

@@ -17,9 +17,9 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
                 .MaximumLength(10).WithMessage(GetMessage("2", ApplicationConstants.LANG_ENG));
         }
 
-        private string GetMessage(string ErrorCode, string Lang)
+        private string GetMessage(string Code, string Lang)
         {
-            return _messageRepository.GetMessage(ErrorCode, Lang).Result.ToString();
+            return _messageRepository.GetMessage(Code, Lang).Result.MessageContent.ToString();
         }
     }
 }
