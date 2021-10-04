@@ -144,6 +144,28 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         }
 
         [Fact]
+        public async Task Handle_DuplicateEvent_AddedToEventRepo()
+        {
+            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            {
+                Name = "To the Moon and Back",
+                Price = 25,
+                Artist = "test",
+                Date = DateTime.Now.AddMonths(8),
+                Description = "description",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
+                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+            }, CancellationToken.None));
+
+            var allEvents = await _mockEventRepository.Object.ListAllAsync();
+
+            result.ValdationErrors[0].ToLower().ShouldBe("an event with the same name and date already exists.");
+            allEvents.Count.ShouldBe(2);
+        }
+
+        [Fact]
         public async Task Handle_EmptyPrice_AddedToEventRepo()
         {
             var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);

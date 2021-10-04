@@ -1,9 +1,7 @@
 ﻿using FluentValidation;
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
-using GloboTicket.TicketManagement.Domain.Entities;
+using GloboTicket.TicketManagement.Application.Helper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,32 +10,39 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
     public class CreateEventCommandValidator : AbstractValidator<CreateEventCommand>
     {
         private readonly IEventRepository _eventRepository;
-        public CreateEventCommandValidator(IEventRepository eventRepository, IReadOnlyList<Notification> messages)
+        private readonly IMessageRepository _messageRepository;
+        public CreateEventCommandValidator(IEventRepository eventRepository, IMessageRepository messageRepository)
         {
             _eventRepository = eventRepository;
+            _messageRepository = messageRepository;
 
             RuleFor(p => p.Name)
-                .NotEmpty().WithMessage(messages.FirstOrDefault(x => x.NotificationCode == "1").NotificationMessage)
+                .NotEmpty().WithMessage(GetMessage("1", ApplicationConstants.LANG_ENG))
                 .NotNull()
-                .MaximumLength(50).WithMessage(messages.FirstOrDefault(x => x.NotificationCode == "2").NotificationMessage);
+                .MaximumLength(50).WithMessage(GetMessage("2", ApplicationConstants.LANG_ENG));
 
             RuleFor(p => p.Date)
-                .NotEmpty().WithMessage(messages.FirstOrDefault(x => x.NotificationCode == "1").NotificationMessage)
+                .NotEmpty().WithMessage(GetMessage("1", ApplicationConstants.LANG_ENG))
                 .NotNull()
                 .GreaterThan(DateTime.Now);
 
             RuleFor(e => e)
                 .MustAsync(EventNameAndDateUnique)
-                .WithMessage(messages.FirstOrDefault(x => x.NotificationCode == "3").NotificationMessage);
+                .WithMessage(GetMessage("3", ApplicationConstants.LANG_ENG));
 
             RuleFor(p => p.Price)
-                .NotEmpty().WithMessage(messages.FirstOrDefault(x => x.NotificationCode == "1").NotificationMessage)
+                .NotEmpty().WithMessage(GetMessage("1", ApplicationConstants.LANG_ENG))
                 .GreaterThan(0);
         }
 
         private async Task<bool> EventNameAndDateUnique(CreateEventCommand e, CancellationToken token)
         {
             return !(await _eventRepository.IsEventNameAndDateUnique(e.Name, e.Date));
+        }
+
+        private string GetMessage(string ErrorCode, string Lang)
+        {
+            return _messageRepository.GetMessage(ErrorCode, Lang).Result.ToString();
         }
     }
 }

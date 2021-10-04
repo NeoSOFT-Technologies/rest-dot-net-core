@@ -26,8 +26,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
         {
             var createCategoryCommandResponse = new Response<CreateCategoryDto>();
 
-            IReadOnlyList<Notification> messages = await _messageRepository.GetAllNotifications();
-            var validator = new CreateCategoryCommandValidator(messages);
+            var validator = new CreateCategoryCommandValidator(_messageRepository);
             var validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.Errors.Count > 0)

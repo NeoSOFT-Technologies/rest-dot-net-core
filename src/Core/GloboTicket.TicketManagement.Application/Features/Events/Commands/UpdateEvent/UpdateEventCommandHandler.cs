@@ -5,7 +5,6 @@ using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,8 +32,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
                 throw new NotFoundException(nameof(Event), request.EventId);
             }
 
-            IReadOnlyList<Notification> messages = await _messageRepository.GetAllNotifications();
-            var validator = new UpdateEventCommandValidator(messages);
+            var validator = new UpdateEventCommandValidator(_messageRepository);
             var validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.Errors.Count > 0)

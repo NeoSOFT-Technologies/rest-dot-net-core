@@ -26,7 +26,7 @@ namespace GloboTicket.TicketManagement.Persistence
         public DbSet<Event> Events { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Notification> NotificationMaster { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -192,6 +192,30 @@ namespace GloboTicket.TicketManagement.Persistence
                 OrderPaid = true,
                 OrderPlaced = DateTime.Now,
                 UserId = Guid.Parse("{7AEB2C01-FE8E-4B84-A5BA-330BDF950F5C}")
+            });
+
+            modelBuilder.Entity<Message>().HasData(new Message
+            {
+                MessageId = Guid.Parse("{253C75D5-32AF-4DBF-AB63-1AF449BDE7BD}"),
+                ErrorCode = "1",
+                ErrorMessage = "{PropertyName} is required.",
+                Language = "en"
+            });
+
+            modelBuilder.Entity<Message>().HasData(new Message
+            {
+                MessageId = Guid.Parse("{ED0CC6B6-11F4-4512-A441-625941917502}"),
+                ErrorCode = "2",
+                ErrorMessage = "{PropertyName} must not exceed {MaxLength} characters.",
+                Language = "en"
+            });
+
+            modelBuilder.Entity<Message>().HasData(new Message
+            {
+                MessageId = Guid.Parse("{FAFE649A-3E2A-4153-8FD8-9DCD0B87E6D8}"),
+                ErrorCode = "3",
+                ErrorMessage = "An event with the same name and date already exists.",
+                Language = "en"
             });
         }
 

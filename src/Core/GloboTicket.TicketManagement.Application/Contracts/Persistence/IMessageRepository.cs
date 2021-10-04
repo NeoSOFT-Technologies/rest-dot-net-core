@@ -1,13 +1,10 @@
 ﻿using GloboTicket.TicketManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Contracts.Persistence
 {
-    public interface IMessageRepository : IAsyncRepository<Notification>
+    public interface IMessageRepository : IAsyncRepository<Message>
     {
-        public Task<IReadOnlyList<Notification>> GetAllNotifications();
+        public Task<string> GetMessage(string ErrorCode, string Lang);
     }
 }
