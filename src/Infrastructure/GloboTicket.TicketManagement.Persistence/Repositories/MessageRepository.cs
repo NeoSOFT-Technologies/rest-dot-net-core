@@ -33,6 +33,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
             {
                 cachedList = await _dbContext.Set<Message>().ToListAsync();
                 _cacheService.Set(cacheKey, cachedList);
+                error = cachedList.FirstOrDefault(x => x.ErrorCode == ErrorCode && x.Language == Lang);
             }
             _logger.LogInformation("GetAllNotifications Completed");
             return error.ErrorMessage;

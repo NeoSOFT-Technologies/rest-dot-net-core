@@ -2,7 +2,7 @@
 {
     public static class ApplicationConstants
     {
-        public static string LANG_ENG = "en";
-        public static string LANG_AR = "ar";
+        public const string LANG_ENG = "en";
+        public const string LANG_AR = "ar";
     }
 }
