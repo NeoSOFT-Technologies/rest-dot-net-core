@@ -7,6 +7,10 @@
 ![Swagger_1](https://user-images.githubusercontent.com/80381121/131788871-f4183899-60a9-4dd1-91b9-f15264bef2e6.png)
 ![Swagger_2](https://user-images.githubusercontent.com/80381121/131657420-31f4019c-2ca5-4213-adca-792fafaee399.png)
 
+#Global Exception Handler
+![Exception1](https://user-images.githubusercontent.com/80381121/136019424-1cef9c6c-db06-41cc-a76d-2f8317c31e03.png)
+![Exception2](https://user-images.githubusercontent.com/80381121/136019429-12b9d07b-694d-491b-bb70-0b8f1f419224.png)
+
 
 # Logger
 ![Logger1](https://user-images.githubusercontent.com/80381121/131789383-6878e9b6-cfa4-4825-99c3-e8e9fa165f61.png)
