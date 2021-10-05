@@ -71,6 +71,13 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
                     return matches;
                 });
 
+            mockEventRepository.Setup(repo => repo.AddEventWithCategory(It.IsAny<Domain.Entities.Event>())).ReturnsAsync(
+                (Domain.Entities.Event Event) =>
+                {
+                    EventList.Add(Event);
+                    return Event;
+                });
+
             return mockEventRepository;
 
         }

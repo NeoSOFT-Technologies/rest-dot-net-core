@@ -1,5 +1,6 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Domain.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,6 +29,20 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
             }
             _logger.LogInformation("GetCategoriesWithEvents Completed");
             return allCategories;
+        }
+
+        public async Task<Category> AddCategory(Category category)
+        {
+            var categoryId = Guid.NewGuid();
+            List<SqlParameter> parms = new List<SqlParameter>
+                {
+                    // Create parameter(s)
+                    new SqlParameter { ParameterName = "@CategoryId", Value = categoryId },
+                    new SqlParameter { ParameterName = "@Name", Value = category.Name },
+                };
+            await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
+            category = await GetByIdAsync(categoryId);
+            return category;
         }
     }
 }
