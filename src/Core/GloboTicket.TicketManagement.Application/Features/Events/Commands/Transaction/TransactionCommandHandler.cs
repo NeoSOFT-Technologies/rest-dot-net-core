@@ -10,17 +10,17 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent
+namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Transaction
 {
-    public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Response<Guid>>
+    public class TransactionCommandHandler : IRequestHandler<TransactionCommand, Response<Guid>>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
-        private readonly ILogger<CreateEventCommandHandler> _logger;
+        private readonly ILogger<TransactionCommandHandler> _logger;
         private readonly IMessageRepository _messageRepository;
 
-        public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService, ILogger<CreateEventCommandHandler> logger, IMessageRepository messageRepository)
+        public TransactionCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService, ILogger<TransactionCommandHandler> logger, IMessageRepository messageRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
@@ -29,19 +29,19 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
             _messageRepository = messageRepository;
         }
 
-        public async Task<Response<Guid>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
+        public async Task<Response<Guid>> Handle(TransactionCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Handle Initiated");
 
-            var validator = new CreateEventCommandValidator(_eventRepository, _messageRepository);
+            var validator = new TransactionCommandValidator(_eventRepository, _messageRepository);
             var validationResult = await validator.ValidateAsync(request);
-            
+
             if (validationResult.Errors.Count > 0)
                 throw new Exceptions.ValidationException(validationResult);
 
             var @event = _mapper.Map<Event>(request);
-
-            @event = await _eventRepository.AddAsync(@event);
+            @event.Category.Name = request.CategoryName;
+            @event = await _eventRepository.AddEventWithCategory(@event);
 
             //Sending email notification to admin address
             var email = new Email() { To = "gill@snowball.be", Body = $"A new event was created: {request}", Subject = "A new event was created" };
@@ -56,7 +56,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
                 _logger.LogError($"Mailing about event {@event.EventId} failed due to an error with the mail service: {ex.Message}");
             }
 
-            var response = new Response<Guid>(@event.EventId , "Inserted successfully ");
+            var response = new Response<Guid>(@event.EventId, "Inserted successfully ");
 
             _logger.LogInformation("Handle Completed");
 

@@ -5,13 +5,13 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent
+namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Transaction
 {
-    public class CreateEventCommandValidator : AbstractValidator<CreateEventCommand>
+    public class TransactionCommandValidator : AbstractValidator<TransactionCommand>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMessageRepository _messageRepository;
-        public CreateEventCommandValidator(IEventRepository eventRepository, IMessageRepository messageRepository)
+        public TransactionCommandValidator(IEventRepository eventRepository, IMessageRepository messageRepository)
         {
             _eventRepository = eventRepository;
             _messageRepository = messageRepository;
@@ -35,7 +35,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
                 .GreaterThan(0);
         }
 
-        private async Task<bool> EventNameAndDateUnique(CreateEventCommand e, CancellationToken token)
+        private async Task<bool> EventNameAndDateUnique(TransactionCommand e, CancellationToken token)
         {
             return !(await _eventRepository.IsEventNameAndDateUnique(e.Name, e.Date));
         }

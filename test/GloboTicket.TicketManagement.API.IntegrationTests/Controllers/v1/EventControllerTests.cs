@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Xunit;
 using System.Linq;
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent;
+using GloboTicket.TicketManagement.Application.Features.Events.Commands.Transaction;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
@@ -87,6 +88,31 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             var eventJson = JsonConvert.SerializeObject(@event);
             HttpContent content = new StringContent(eventJson, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("/api/v1/events", content);
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<Response<Guid>>(responseString);
+            result.Succeeded.ShouldBeEquivalentTo(true);
+            result.Data.ShouldBeOfType<Guid>();
+            result.Errors.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task Post_Event_Transaction_ReturnsSuccessResult()
+        {
+            var client = _factory.CreateClient();
+            var @event = new TransactionCommand()
+            {
+                Name = "Test Name1",
+                Price = 75,
+                Artist = "Test Artist",
+                Date = DateTime.Now.AddMonths(7),
+                Description = "Test Description",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
+                CategoryName = "TestCat"
+            };
+            var eventJson = JsonConvert.SerializeObject(@event);
+            HttpContent content = new StringContent(eventJson, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("/api/v1/events/transactiondemo", content);
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Response<Guid>>(responseString);

@@ -139,6 +139,13 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
                     categories.Add(category);
                     return category;
                 });
+            mockCategoryRepository.Setup(repo => repo.AddCategory(It.IsAny<Category>())).ReturnsAsync(
+                (Category category) =>
+                {
+                    category.CategoryId = Guid.NewGuid();
+                    categories.Add(category);
+                    return category;
+                });
 
             return mockCategoryRepository;
         }

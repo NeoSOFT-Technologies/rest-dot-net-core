@@ -18,6 +18,7 @@ namespace GloboTicket.TicketManagement.Persistence
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
 
             return services;    
         }

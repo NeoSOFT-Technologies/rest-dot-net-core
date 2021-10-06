@@ -6,7 +6,7 @@ using GloboTicket.TicketManagement.Application.UnitTests.Mocks;
 using GloboTicket.TicketManagement.Application.Profiles;
 using Xunit;
 using System.Threading.Tasks;
-using GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent;
+using GloboTicket.TicketManagement.Application.Features.Events.Commands.Transaction;
 using System.Threading;
 using Shouldly;
 using Microsoft.Extensions.Logging;
@@ -14,15 +14,15 @@ using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
 
 namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
 {
-    public class CreateEventTests
+    public class TransactionTests
     {
         private readonly IMapper _mapper;
         private readonly Mock<IEventRepository> _mockEventRepository;
         private readonly Mock<IEmailService> _emailService;
-        private readonly Mock<ILogger<CreateEventCommandHandler>> _logger;
+        private readonly Mock<ILogger<TransactionCommandHandler>> _logger;
         private readonly Mock<IMessageRepository> _mockMessageRepository;
 
-        public CreateEventTests()
+        public TransactionTests()
         {
             _mockEventRepository = EventRepositoryMocks.GetEventRepository();
             _mockMessageRepository = MessageRepositoryMocks.GetMessageRepository();
@@ -31,7 +31,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 cfg.AddProfile<MappingProfile>();
             });
 
-            _logger = new Mock<ILogger<CreateEventCommandHandler>>();
+            _logger = new Mock<ILogger<TransactionCommandHandler>>();
             _mapper = configurationProvider.CreateMapper();
             _emailService = EmailServiceMocks.GetEmailService();
         }
@@ -39,9 +39,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_ValidEvent_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper,_mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
-            
-            await handler.Handle(new CreateEventCommand()
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+
+            await handler.Handle(new TransactionCommand()
             {
                 Name = "Test",
                 Price = 25,
@@ -49,7 +49,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None);
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -59,9 +59,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_EmptyEvent_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new TransactionCommand()
             {
                 Name = "",
                 Price = 1000,
@@ -69,7 +69,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -81,9 +81,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_EventLength_GreaterThan_50_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new TransactionCommand()
             {
                 Name = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
                 Price = 1000,
@@ -91,7 +91,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -103,16 +103,16 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_EmptyDate_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new TransactionCommand()
             {
                 Name = "Test",
                 Price = 1000,
                 Artist = "test",
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -124,9 +124,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_Date_SmallerThan_CurrentDate_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new TransactionCommand()
             {
                 Name = "Test",
                 Price = 1000,
@@ -134,7 +134,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2020, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -146,9 +146,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_DuplicateEvent_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new TransactionCommand()
             {
                 Name = "To the Moon and Back",
                 Price = 25,
@@ -156,7 +156,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = DateTime.Now.AddMonths(8),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -168,16 +168,16 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_EmptyPrice_AddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new TransactionCommand()
             {
                 Name = "Test",
                 Artist = "test",
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -189,9 +189,9 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
         [Fact]
         public async Task Handle_Price_NotGreaterThan_0_NotAddedToEventRepo()
         {
-            var handler = new CreateEventCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new CreateEventCommand()
+            var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new TransactionCommand()
             {
                 Name = "Test",
                 Price = 0,
@@ -199,7 +199,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryName = "Musicals"
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();

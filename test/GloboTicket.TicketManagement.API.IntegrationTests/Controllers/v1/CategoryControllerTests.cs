@@ -10,6 +10,7 @@ using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCa
 using System.Net.Http;
 using System.Text;
 using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
+using GloboTicket.TicketManagement.Application.Features.Categories.Commands.StoredProcedure;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 {
@@ -55,7 +56,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.Data.ShouldNotBeEmpty();
         }
 
-       [Fact]
+        [Fact]
         public async Task Get_CategoriesListWithEvents_DoNotIncludeHistory_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
@@ -96,6 +97,33 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
 
             result.Succeeded.ShouldBeEquivalentTo(true);
             result.Data.ShouldBeOfType<CreateCategoryDto>();
+            result.Errors.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task Post_Category_StoredProcedure_ReturnsSuccessResult()
+        {
+            var client = _factory.CreateClient();
+
+            var category = new StoredProcedureCommand()
+            {
+                Name = "Test"
+            };
+
+            var categoryJson = JsonConvert.SerializeObject(category);
+
+            HttpContent content = new StringContent(categoryJson, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("/api/v1/category/storedproceduredemo", content);
+
+            response.EnsureSuccessStatusCode();
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<Response<StoredProcedureDto>>(responseString);
+
+            result.Succeeded.ShouldBeEquivalentTo(true);
+            result.Data.ShouldBeOfType<StoredProcedureDto>();
             result.Errors.ShouldBeNull();
         }
     }

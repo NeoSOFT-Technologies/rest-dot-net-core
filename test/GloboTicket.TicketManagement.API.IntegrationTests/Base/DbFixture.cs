@@ -1,7 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System; 
+using System;
 using Xunit;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Base

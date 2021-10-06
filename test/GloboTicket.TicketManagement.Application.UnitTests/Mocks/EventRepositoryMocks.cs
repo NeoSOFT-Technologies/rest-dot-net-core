@@ -3,7 +3,6 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
 {
@@ -64,6 +63,19 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
                     var index = EventList.IndexOf(oldEvent);
                     if (index != -1)
                         EventList[index] = Event;
+                });
+            mockEventRepository.Setup(repo => repo.IsEventNameAndDateUnique(It.IsAny<string>(), It.IsAny<DateTime>())).ReturnsAsync(
+                (string name, DateTime date) =>
+                {
+                    var matches = EventList.Any(e => e.Name.Equals(name) && e.Date.Date.Equals(date.Date));
+                    return matches;
+                });
+
+            mockEventRepository.Setup(repo => repo.AddEventWithCategory(It.IsAny<Domain.Entities.Event>())).ReturnsAsync(
+                (Domain.Entities.Event Event) =>
+                {
+                    EventList.Add(Event);
+                    return Event;
                 });
 
             return mockEventRepository;

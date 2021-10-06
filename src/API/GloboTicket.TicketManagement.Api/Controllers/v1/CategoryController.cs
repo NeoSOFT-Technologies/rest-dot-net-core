@@ -1,4 +1,5 @@
 ﻿using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
+using GloboTicket.TicketManagement.Application.Features.Categories.Commands.StoredProcedure;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using MediatR;
@@ -54,6 +55,13 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v1
         public async Task<ActionResult> Create([FromBody] CreateCategoryCommand createCategoryCommand)
         {
             var response = await _mediator.Send(createCategoryCommand);
+            return Ok(response);
+        }
+
+        [HttpPost("StoredProcedureDemo", Name = "StoredProcedureDemo")]
+        public async Task<ActionResult> StoredProcedureDemo([FromBody] StoredProcedureCommand storedProcedureCommand)
+        {
+            var response = await _mediator.Send(storedProcedureCommand);
             return Ok(response);
         }
     }

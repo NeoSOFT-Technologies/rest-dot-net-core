@@ -2,12 +2,12 @@
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Application.Helper;
 
-namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry
+namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.StoredProcedure
 {
-    public class CreateCategoryCommandValidator: AbstractValidator<CreateCategoryCommand>
+    public class StoredProcedureCommandValidator: AbstractValidator<StoredProcedureCommand>
     {
         private readonly IMessageRepository _messageRepository;
-        public CreateCategoryCommandValidator(IMessageRepository messageRepository)
+        public StoredProcedureCommandValidator(IMessageRepository messageRepository)
         {
             _messageRepository = messageRepository;
 

@@ -1,6 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Api.Utility;
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent;
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.DeleteEvent;
+using GloboTicket.TicketManagement.Application.Features.Events.Commands.Transaction;
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsExport;
@@ -45,6 +46,13 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v1
         {
             var id = await _mediator.Send(createEventCommand);
             return Ok(id);
+        }
+
+        [HttpPost("TransactionDemo", Name = "TransactionDemo")]
+        public async Task<ActionResult> TransactionDemo([FromBody] TransactionCommand transactionCommand)
+        {
+            var response = await _mediator.Send(transactionCommand);
+            return Ok(response);
         }
 
         [HttpPut(Name = "UpdateEvent")]

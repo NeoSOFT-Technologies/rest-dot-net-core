@@ -7,31 +7,31 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry
+namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.StoredProcedure
 {
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Response<CreateCategoryDto>>
+    public class StoredProcedureCommandHandler : IRequestHandler<StoredProcedureCommand, Response<StoredProcedureDto>>
     {
         private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMessageRepository _messageRepository;
 
-        public CreateCategoryCommandHandler(IMapper mapper, ICategoryRepository categoryRepository, IMessageRepository messageRepository)
+        public StoredProcedureCommandHandler(IMapper mapper, ICategoryRepository categoryRepository, IMessageRepository messageRepository)
         {
             _mapper = mapper;
             _categoryRepository = categoryRepository;
             _messageRepository = messageRepository;
         }
 
-        public async Task<Response<CreateCategoryDto>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Response<StoredProcedureDto>> Handle(StoredProcedureCommand request, CancellationToken cancellationToken)
         {
-            Response<CreateCategoryDto> createCategoryCommandResponse = null;
+            Response<StoredProcedureDto> createCategoryCommandResponse = null;
 
-            var validator = new CreateCategoryCommandValidator(_messageRepository);
+            var validator = new StoredProcedureCommandValidator(_messageRepository);
             var validationResult = await validator.ValidateAsync(request);
 
             if (validationResult.Errors.Count > 0)
             {
-                createCategoryCommandResponse = new Response<CreateCategoryDto>("failure");
+                createCategoryCommandResponse = new Response<StoredProcedureDto>("failure");
                 createCategoryCommandResponse.Errors = new List<string>();
                 foreach (var error in validationResult.Errors)
                 {
@@ -41,8 +41,8 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
             else
             {
                 var category = new Category() { Name = request.Name };
-                category = await _categoryRepository.AddAsync(category);
-                createCategoryCommandResponse = new Response<CreateCategoryDto>(_mapper.Map<CreateCategoryDto>(category), "success");
+                category = await _categoryRepository.AddCategory(category);
+                createCategoryCommandResponse = new Response<StoredProcedureDto>(_mapper.Map<StoredProcedureDto>(category), "success");
             }
 
             return createCategoryCommandResponse;
