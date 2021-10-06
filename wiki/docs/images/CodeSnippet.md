@@ -54,6 +54,7 @@
 ![Authentication1](https://user-images.githubusercontent.com/80381121/132170410-8cf684a9-62c1-4dc3-a42e-8684d07584d7.png)
 
 ![Authorization1](https://user-images.githubusercontent.com/80381121/136145231-c8ff5628-0b75-4cf3-bfb8-cbcff794dceb.png)
+![Authorization2](https://user-images.githubusercontent.com/80381121/136156153-9b4e5d0b-1d45-4ceb-889e-42f2c14963f9.png)
 
 
 # Clean-Architecture
