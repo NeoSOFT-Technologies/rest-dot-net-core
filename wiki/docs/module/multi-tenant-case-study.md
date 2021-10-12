@@ -14,10 +14,10 @@ Technical Story: [description | ticket/issue URL] <!-- optional -->
 
 ![image](https://user-images.githubusercontent.com/10514279/136888798-5b46c4df-aa35-4e55-9e44-b51dba17fad9.png)
 
-[Multi-tenant Benefits]
-* [ A reduction of server Infrastructure costs utilizing a Multi tenant architecture strategy.]
-* [ One single source of trust.]
-* [ Cost reductions of development and time-to-market.]
+## Multi-tenant Benefits
+*  A reduction of server Infrastructure costs utilizing a Multi tenant architecture strategy.
+*  One single source of trust.
+*  Cost reductions of development and time-to-market.
 
 ## Decision Drivers <!-- optional -->
 
