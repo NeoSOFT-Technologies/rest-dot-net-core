@@ -68,22 +68,12 @@ This approach allocates a new database for every new tenant. Separating tenant d
 ### [Dedicated Schema]
 This approach involves storing all tenants in a single database and separating every tenant by creating a different schema for its tables. In this way, each tenant will have its own set of tables within the same database. This database design keeps the hardware cost low by using the same database for all tenants.
 
-[example | description | pointer to more information | …] <!-- optional -->
 
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
 
 ### [Shared Table]
 This approach involves storing all tenants’ data in the same database using the same schema for all tables. A special column is added to associate each record with its own tenant. Usually, that column is named TenantId and points to a specific tenant by using a foreign key. The hardware cost is still low, but you may need some additional development to ensure the tenant data is never accessed by another tenant.
 
-[example | description | pointer to more information | …] <!-- optional -->
 
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
 
 ## Links <!-- optional -->
 
