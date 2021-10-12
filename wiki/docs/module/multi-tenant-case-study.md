@@ -8,9 +8,11 @@ Technical Story: [description | ticket/issue URL] <!-- optional -->
 
 ## Context and Problem Statement
 
+We designed and built our HR management system with multi-tenancy in mind. It was created to serve our company, and in the future other companies, to improve the hiring process.
+
 Multi tenant architecture is an ecosystem or model, in which a single environment can serve multiple tenants utilizing a scalable, available, and resilient architecture. The underlying infrastructure is completely shared, logically isolated, and with fully centralized services. The multi tenant architecture evolves according to the organization or subdomain (organization.saas.com) that is logged into the SaaS application; and is totally transparent to the end-user.
 
-We designed and built our HR management system with multi-tenancy in mind. It was created to serve our company, and in the future other companies, to improve the hiring process.
+
 
 ![image](https://user-images.githubusercontent.com/10514279/136888798-5b46c4df-aa35-4e55-9e44-b51dba17fad9.png)
 
