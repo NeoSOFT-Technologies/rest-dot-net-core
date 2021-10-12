@@ -54,7 +54,7 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 
 ## Pros and Cons of the Options <!-- optional -->
 
-### [option 1]
+### [Dedicated Database]
 
 [example | description | pointer to more information | …] <!-- optional -->
 
@@ -63,7 +63,7 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 * Bad, because [argument c]
 * … <!-- numbers of pros and cons can vary -->
 
-### [option 2]
+### [Dedicated Schema]
 
 [example | description | pointer to more information | …] <!-- optional -->
 
@@ -72,7 +72,7 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 * Bad, because [argument c]
 * … <!-- numbers of pros and cons can vary -->
 
-### [option 3]
+### [Shared Table]
 
 [example | description | pointer to more information | …] <!-- optional -->
 
