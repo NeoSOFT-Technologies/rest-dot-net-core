@@ -58,12 +58,6 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 
 This approach allocates a new database for every new tenant. Separating tenant data in different databases is the simplest way of achieving isolation. It will allow you to extend the database of your choice if your software logic also allows for it. This database design tends to lead to higher costs for hardware and maintenance. You need to consider that you are also limited by the number of databases that the server can support. This solution is good for clients that have strong requirements for data isolation and also when the number of clients is not too large
 
-[example | description | pointer to more information | …] <!-- optional -->
-
-* Good, because [argument a]
-* Good, because [argument b]
-* Bad, because [argument c]
-* … <!-- numbers of pros and cons can vary -->
 
 ### [Dedicated Schema]
 This approach involves storing all tenants in a single database and separating every tenant by creating a different schema for its tables. In this way, each tenant will have its own set of tables within the same database. This database design keeps the hardware cost low by using the same database for all tenants.
