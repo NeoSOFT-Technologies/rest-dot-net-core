@@ -10,6 +10,8 @@ Technical Story: [description | ticket/issue URL] <!-- optional -->
 
 [Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.]
 
+[Multi tenant architecture is an ecosystem or model, in which a single environment can serve multiple tenants utilizing a scalable, available, and resilient architecture. The underlying infrastructure is completely shared, logically isolated, and with fully centralized services. The multi tenant architecture evolves according to the organization or subdomain (organization.saas.com) that is logged into the SaaS application; and is totally transparent to the end-user.]
+
 ## Decision Drivers <!-- optional -->
 
 * [driver 1, e.g., a force, facing concern, …]
