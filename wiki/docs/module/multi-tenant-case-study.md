@@ -56,6 +56,8 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 
 ### [Dedicated Database]
 
+This approach allocates a new database for every new tenant. Separating tenant data in different databases is the simplest way of achieving isolation. It will allow you to extend the database of your choice if your software logic also allows for it. This database design tends to lead to higher costs for hardware and maintenance. You need to consider that you are also limited by the number of databases that the server can support. This solution is good for clients that have strong requirements for data isolation and also when the number of clients is not too large
+
 [example | description | pointer to more information | …] <!-- optional -->
 
 * Good, because [argument a]
