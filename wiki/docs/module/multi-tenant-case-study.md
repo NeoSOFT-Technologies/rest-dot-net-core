@@ -29,10 +29,13 @@ Multi tenant architecture is an ecosystem or model, in which a single environmen
 
 ## Considered Options
 
-* [option 1]
-* [option 2]
-* [option 3]
+* [Dedicated Database]
+* [Dedicated Table/Schema]
+* [Shared Table/ Schema]
 * … <!-- numbers of options can vary -->
+
+![image](https://user-images.githubusercontent.com/10514279/136889463-d35d4a1c-ebd7-4518-8557-0f2c35f43073.png)
+
 
 ## Decision Outcome
 
