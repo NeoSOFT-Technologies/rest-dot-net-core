@@ -28,11 +28,12 @@ Multi tenant architecture is an ecosystem or model, in which a single environmen
 * … <!-- numbers of drivers can vary -->
 
 ## Considered Options
+The figure below shows three different database designs used for achieving multi-tenancy data architecture. Every approach has its own pros and cons.
 
-* [Dedicated Database]
-* [Dedicated Table/Schema]
-* [Shared Table/ Schema]
-* … <!-- numbers of options can vary -->
+* Dedicated Database
+* Dedicated Table/Schema
+* Shared Table/ Schema
+
 
 ![image](https://user-images.githubusercontent.com/10514279/136889463-d35d4a1c-ebd7-4518-8557-0f2c35f43073.png)
 
