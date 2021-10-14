@@ -131,5 +131,6 @@
 
 # Caching Mechanism
 ![Caching1](https://user-images.githubusercontent.com/80381121/137326830-46fc972d-f18a-444d-9a25-298d8e70b5af.png)
-
+![Caching2](https://user-images.githubusercontent.com/80381121/137329931-1363adad-40fa-4e51-bd26-85a5fe4a4823.png)
+![Caching3](https://user-images.githubusercontent.com/80381121/137329951-20afe6f4-4366-43cb-8adb-a0aa3047abf4.png)
 
