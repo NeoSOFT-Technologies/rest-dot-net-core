@@ -125,4 +125,9 @@
 ![CI_QG](https://user-images.githubusercontent.com/80381121/133997917-f2c12cac-5c15-455b-b7ce-c7b70115aaaa.png)
 
 
+# Retrieving Error Messages
+![ErrorMsg1](https://user-images.githubusercontent.com/80381121/137261713-fd4ac37a-f823-4de6-a2ad-738f25cef0c3.png)
+
+
+
 
