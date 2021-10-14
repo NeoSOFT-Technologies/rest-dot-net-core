@@ -129,5 +129,7 @@
 ![ErrorMsg1](https://user-images.githubusercontent.com/80381121/137261713-fd4ac37a-f823-4de6-a2ad-738f25cef0c3.png)
 
 
+# Caching Mechanism
+![Caching1](https://user-images.githubusercontent.com/80381121/137326830-46fc972d-f18a-444d-9a25-298d8e70b5af.png)
 
 
