@@ -49,6 +49,7 @@ namespace GloboTicket.TicketManagement.Api
                     });
             });
             services.AddApplicationServices();
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
             services.AddIdentityServices(Configuration);
@@ -56,11 +57,9 @@ namespace GloboTicket.TicketManagement.Api
             services.AddSwaggerVersionedApiExplorer();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
-            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddControllers();
             services.AddDataProtection()
-                .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"))
-                .ProtectKeysWithDpapi();
+                .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"));
             services.AddHealthcheckExtensionService(Configuration);
         } 
 
