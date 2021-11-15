@@ -10,6 +10,7 @@ using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace GloboTicket.TicketManagement.Api
 {
@@ -56,7 +58,9 @@ namespace GloboTicket.TicketManagement.Api
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddControllers();
-            services.AddDataProtection();
+            services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"))
+                .ProtectKeysWithDpapi(); ;
             services.AddHealthcheckExtensionService(Configuration);
         } 
 
