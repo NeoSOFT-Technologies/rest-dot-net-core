@@ -60,7 +60,7 @@ namespace GloboTicket.TicketManagement.Api
             services.AddControllers();
             services.AddDataProtection()
                 .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"))
-                .ProtectKeysWithDpapi(); ;
+                .ProtectKeysWithDpapi();
             services.AddHealthcheckExtensionService(Configuration);
         } 
 
