@@ -26,7 +26,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForM
 
             var count = await _orderRepository.GetTotalCountOfOrdersForMonth(request.Date);
 
-            var response = new PagedResponse<IEnumerable<OrdersForMonthDto>>(orders, count,request.Size);
+            var response = new PagedResponse<IEnumerable<OrdersForMonthDto>>(orders, count, request.Page, request.Size);
 
             return response;
         }

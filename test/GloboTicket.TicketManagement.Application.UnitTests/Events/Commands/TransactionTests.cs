@@ -11,6 +11,7 @@ using System.Threading;
 using Shouldly;
 using Microsoft.Extensions.Logging;
 using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
+using GloboTicket.TicketManagement.Application.Models.Mail;
 
 namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
 {
@@ -33,12 +34,34 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
 
             _logger = new Mock<ILogger<TransactionCommandHandler>>();
             _mapper = configurationProvider.CreateMapper();
-            _emailService = EmailServiceMocks.GetEmailService();
+            _emailService = new Mock<IEmailService>();
         }
 
         [Fact]
         public async Task Handle_ValidEvent_AddedToEventRepo()
         {
+            _emailService.Setup(x => x.SendEmail(It.IsAny<Email>())).ReturnsAsync(true);
+            var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
+
+            await handler.Handle(new TransactionCommand()
+            {
+                Name = "Test",
+                Price = 25,
+                Artist = "test",
+                Date = new DateTime(2027, 1, 18),
+                Description = "description",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
+                CategoryName = "Musicals"
+            }, CancellationToken.None);
+
+            var allEvents = await _mockEventRepository.Object.ListAllAsync();
+            allEvents.Count.ShouldBe(3);
+        }
+
+        [Fact]
+        public async Task Handle_ValidEvent_EmailNotSent_AddedToEventRepo()
+        {
+            _emailService.Setup(x => x.SendEmail(It.IsAny<Email>())).ThrowsAsync(new Exception());
             var handler = new TransactionCommandHandler(_mapper, _mockEventRepository.Object, _emailService.Object, _logger.Object, _mockMessageRepository.Object);
 
             await handler.Handle(new TransactionCommand()
