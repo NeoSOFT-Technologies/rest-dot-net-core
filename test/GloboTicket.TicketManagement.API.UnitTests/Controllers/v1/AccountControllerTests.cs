@@ -23,7 +23,11 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         {
             var controller = new AccountController(_mockAuthenticationService.Object);
 
-            var response = await controller.AuthenticateAsync(new AuthenticationRequest());
+            var response = await controller.AuthenticateAsync(new AuthenticationRequest()
+            {
+                Email = "john@test.com",
+                Password = "User123!@#"
+            });
 
             response.ShouldBeOfType<ActionResult<AuthenticationResponse>>();
             var okObjectResult = response.Result as OkObjectResult;
@@ -37,7 +41,14 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         {
             var controller = new AccountController(_mockAuthenticationService.Object);
 
-            var response = await controller.RegisterAsync(new RegistrationRequest());
+            var response = await controller.RegisterAsync(new RegistrationRequest()
+            {
+                FirstName = "Fname",
+                LastName = "Lname",
+                Email = "fname@test.com",
+                UserName = "fname.lname",
+                Password = "User123!@#"
+            });
 
             response.ShouldBeOfType<ActionResult<RegistrationResponse>>();
             var okObjectResult = response.Result as OkObjectResult;
@@ -51,7 +62,10 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         {
             var controller = new AccountController(_mockAuthenticationService.Object);
 
-            var result = await controller.RefreshTokenAsync(new RefreshTokenRequest());
+            var result = await controller.RefreshTokenAsync(new RefreshTokenRequest() 
+            {
+                Token = "string"
+            });
 
             result.ShouldBeOfType<OkObjectResult>();
             var okObjectResult = result as OkObjectResult;
@@ -66,7 +80,10 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
             _mockAuthenticationService.Setup(auth => auth.RevokeToken(It.IsAny<RevokeTokenRequest>())).ReturnsAsync(new RevokeTokenResponse());
             var controller = new AccountController(_mockAuthenticationService.Object);
 
-            var result = await controller.RevokeTokenAsync(new RevokeTokenRequest());
+            var result = await controller.RevokeTokenAsync(new RevokeTokenRequest()
+            {
+                Token = "string"
+            });
 
             result.ShouldBeOfType<OkObjectResult>();
             var okObjectResult = result as OkObjectResult;
