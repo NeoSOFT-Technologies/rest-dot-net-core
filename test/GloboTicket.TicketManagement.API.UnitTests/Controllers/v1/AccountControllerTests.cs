@@ -77,7 +77,9 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         [Fact]
         public async Task Revoke_Token()
         {
-            _mockAuthenticationService.Setup(auth => auth.RevokeToken(It.IsAny<RevokeTokenRequest>())).ReturnsAsync(new RevokeTokenResponse());
+            _mockAuthenticationService.Setup(auth => auth.RevokeToken(It.IsAny<RevokeTokenRequest>())).ReturnsAsync(
+                new RevokeTokenResponse() { IsRevoked = true, Message = "Token revoked" });
+
             var controller = new AccountController(_mockAuthenticationService.Object);
 
             var result = await controller.RevokeTokenAsync(new RevokeTokenRequest()
@@ -96,7 +98,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         public async Task Revoke_EmptyToken()
         {
             _mockAuthenticationService.Setup(auth => auth.RevokeToken(It.IsAny<RevokeTokenRequest>())).ReturnsAsync(
-                new RevokeTokenResponse() { Message = "Token is required" });
+                new RevokeTokenResponse() { IsRevoked =false, Message = "Token is required" });
 
             var controller = new AccountController(_mockAuthenticationService.Object);
 
@@ -113,7 +115,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         public async Task Revoke_Token_NotFound()
         {
             _mockAuthenticationService.Setup(auth => auth.RevokeToken(It.IsAny<RevokeTokenRequest>())).ReturnsAsync(
-                new RevokeTokenResponse() { Message = "Token did not match any users" });
+                new RevokeTokenResponse() { IsRevoked = false, Message = "Token did not match any users" });
 
             var controller = new AccountController(_mockAuthenticationService.Object);
 

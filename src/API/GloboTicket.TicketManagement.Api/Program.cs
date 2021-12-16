@@ -7,12 +7,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Api
 {
     public class Program
     {
+        [ExcludeFromCodeCoverage]
         public async static Task Main(string[] args)
         {   
 
