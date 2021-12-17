@@ -25,7 +25,7 @@ namespace GloboTicket.TicketManagement.Identity.UnitTests.Seed
         {
             var oldCount = _mockUserManager.Object.Users.ToList().Count();
 
-            await UserCreator.SeedAsync(_mockUserManager.Object);
+            await Should.NotThrowAsync(() => UserCreator.SeedAsync(_mockUserManager.Object));
 
             var newCount = _mockUserManager.Object.Users.ToList().Count();
             newCount.ShouldBe(oldCount + 1);

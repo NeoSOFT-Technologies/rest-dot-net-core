@@ -25,6 +25,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace GloboTicket.TicketManagement.Api
@@ -61,8 +62,9 @@ namespace GloboTicket.TicketManagement.Api
             services.AddDataProtection()
                 .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"));
             services.AddHealthcheckExtensionService(Configuration);
-        } 
+        }
 
+        [ExcludeFromCodeCoverage]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())

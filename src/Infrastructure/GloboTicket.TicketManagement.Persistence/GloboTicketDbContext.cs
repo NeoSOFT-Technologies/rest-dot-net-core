@@ -4,11 +4,13 @@ using GloboTicket.TicketManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Persistence
 {
+    [ExcludeFromCodeCoverage]
     public class GloboTicketDbContext: DbContext
     {
         private readonly ILoggedInUserService _loggedInUserService;

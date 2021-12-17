@@ -1,5 +1,4 @@
-﻿using GloboTicket.TicketManagement.Identity.Models;
-using GloboTicket.TicketManagement.Identity.UnitTests.Fakes;
+﻿using GloboTicket.TicketManagement.Identity.UnitTests.Fakes;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 

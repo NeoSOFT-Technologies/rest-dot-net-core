@@ -12,17 +12,17 @@ namespace GloboTicket.TicketManagement.Infrastructure.Mail
     {
         public EmailSettings _emailSettings { get; }
         public ILogger<EmailService> _logger { get; }
+        public ISendGridClient _sendGridClient;
 
-        public EmailService(IOptions<EmailSettings> mailSettings, ILogger<EmailService> logger)
+        public EmailService(IOptions<EmailSettings> mailSettings, ILogger<EmailService> logger, ISendGridClient sendGridClient)
         {
             _emailSettings = mailSettings.Value;
             _logger = logger;
+            _sendGridClient = sendGridClient;
         }
 
         public async Task<bool> SendEmail(Email email)
         {
-            var client = new SendGridClient(_emailSettings.ApiKey);
-
             var subject = email.Subject;
             var to = new EmailAddress(email.To);
             var emailBody = email.Body;
@@ -34,7 +34,7 @@ namespace GloboTicket.TicketManagement.Infrastructure.Mail
             };
 
             var sendGridMessage = MailHelper.CreateSingleEmail(from, to, subject, emailBody, emailBody);
-            var response = await client.SendEmailAsync(sendGridMessage);
+            var response = await _sendGridClient.SendEmailAsync(sendGridMessage);
 
             _logger.LogInformation("Email sent");
 

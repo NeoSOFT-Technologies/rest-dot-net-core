@@ -11,7 +11,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers
         [Fact]
         public void StartupTest()
         {
-            var webHost = Microsoft.AspNetCore.WebHost.CreateDefaultBuilder().UseStartup<MyStartup>().Build();
+            var webHost = Should.NotThrow(() => Microsoft.AspNetCore.WebHost.CreateDefaultBuilder().UseStartup<MyStartup>().Build());
             webHost.ShouldNotBeNull();
         }
     }

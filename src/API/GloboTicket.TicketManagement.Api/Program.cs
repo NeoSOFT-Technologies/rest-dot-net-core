@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
-        [ExcludeFromCodeCoverage]
         public async static Task Main(string[] args)
         {   
 

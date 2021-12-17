@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using GloboTicket.TicketManagement.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Scrum.Demo.Persistence.Configurations
 {
+    [ExcludeFromCodeCoverage]
     public class EventConfiguration : IEntityTypeConfiguration<Event>
     {
         public void Configure(EntityTypeBuilder<Event> builder)
