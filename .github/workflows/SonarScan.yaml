@@ -43,5 +43,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /d:sonar.exclusions="**/Migrations/**" /k:"NeoSOFT-Technologies_rest-dot-net-core" /o:"neosoft-technologies" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"   
-            dotnet test --filter FullyQualifiedName!~IntegrationTests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover -l trx
+            dotnet test --filter FullyQualifiedName!~IntegrationTests /results /p:CollectCoverage=true /p:CoverletOutputFormat='json%2copencover' /p:CoverletOutput=/results/coverage /p:MergeWith='/results/coverage.json'
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
