@@ -32,8 +32,14 @@ jobs:
       run: dotnet build --no-restore
 
     - name: TestMSSQL
-      run: dotnet test --environment dbProvider=MSSQL --filter FullyQualifiedName~IntegrationTests --verbosity normal
+      env:
+        dbProvide: MSSQL
+      run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal
     - name: TestPGSQL
-      run: dotnet test --environment dbProvider=PGSQL --filter FullyQualifiedName~IntegrationTests --verbosity normal
+      env:
+        dbProvide: PGSQL
+      run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal
     - name: TestMySQL
-      run: dotnet test --environment dbProvider=MySQL --filter FullyQualifiedName~IntegrationTests --verbosity normal
+      env:
+        dbProvide: MySQL
+      run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal
