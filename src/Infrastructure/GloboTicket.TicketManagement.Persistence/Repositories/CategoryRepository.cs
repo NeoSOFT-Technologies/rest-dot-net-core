@@ -35,15 +35,15 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
 
         public async Task<Category> AddCategory(Category category)
         {
-            var categoryId = Guid.NewGuid();
-            List<SqlParameter> parms = new List<SqlParameter>
-                {
-                    // Create parameter(s)
-                    new SqlParameter { ParameterName = "@CategoryId", Value = categoryId },
-                    new SqlParameter { ParameterName = "@Name", Value = category.Name },
-                };
-            await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
-            category = await GetByIdAsync(categoryId);
+            //var categoryId = Guid.NewGuid();
+            //List<SqlParameter> parms = new List<SqlParameter>
+            //    {
+            //        // Create parameter(s)
+            //        new SqlParameter { ParameterName = "@CategoryId", Value = categoryId },
+            //        new SqlParameter { ParameterName = "@Name", Value = category.Name },
+            //    };
+            //await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
+            //category = await GetByIdAsync(categoryId);
             return category;
         }
     }

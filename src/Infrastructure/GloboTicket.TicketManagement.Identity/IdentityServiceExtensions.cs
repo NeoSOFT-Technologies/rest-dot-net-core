@@ -21,8 +21,27 @@ namespace GloboTicket.TicketManagement.Identity
         {
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
-            services.AddDbContext<GloboTicketIdentityDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
-                b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
+            var dbProvider = configuration.GetValue<string>("dbProvider");
+            switch (dbProvider)
+            {
+                case "MSSQL":
+                    services.AddDbContext<GloboTicketIdentityDbContext>(
+                        options => options.UseSqlServer(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
+                        b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
+                    break;
+                case "PGSQL":
+                    services.AddDbContext<GloboTicketIdentityDbContext>(
+                        options => options.UseNpgsql(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
+                        b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
+                    break;
+                case "MySQL":
+                    services.AddDbContext<GloboTicketIdentityDbContext>(
+                        options => options.UseMySql(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
+                        b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
+                    break;
+                default:
+                    break;
+            }
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<GloboTicketIdentityDbContext>().AddDefaultTokenProviders();

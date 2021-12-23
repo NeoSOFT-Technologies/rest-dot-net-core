@@ -20,11 +20,11 @@ namespace Scrum.Demo.Persistence.Configurations
 
             builder
                 .Property(b => b.CreatedBy)
-                .HasColumnType("nvarchar(450)");
+                .HasColumnType("varchar(450)");
 
             builder
                 .Property(b => b.LastModifiedBy)
-                .HasColumnType("nvarchar(450)");
+                .HasColumnType("varchar(450)");
         }
     }
 }

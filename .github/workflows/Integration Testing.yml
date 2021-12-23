@@ -31,5 +31,9 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
 
-    - name: Test
-      run: dotnet test --filter FullyQualifiedName~IntegrationTests --no-build --verbosity normal
+    - name: TestMSSQL
+      run: dotnet test -e dbProvider=MSSQL --filter FullyQualifiedName~IntegrationTests --verbosity normal
+    - name: TestPGSQL
+      run: dotnet test -e dbProvider=PGSQL --filter FullyQualifiedName~IntegrationTests --verbosity normal
+    - name: TestMySQL
+      run: dotnet test -e dbProvider=MySQL --filter FullyQualifiedName~IntegrationTests --verbosity normal
