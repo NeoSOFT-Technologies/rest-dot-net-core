@@ -9,3 +9,4 @@
 ![Create command With MySQL](https://user-images.githubusercontent.com/92291258/147340240-86849092-f585-4266-80e5-3ada133cb3a0.png)
 
 ## PostgreSQL
+![PS](https://user-images.githubusercontent.com/87525401/147341020-a180bb8a-8b9c-4b9f-aafd-d8dc312c7be2.PNG)
