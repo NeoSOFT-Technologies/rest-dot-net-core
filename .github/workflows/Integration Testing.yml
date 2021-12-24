@@ -33,13 +33,13 @@ jobs:
 
     - name: TestMSSQL
       env:
-        dbProvide: MSSQL
+        dbProvider: MSSQL
       run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal
     - name: TestPGSQL
       env:
-        dbProvide: PGSQL
+        dbProvider: PGSQL
       run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal
     - name: TestMySQL
       env:
-        dbProvide: MySQL
+        dbProvider: MySQL
       run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal
