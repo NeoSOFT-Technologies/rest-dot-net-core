@@ -21,17 +21,14 @@ namespace GloboTicket.TicketManagement.Identity.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly JwtSettings _jwtSettings;
-        private readonly GloboTicketIdentityDbContext _context;
 
         public AuthenticationService(UserManager<ApplicationUser> userManager,
             IOptions<JwtSettings> jwtSettings,
-            SignInManager<ApplicationUser> signInManager,
-            GloboTicketIdentityDbContext context)
+            SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings.Value;
             _signInManager = signInManager;
-            _context = context;
         }
 
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)
@@ -50,7 +47,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
             if (!result.Succeeded)
             {
-                throw new AuthenticationException($"Credentials for '{request.Email} aren't valid'.");
+                throw new AuthenticationException($"Credentials for '{request.Email}' aren't valid'.");
             }
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
@@ -67,8 +64,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
                 response.RefreshToken = refreshToken.Token;
                 response.RefreshTokenExpiration = refreshToken.Expires;
                 user.RefreshTokens.Add(refreshToken);
-                _context.Update(user);
-                _context.SaveChanges();
+                await _userManager.UpdateAsync(user);
             }
 
             response.IsAuthenticated = true;
@@ -116,7 +112,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
             }
             else
             {
-                throw new ArgumentException($"Email {request.Email } already exists.");
+                throw new ArgumentException($"Email '{request.Email }' already exists.");
             }
         }
 
@@ -172,7 +168,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
         public async Task<RefreshTokenResponse> RefreshTokenAsync(RefreshTokenRequest request)
         {
             var response = new RefreshTokenResponse();
-            var user = _context.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == request.Token));
+            var user = _userManager.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == request.Token));
             if (user == null)
             {
                 response.IsAuthenticated = false;
@@ -195,8 +191,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
             //Generate new Refresh Token and save to Database
             var newRefreshToken = GenerateRefreshToken();
             user.RefreshTokens.Add(newRefreshToken);
-            _context.Update(user);
-            await _context.SaveChangesAsync();
+            await _userManager.UpdateAsync(user);
 
             //Generates new jwt
             response.IsAuthenticated = true;
@@ -219,7 +214,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
                 return response;
             }
 
-            var user = _context.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == request.Token));
+            var user = _userManager.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == request.Token));
 
             if (user == null)
             {
@@ -237,8 +232,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
             }
             // revoke token and save
             refreshToken.Revoked = DateTime.UtcNow;
-            _context.Update(user);
-            await _context.SaveChangesAsync();
+            await _userManager.UpdateAsync(user);
             response.IsRevoked = true;
             response.Message = "Token revoked";
             return response;

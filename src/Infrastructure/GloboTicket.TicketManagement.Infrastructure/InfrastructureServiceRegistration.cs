@@ -5,6 +5,7 @@ using GloboTicket.TicketManagement.Infrastructure.Cache;
 using GloboTicket.TicketManagement.Infrastructure.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SendGrid.Extensions.DependencyInjection;
 
 namespace GloboTicket.TicketManagement.Infrastructure
 {
@@ -18,6 +19,7 @@ namespace GloboTicket.TicketManagement.Infrastructure
             services.Configure<CacheConfiguration>(configuration.GetSection("CacheConfiguration"));
             services.AddMemoryCache();
             services.AddTransient<ICacheService, MemoryCacheService>();
+            services.AddSendGrid(options => { options.ApiKey = configuration.GetValue<string>("EmailSettings:ApiKey"); });
             return services;
         }
     }

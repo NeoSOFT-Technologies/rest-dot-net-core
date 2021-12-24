@@ -37,7 +37,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
 
             if (category == null)
             {
-                throw new NotFoundException(nameof(Event), request.Id);
+                throw new NotFoundException(nameof(Category), @event.CategoryId);
             }
             eventDetailDto.Category = _mapper.Map<CategoryDto>(category);
 

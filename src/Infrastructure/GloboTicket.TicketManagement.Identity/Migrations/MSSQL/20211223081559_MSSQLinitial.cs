@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GloboTicket.TicketManagement.Identity.Migrations
+namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
 {
-    public partial class initial : Migration
+    [ExcludeFromCodeCoverage]
+    public partial class MSSQLinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -180,12 +182,12 @@ namespace GloboTicket.TicketManagement.Identity.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "95e91b0c-bd15-471f-b5bc-6c35bb7f5884", "d7be5d6a-8031-4488-b76b-5fc0bc4adff8", "Viewer", "VIEWER" });
+                values: new object[] { "3b0c9672-6a5e-4c76-b6b3-cac7ccd44950", "8dcc1cad-ce8a-4292-95cf-8d1e6e8b0abf", "Viewer", "VIEWER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0b4d3dd5-6956-4c2d-8cd6-dae4e0ed991c", "c74f2084-b730-4a80-93e7-56fc1af42f18", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "52f66ee1-8160-4c7b-8349-f1e82a2b5a8a", "70a33626-b8ba-4723-af1e-61cbbc1e481e", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

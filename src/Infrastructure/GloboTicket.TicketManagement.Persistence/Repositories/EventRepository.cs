@@ -3,11 +3,13 @@ using GloboTicket.TicketManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Persistence.Repositories
 {
+    [ExcludeFromCodeCoverage]
     public class EventRepository : BaseRepository<Event>, IEventRepository
     {
         private readonly ILogger _logger;

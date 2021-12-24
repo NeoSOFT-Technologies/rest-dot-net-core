@@ -4,11 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Persistence.Repositories
 {
+    [ExcludeFromCodeCoverage]
     public class BaseRepository<T> : IAsyncRepository<T> where T : class
     {
         protected readonly GloboTicketDbContext _dbContext;

@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using GloboTicket.TicketManagement.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Scrum.Demo.Persistence.Configurations
 {
+    [ExcludeFromCodeCoverage]
     public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> builder)
@@ -18,11 +20,11 @@ namespace Scrum.Demo.Persistence.Configurations
 
             builder
                 .Property(b => b.CreatedBy)
-                .HasColumnType("nvarchar(450)");
+                .HasColumnType("varchar(450)");
 
             builder
                 .Property(b => b.LastModifiedBy)
-                .HasColumnType("nvarchar(450)");
+                .HasColumnType("varchar(450)");
         }
     }
 }

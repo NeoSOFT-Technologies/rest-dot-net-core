@@ -10,6 +10,7 @@ using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,8 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 namespace GloboTicket.TicketManagement.Api
 {
@@ -47,6 +50,7 @@ namespace GloboTicket.TicketManagement.Api
                     });
             });
             services.AddApplicationServices();
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
             services.AddIdentityServices(Configuration);
@@ -54,12 +58,13 @@ namespace GloboTicket.TicketManagement.Api
             services.AddSwaggerVersionedApiExplorer();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
-            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddControllers();
-            services.AddDataProtection();
+            services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"));
             services.AddHealthcheckExtensionService(Configuration);
-        } 
+        }
 
+        [ExcludeFromCodeCoverage]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())

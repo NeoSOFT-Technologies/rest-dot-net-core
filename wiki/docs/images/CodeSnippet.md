@@ -53,6 +53,9 @@
 # Authentication
 ![Authentication1](https://user-images.githubusercontent.com/80381121/132170410-8cf684a9-62c1-4dc3-a42e-8684d07584d7.png)
 
+![Authorization1](https://user-images.githubusercontent.com/80381121/136145231-c8ff5628-0b75-4cf3-bfb8-cbcff794dceb.png)
+![Authorization2](https://user-images.githubusercontent.com/80381121/136156153-9b4e5d0b-1d45-4ceb-889e-42f2c14963f9.png)
+
 
 # Clean-Architecture
 ![Cleanarch](https://user-images.githubusercontent.com/80381121/132321466-f08ab7f0-d129-4a86-8970-20174bf27800.png)
@@ -120,6 +123,18 @@
 ![CI_StagesSQ1](https://user-images.githubusercontent.com/80381121/133997390-44b9611b-0a9a-4d0c-899c-a687fb329896.png)
 ![CI_StagesSQ2](https://user-images.githubusercontent.com/80381121/133996859-2263a56d-c863-4cd1-aa51-b96df9fb5282.png)
 ![CI_QG](https://user-images.githubusercontent.com/80381121/133997917-f2c12cac-5c15-455b-b7ce-c7b70115aaaa.png)
+
+
+# Retrieving Error Messages
+![ErrorMsg1](https://user-images.githubusercontent.com/80381121/137261713-fd4ac37a-f823-4de6-a2ad-738f25cef0c3.png)
+
+
+# Caching Mechanism
+![Caching1](https://user-images.githubusercontent.com/80381121/137326830-46fc972d-f18a-444d-9a25-298d8e70b5af.png)
+![Caching2](https://user-images.githubusercontent.com/80381121/137329931-1363adad-40fa-4e51-bd26-85a5fe4a4823.png)
+![Caching3](https://user-images.githubusercontent.com/80381121/137329951-20afe6f4-4366-43cb-8adb-a0aa3047abf4.png)
+![Caching4](https://user-images.githubusercontent.com/80381121/137333952-c518003d-6b39-4a1a-8f80-bc7e5787b1c0.PNG)
+![Caching5](https://user-images.githubusercontent.com/80381121/137333180-dfd1a2df-f173-4a5e-8f39-efe1ac57be3a.PNG)
 
 
 

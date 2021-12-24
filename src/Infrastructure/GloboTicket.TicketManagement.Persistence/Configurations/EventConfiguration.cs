@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using GloboTicket.TicketManagement.Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Scrum.Demo.Persistence.Configurations
 {
+    [ExcludeFromCodeCoverage]
     public class EventConfiguration : IEntityTypeConfiguration<Event>
     {
         public void Configure(EntityTypeBuilder<Event> builder)
@@ -14,30 +16,30 @@ namespace Scrum.Demo.Persistence.Configurations
 
             builder
                 .Property(b => b.CreatedBy)
-                .HasColumnType("nvarchar(450)");
+                .HasColumnType("varchar(450)");
 
             builder
                 .Property(b => b.LastModifiedBy)
-                .HasColumnType("nvarchar(450)");
+                .HasColumnType("varchar(450)");
 
             builder
                 .Property(b => b.Name)
-                .HasColumnType("nvarchar(50)")
+                .HasColumnType("varchar(50)")
                 .IsRequired();
 
             builder
                 .Property(b => b.Artist)
-                .HasColumnType("nvarchar(50)")
+                .HasColumnType("varchar(50)")
                 .IsRequired();
 
             builder
                 .Property(b => b.Description)
-                .HasColumnType("nvarchar(500)")
+                .HasColumnType("varchar(500)")
                 .IsRequired();
 
             builder
                 .Property(b => b.ImageUrl)
-                .HasColumnType("nvarchar(200)")
+                .HasColumnType("varchar(200)")
                 .IsRequired();
 
             //Not necessary if relationship conventions are followed in model(Cascade is the default behaviour)

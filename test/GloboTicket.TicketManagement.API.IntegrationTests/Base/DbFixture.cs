@@ -21,22 +21,43 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
 
         public DbFixture()
         {
-            ApplicationConnString = $"Server=localhost,1433;Database={ApplicationDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
-            IdentityConnString = $"Server=localhost,1433;Database={IdentityDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
-            HealthCheckConnString = $"Server=localhost,1433;Database={HealthCheckDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
-
             var applicationBuilder = new DbContextOptionsBuilder<GloboTicketDbContext>();
             var identityBuilder = new DbContextOptionsBuilder<GloboTicketIdentityDbContext>();
 
-            applicationBuilder.UseSqlServer(ApplicationConnString);
+            var dbProvider = Environment.GetEnvironmentVariable("dbProvider") != null
+                                ? Environment.GetEnvironmentVariable("dbProvider") : "MSSQL";
+            switch (dbProvider)
+            {
+                case "MSSQL":
+                    ApplicationConnString = $"Server=localhost,1433;Database={ApplicationDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
+                    IdentityConnString = $"Server=localhost,1433;Database={IdentityDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
+                    HealthCheckConnString = $"Server=localhost,1433;Database={HealthCheckDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
+                    applicationBuilder.UseSqlServer(ApplicationConnString);
+                    identityBuilder.UseSqlServer(IdentityConnString);
+                    break;
+                case "PGSQL":
+                    ApplicationConnString = $"Server=localhost;Port=5432;Database={ApplicationDbName};User Id=root;Password=root;";
+                    IdentityConnString = $"Server=localhost;Port=5432;Database={IdentityDbName};User Id=root;Password=root;";
+                    HealthCheckConnString = $"Server=localhost;Port=5432;Database={HealthCheckDbName};User Id=root;Password=root;";
+                    applicationBuilder.UseNpgsql(ApplicationConnString);
+                    identityBuilder.UseNpgsql(IdentityConnString);
+                    break;
+                case "MySQL":
+                    ApplicationConnString = $"Server=localhost;Port=3306;Database={ApplicationDbName};Userid=root;Password=root;";
+                    IdentityConnString = $"Server=localhost;Port=3306;Database={IdentityDbName};Userid=root;Password=root;";
+                    HealthCheckConnString = $"Server=localhost;Port=3306;Database={HealthCheckDbName};Userid=root;Password=root;";
+                    applicationBuilder.UseMySql(ApplicationConnString);
+                    identityBuilder.UseMySql(IdentityConnString);
+                    break;
+                default:
+                    break;
+            }
+
             _applicationDbContext = new GloboTicketDbContext(applicationBuilder.Options);
+            _applicationDbContext.Database.EnsureCreated();
 
-            _applicationDbContext.Database.Migrate();
-
-            identityBuilder.UseSqlServer(IdentityConnString);
             _identityDbContext = new GloboTicketIdentityDbContext(identityBuilder.Options);
-
-            _identityDbContext.Database.Migrate();
+            _identityDbContext.Database.EnsureCreated();
 
             SeedIdentity seed = new SeedIdentity(_identityDbContext);
             seed.SeedUsers();

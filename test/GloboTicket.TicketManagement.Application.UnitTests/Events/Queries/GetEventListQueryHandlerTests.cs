@@ -30,7 +30,6 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Queries
             {
                 cfg.AddProfile<MappingProfile>();
             });
-
             _mapper = configurationProvider.CreateMapper();
         }
 

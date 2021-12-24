@@ -29,11 +29,13 @@ namespace GloboTicket.TicketManagement.Application.Responses
     public class PagedResponse<T> : Response<T>
     {
         public int TotalCount { get; set; }
+        public int Page { get; set; }
         public int PageSize { get; set; }
 
-        public PagedResponse(T data, int totalCount, int pageSize)
+        public PagedResponse(T data, int totalCount, int page, int pageSize)
         {
             this.TotalCount = totalCount;
+            this.Page = page;
             this.PageSize = pageSize;
             this.Data = data;
             this.Message = null;

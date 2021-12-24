@@ -207,5 +207,41 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
             result.ValdationErrors[1].ToLower().ShouldBe("'price' must be greater than '0'.");
             allEvents.Count.ShouldBe(2);
         }
+
+        [Fact]
+        public async Task Handle_Event_NotFound()
+        {
+            var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object, _mockMessageRepository.Object);
+            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8C}");
+            var newEvent = new Domain.Entities.Event
+            {
+                EventId = eventId,
+                Name = "Test1",
+                Artist = "test",
+                Price = 0,
+                Date = new DateTime(2027, 1, 18),
+                Description = "description",
+                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
+                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+            };
+            var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
+
+            var result = await Should.ThrowAsync<Exceptions.NotFoundException>(() => handler.Handle(new UpdateEventCommand()
+            {
+                EventId = newEvent.EventId,
+                Name = newEvent.Name,
+                Artist = newEvent.Artist,
+                Price = newEvent.Price,
+                Date = newEvent.Date,
+                Description = newEvent.Description,
+                ImageUrl = newEvent.ImageUrl,
+                CategoryId = newEvent.CategoryId
+            }, CancellationToken.None));
+
+            var allEvents = await _mockEventRepository.Object.ListAllAsync();
+
+            result.Message.ToLower().ShouldBe($"event ({eventId.ToString().ToLower()}) is not found");
+            allEvents.Count.ShouldBe(2);
+        }
     }
 }
