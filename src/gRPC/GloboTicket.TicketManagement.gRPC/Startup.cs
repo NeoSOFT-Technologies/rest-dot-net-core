@@ -64,6 +64,7 @@ namespace GloboTicket.TicketManagement.gRPC
             {
                 endpoints.MapGrpcService<EventService>();
                 endpoints.MapGrpcService<CategoryService>();
+                endpoints.MapGrpcService<Services.v2.CategoryService>();
                 endpoints.MapGrpcService<AccountService>();
                 endpoints.MapGet("/", async context =>
                 {
