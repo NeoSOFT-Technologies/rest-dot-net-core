@@ -11,6 +11,7 @@
 ![persistanceServiceRegistration](https://user-images.githubusercontent.com/92291258/147344017-34775351-2269-414c-840f-44a31064b10f.png)
 ![apiIntegrationTest](https://user-images.githubusercontent.com/92291258/147344018-f3eab5e4-5259-4c49-ba14-942dd04c6cd2.png)
 ![HealthCheckUI](https://user-images.githubusercontent.com/80381121/147356686-eba2d105-7287-4062-bacc-bed1f732a6cc.jpeg)
+![IntegrationTestCase](https://user-images.githubusercontent.com/87525401/147362122-bd750987-80f6-4584-8bed-ec6585a445a3.jpeg)
 
 ## MSSQL
 ![CreateProject](https://user-images.githubusercontent.com/92291258/147346578-50362851-5545-4b1f-a002-114a0e851f24.png)
