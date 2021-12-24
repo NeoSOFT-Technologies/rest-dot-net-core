@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package account.v1;
+
+service AccountProtoService{
+	rpc Authenticate (AuthenticateReq) returns (AuthenticateResp);
+	rpc Register (RegisterReq) returns (RegisterResp);
+}
+
+message AuthenticateReq{
+	string Email = 1;
+	string Password = 2;
+}
+
+message AuthenticateResp{
+	string Message = 1;
+	bool IsAuthenticated = 2;
+	string Id = 3;
+	string UserName = 4; 
+	string Email = 5;
+	string Token = 6;
+	string RefreshToken = 7;
+}
+
+message RegisterReq{
+    string FirstName = 1;
+	string LastName = 2;
+	string Email = 3;
+	string UserName = 4;
+	string Password = 5;
+}
+
+message RegisterResp{
+	string UserId = 1;
+}
