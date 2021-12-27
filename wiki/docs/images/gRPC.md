@@ -22,13 +22,8 @@ https://user-images.githubusercontent.com/42858836/147360379-29269907-0cc8-4ace-
 
 ![next](https://user-images.githubusercontent.com/42858836/147475356-b347e9dd-1f34-4610-aa4f-65fbc3481c6d.png)
 
+![cp](https://user-images.githubusercontent.com/42858836/147475436-56122013-9817-4fc3-a775-aa60ae6fb04a.png)
 
-
-
-
-
-
-
-
+![Screenshot (256)](https://user-images.githubusercontent.com/42858836/147475484-78656429-c225-4b8e-b808-d630597dac7d.png)
 
 
