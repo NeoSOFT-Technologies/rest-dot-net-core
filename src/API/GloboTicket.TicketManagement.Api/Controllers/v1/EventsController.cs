@@ -9,6 +9,7 @@ using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEvents
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Api.Controllers.v1

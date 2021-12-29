@@ -51,6 +51,7 @@
 		<ProjectReference Include="..\..\Core\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\GloboTicket.TicketManagement.Identity\GloboTicket.TicketManagement.Identity.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\GloboTicket.TicketManagement.Infrastructure\GloboTicket.TicketManagement.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\GloboTicket.TicketManagement.Mongo.Persistence\GloboTicket.TicketManagement.Mongo.Persistence.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\GloboTicket.TicketManagement.Persistence\GloboTicket.TicketManagement.Persistence.csproj" />
 	</ItemGroup>
 

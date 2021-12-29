@@ -1,11 +1,15 @@
 ﻿using GloboTicket.TicketManagement.Domain.Common;
 using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace GloboTicket.TicketManagement.Domain.Entities
 {
-    public class Order: AuditableEntity
+    /*[BsonCollection("Order")]*/
+    public class Order : AuditableEntity
     {
-        public Guid Id { get; set; }
+
+     //   public Guid Id /*{ get; set; }*/ => Id;
         public Guid UserId { get; set; }
         public int OrderTotal { get; set; }
         public DateTime OrderPlaced { get; set; }

@@ -8,6 +8,8 @@ using GloboTicket.TicketManagement.Application.Contracts;
 using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
+using GloboTicket.TicketManagement.Mongo.Persistence;
+using GloboTicket.TicketManagement;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
@@ -52,7 +54,8 @@ namespace GloboTicket.TicketManagement.Api
             services.AddApplicationServices();
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddInfrastructureServices(Configuration);
-            services.AddPersistenceServices(Configuration);
+           //services.AddPersistenceServices(Configuration);
+            services.AddPersistenceMongoServices(Configuration);
             services.AddIdentityServices(Configuration);
             services.AddSwaggerExtension();
             services.AddSwaggerVersionedApiExplorer();

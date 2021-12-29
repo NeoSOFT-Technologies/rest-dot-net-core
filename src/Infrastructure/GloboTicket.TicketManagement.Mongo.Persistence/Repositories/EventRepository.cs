@@ -1,7 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Domain.Common;
 using GloboTicket.TicketManagement.Domain.Entities;
-
+using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
@@ -10,8 +10,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using IMongoDbSettings = GloboTicket.TicketManagement.Mongo.Persistence.Settings.IMongoDbSettings;
 
-namespace GloboTicket.TicketManagement.Persistence.Repositories
+namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 {
     [ExcludeFromCodeCoverage]
     public class EventRepository : BaseRepository<Event>, IEventRepository
@@ -19,7 +20,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
         private readonly ILogger _logger;
         private readonly ICategoryRepository _categoryRepository;
 
-        public EventRepository(/*GloboTicketDbContext*/ IMongoDbSettings dbContext, ICategoryRepository categoryRepository, ILogger<Event> logger) : base(dbContext, logger)
+        public EventRepository(/*GloboTicketDbContext*/ /*IMongoDbContext */ IMongoDbSettings dbContext, ICategoryRepository categoryRepository, ILogger<Event> logger) : base(dbContext, logger)
         {
             _categoryRepository = categoryRepository;
             _logger = logger;

@@ -1,6 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Domain.Common;
 using GloboTicket.TicketManagement.Domain.Entities;
+using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
 /*using Microsoft.EntityFrameworkCore;*/
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
@@ -11,13 +12,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Persistence.Repositories
+namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 {
     [ExcludeFromCodeCoverage]
     public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         private readonly ILogger _logger;
-        public OrderRepository(/*GloboTicketDbContext*/ IMongoDbSettings dbContext, ILogger<Order> logger) : base(dbContext, logger)
+        public OrderRepository(/*GloboTicketDbContext*/ /*IMongoDbContext */IMongoDbSettings dbContext, ILogger<Order> logger) : base(dbContext, logger)
         {
             _logger = logger;
             /*ContextSeedData<Order>.*/SeedData(_dbContext);

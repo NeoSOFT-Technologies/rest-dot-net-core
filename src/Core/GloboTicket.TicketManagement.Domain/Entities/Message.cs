@@ -1,10 +1,14 @@
 ﻿using System;
+using GloboTicket.TicketManagement.Domain.Common;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace GloboTicket.TicketManagement.Domain.Entities
 {
-    public class Message
+   /* [BsonCollection("Message")]*/
+    public class Message : Document
     {
-        public Guid MessageId { get; set; }
+        public Guid MessageId /*{ get; set; }*/ => Id;
         public string Code { get; set; }
         public string MessageContent { get; set; }
         public string Language { get; set; }

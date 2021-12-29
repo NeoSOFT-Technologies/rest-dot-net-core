@@ -4,4 +4,23 @@
 	  <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Common\IMongoDbContext.cs" />
+    <Compile Remove="Common\IMongoDbSettings.cs" />
+    <Compile Remove="Common\MongoDbContext.cs" />
+    <Compile Remove="Common\MongoDbSettings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="FodyWeavers.xml" />
+    <None Remove="FodyWeavers.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.14.1" />
+	  <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
+	  <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.10" />
+
+  </ItemGroup>
+
 </Project>

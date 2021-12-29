@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System;
 
 namespace GloboTicket.TicketManagement.Api.Extensions
@@ -13,6 +14,9 @@ namespace GloboTicket.TicketManagement.Api.Extensions
         public static IServiceCollection AddHealthcheckExtensionService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHealthChecks()
+              .AddMongoDb(mongodbConnectionString: configuration.GetValue<string>("MongoDbSettings:ConnectionString"), mongoDatabaseName: configuration.GetValue<string>("MongoDbSettings:DatabaseName"), name: "mongo", failureStatus: HealthStatus.Unhealthy, tags: new[] {
+              "db",
+              "all"}) //adding MongoDb Health Check
             .AddSqlServer(configuration["ConnectionStrings:GloboTicketIdentityConnectionString"], tags: new[] {
                 "db",
                 "all"})

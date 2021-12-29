@@ -2,7 +2,8 @@
 using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Domain.Common;
 using GloboTicket.TicketManagement.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
+/*using Microsoft.EntityFrameworkCore;*/
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
@@ -11,7 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Persistence.Repositories
+namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 {
     [ExcludeFromCodeCoverage]
     public class MessageRepository : BaseRepository<Message>, IMessageRepository
@@ -19,7 +20,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
         private readonly string cacheKey = $"{typeof(Message)}";
         private readonly ILogger _logger;
         private readonly ICacheService _cacheService;
-        public MessageRepository(/*GloboTicketDbContext*/ IMongoDbSettings dbContext, ILogger<Message> logger, ICacheService cacheService) : base(dbContext, logger)
+        public MessageRepository(/*GloboTicketDbContext*/ /*IMongoDbContext*/IMongoDbSettings dbContext, ILogger<Message> logger, ICacheService cacheService) : base(dbContext, logger)
         {
             _logger = logger;
             _cacheService = cacheService;
