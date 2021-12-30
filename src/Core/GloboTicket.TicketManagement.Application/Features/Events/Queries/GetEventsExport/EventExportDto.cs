@@ -4,7 +4,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
 {
     public class EventExportDto
     {
-        public Guid EventId { get; set; }
+        public string/*Guid*/ /*Event*/Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
     }

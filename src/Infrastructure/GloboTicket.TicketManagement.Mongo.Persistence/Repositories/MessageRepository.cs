@@ -5,6 +5,7 @@ using GloboTicket.TicketManagement.Domain.Entities;
 using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
 /*using Microsoft.EntityFrameworkCore;*/
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -45,16 +46,18 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             {
                 new Message()
                 {
-                Id = Guid.Parse("{253C75D5-32AF-4DBF-AB63-1AF449BDE7BD}"),
-                Code = "1",
+                Id = ObjectId.Parse("61cc69962ff50bdbbb0ef1f7"),
+            //Guid.Parse("{253C75D5-32AF-4DBF-AB63-1AF449BDE7BD}"),
+            Code = "1",
                 MessageContent = "{PropertyName} is required.",
                 Language = "en",
                 Type = Message.MessageType.Error
                 } ,
             new Message()
             {
-                 Id = Guid.Parse("{ED0CC6B6-11F4-4512-A441-625941917502}"),
-                Code = "2",
+                 Id = ObjectId.Parse("61cc6987cd972a2af94a8e77"),
+            //Guid.Parse("{ED0CC6B6-11F4-4512-A441-625941917502}"),
+            Code = "2",
                 MessageContent = "{PropertyName} must not exceed {MaxLength} characters.",
                 Language = "en",
                 Type = Message.MessageType.Error
@@ -62,8 +65,9 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             },
             new Message()
             {
-                Id = Guid.Parse("{FAFE649A-3E2A-4153-8FD8-9DCD0B87E6D8}"),
-                Code = "3",
+                Id =ObjectId.Parse("61cc697b02083af977eaff3f"),
+            //Guid.Parse("{FAFE649A-3E2A-4153-8FD8-9DCD0B87E6D8}"),
+            Code = "3",
                 MessageContent = "An event with the same name and date already exists.",
                 Language = "en",
                 Type = Message.MessageType.Error

@@ -9,7 +9,6 @@ using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEvents
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Api.Controllers.v1
@@ -72,7 +71,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers.v1
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(string id)
         {
-            var deleteEventCommand = new DeleteEventCommand() { EventId = id };
+            var deleteEventCommand = new DeleteEventCommand() { /*Event*/Id = id };
             await _mediator.Send(deleteEventCommand);
             return NoContent();
         }

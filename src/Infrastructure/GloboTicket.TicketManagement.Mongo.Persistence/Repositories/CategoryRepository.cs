@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver.Linq;
 using GloboTicket.TicketManagement.Domain.Common;
 using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
+using MongoDB.Bson;
 
 namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 {
@@ -40,8 +41,8 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         }
         private static IEnumerable<Category> GetPreconfiguredCategory()
         {
-            var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
-
+             var concertGuid = /*Guid*/ ObjectId.Parse("61cc58c88b8879cc049839a8");
+           // var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
             return new List<Category>()
             {
                 new Category()

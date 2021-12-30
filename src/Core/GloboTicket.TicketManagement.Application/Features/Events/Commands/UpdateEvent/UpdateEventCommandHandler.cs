@@ -4,13 +4,14 @@ using GloboTicket.TicketManagement.Application.Exceptions;
 using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
+using MongoDB.Bson;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent
 {
-    public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand,Response<Guid>>
+    public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand,Response<string/*ObjectId*//*Guid*/>>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
@@ -23,13 +24,13 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
             _messageRepository = messageRepository;
         }
 
-        public async Task<Response<Guid>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
+        public async Task<Response<string/*ObjectId*//*Guid*/>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
-            var eventToUpdate = await _eventRepository.GetByIdAsync(request.EventId);
+            var eventToUpdate = await _eventRepository.GetByIdAsync(new ObjectId(request./*Event*/Id));
 
             if (eventToUpdate == null)
             {
-                throw new NotFoundException(nameof(Event), request.EventId);
+                throw new NotFoundException(nameof(Event), request./*Event*/Id);
             }
 
             var validator = new UpdateEventCommandValidator(_messageRepository);
@@ -42,7 +43,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
 
              await _eventRepository.UpdateAsync(eventToUpdate);
 
-            return new Response<Guid>(request.EventId, "Updated successfully ");
+            return new Response<string/*ObjectId*//*Guid*/>(request./*Event*/Id.ToString(), "Updated successfully ");
           
         }
     }

@@ -9,7 +9,7 @@ namespace GloboTicket.TicketManagement.Domain.Common
     public interface IDocument
     {
         [BsonId]
-        [BsonRepresentation(BsonType.String)]
-        Guid Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        /*Guid*/ ObjectId Id { get; set; }
     }
 }

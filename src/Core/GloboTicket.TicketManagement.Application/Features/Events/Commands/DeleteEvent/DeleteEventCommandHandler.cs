@@ -5,6 +5,7 @@ using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.DataProtection;
+using MongoDB.Bson;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Dele
 
         public async Task<Unit> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
         {
-            var eventId = new Guid(_protector.Unprotect(request.EventId));
-            var eventToDelete = await _eventRepository.GetByIdAsync(eventId);
+            var eventId = new ObjectId/*Guid*/(_protector.Unprotect(request./*Event*/Id));
+            var eventToDelete = await _eventRepository.GetByIdAsync(eventId/*.ToString()*/);
 
             if (eventToDelete == null)
             {

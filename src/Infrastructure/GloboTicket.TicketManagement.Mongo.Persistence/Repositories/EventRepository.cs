@@ -3,6 +3,7 @@ using GloboTicket.TicketManagement.Domain.Common;
 using GloboTicket.TicketManagement.Domain.Entities;
 using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System;
@@ -38,20 +39,22 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         }
         private static IEnumerable<Event> GetPreconfiguredEvent()
         {
-            var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            var concertGuid = ObjectId.Parse("61cc58c88b8879cc049839a8");
+                              //Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
 
             return new List<Event>()
             {
                 new Event()
                 {
-                Id = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
-                Name = "John Egbert Live",
+                Id = ObjectId.Parse("61cc69c07753322250b9307b"),
+            //Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
+            Name = "John Egbert Live",
                 Price = 65,
                 Artist = "John Egbert",
                 Date = DateTime.Now.AddMonths(6),
                 Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
-                CategoryId = concertGuid
+                CategoryId = concertGuid/*"61cc6beee742864468f6f91a"*/
                 }
             };
         }
@@ -81,12 +84,12 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             if (category != null)
             {
                 @event.Category = category;
-                @event.CategoryId = category.Id;
+                @event.CategoryId = category.Id/*.ToString()*/;
             }
             else
             {
                 await _categoryRepository.AddAsync(@event.Category);
-                @event.CategoryId = @event.Category./*Category*/Id;
+                @event.CategoryId = @event.Category./*Category*/Id/*.ToString()*/;
             }
 
             await _dbContext.InsertOneAsync(@event);

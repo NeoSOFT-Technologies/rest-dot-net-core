@@ -12,7 +12,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Configurations
         {
             //Not necessary if naming conventions are followed in model
             builder
-                .HasKey(b => b.CategoryId);
+                .HasKey(b => b./*Category*/Id);
 
             builder
                 .Property(b => b.CreatedBy)

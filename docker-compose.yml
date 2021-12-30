@@ -13,3 +13,11 @@ services:
         ACCEPT_EULA: "Y"
     networks:
       - clean-network
+
+  blogapp-mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - clean-network

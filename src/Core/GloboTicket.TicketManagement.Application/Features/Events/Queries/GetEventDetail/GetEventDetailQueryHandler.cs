@@ -5,6 +5,7 @@ using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.DataProtection;
+using MongoDB.Bson;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,10 +31,10 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
         {           
             string id = _protector.Unprotect(request.Id);
 
-            var @event = await _eventRepository.GetByIdAsync(new Guid(id));
+            var @event = await _eventRepository.GetByIdAsync(new /*Guid*/ObjectId(id));
             var eventDetailDto = _mapper.Map<EventDetailVm>(@event);
-
-            var category = await _categoryRepository.GetByIdAsync(@event.CategoryId);
+            string catId = @event.CategoryId.ToString();
+            var category = await _categoryRepository.GetByIdAsync(/*@event.CategoryId*/new ObjectId(catId));
 
             if (category == null)
             {

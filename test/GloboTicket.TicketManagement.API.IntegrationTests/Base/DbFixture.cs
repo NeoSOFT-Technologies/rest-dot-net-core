@@ -1,6 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using Xunit;
 
@@ -26,8 +27,14 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
             HealthCheckConnString = $"Server=localhost,1433;Database={HealthCheckDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
 
             var applicationBuilder = new DbContextOptionsBuilder<GloboTicketDbContext>();
-            var identityBuilder = new DbContextOptionsBuilder<GloboTicketIdentityDbContext>();
 
+            /*var identityBuilder = new DbContextOptionsBuilder<GloboTicketIdentityDbContext>();
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var connString = config.GetConnectionString("ConnectionString");
+            var dbName = $"test_db_{Guid.NewGuid()}"; */
             applicationBuilder.UseSqlServer(ApplicationConnString);
             _applicationDbContext = new GloboTicketDbContext(applicationBuilder.Options);
 

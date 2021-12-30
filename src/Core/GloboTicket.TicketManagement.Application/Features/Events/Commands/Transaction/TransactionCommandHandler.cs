@@ -6,13 +6,14 @@ using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Transaction
 {
-    public class TransactionCommandHandler : IRequestHandler<TransactionCommand, Response<Guid>>
+    public class TransactionCommandHandler : IRequestHandler<TransactionCommand, Response<string/*Guid*/>>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
@@ -29,7 +30,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Tran
             _messageRepository = messageRepository;
         }
 
-        public async Task<Response<Guid>> Handle(TransactionCommand request, CancellationToken cancellationToken)
+        public async Task<Response<string/*ObjectId*//*Guid*/>> Handle(TransactionCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Handle Initiated");
 
@@ -53,10 +54,10 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Tran
             catch (Exception ex)
             {
                 //this shouldn't stop the API from doing else so this can be logged
-                _logger.LogError($"Mailing about event {@event.EventId} failed due to an error with the mail service: {ex.Message}");
+                _logger.LogError($"Mailing about event {@event./*Event*/Id} failed due to an error with the mail service: {ex.Message}");
             }
 
-            var response = new Response<Guid>(@event.EventId, "Inserted successfully ");
+            var response = new Response<string/*ObjectId*//*Guid*/>(@event./*Event*/Id.ToString(), "Inserted successfully ");
 
             _logger.LogInformation("Handle Completed");
 

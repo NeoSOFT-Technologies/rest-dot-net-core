@@ -1,10 +1,11 @@
 ﻿using GloboTicket.TicketManagement.Application.Responses;
 using MediatR;
+using MongoDB.Bson;
 using System;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Transaction
 {
-    public class TransactionCommand: IRequest<Response<Guid>>
+    public class TransactionCommand: IRequest<Response<string/*Guid*/>>
     {
         public string Name { get; set; }
         public int Price { get; set; }

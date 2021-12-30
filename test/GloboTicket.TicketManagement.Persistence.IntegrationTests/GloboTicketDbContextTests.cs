@@ -10,7 +10,7 @@ namespace GloboTicket.TicketManagement.Persistence.IntegrationTests
 {
     public class GloboTicketDbContextTests
     {
-        private readonly GloboTicketDbContext _globoTicketDbContext;
+       // private readonly GloboTicketDbContext _globoTicketDbContext;
         private readonly Mock<ILoggedInUserService> _loggedInUserServiceMock;
         private readonly string _loggedInUserId;
 

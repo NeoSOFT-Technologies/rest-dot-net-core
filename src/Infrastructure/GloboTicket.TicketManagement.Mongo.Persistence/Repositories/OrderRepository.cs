@@ -4,6 +4,7 @@ using GloboTicket.TicketManagement.Domain.Entities;
 using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
 /*using Microsoft.EntityFrameworkCore;*/
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System;
@@ -35,17 +36,20 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         }
         private static IEnumerable<Order> GetPreconfiguredOrder()
         {
-            var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            var concertGuid = ObjectId.Parse("61cc69962ff50bdbbb0ef1f7");
+                //Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
 
             return new List<Order>()
             {
                 new Order()
                 {
-                 Id = Guid.Parse("{7E94BC5B-71A5-4C8C-BC3B-71BB7976237E}"),
+                 Id =ObjectId.Parse("61cc69962ff50bdbbb0ef1f7"),
+                 //Guid.Parse("{7E94BC5B-71A5-4C8C-BC3B-71BB7976237E}"),
                 OrderTotal = 400,
                 OrderPaid = true,
                 OrderPlaced = DateTime.Now,
-                UserId = Guid.Parse("{A441EB40-9636-4EE6-BE49-A66C5EC1330B}")
+                UserId =ObjectId.Parse("61cc6a3952c4e504b0742bba")
+                //Guid.Parse("{A441EB40-9636-4EE6-BE49-A66C5EC1330B}")
                 }
             };
         }
