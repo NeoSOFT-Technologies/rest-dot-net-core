@@ -26,8 +26,19 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
 
         public async Task<Response<string/*ObjectId*//*Guid*/>> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
         {
-            var eventToUpdate = await _eventRepository.GetByIdAsync(new ObjectId(request./*Event*/Id));
+            var eventToUpdate = await _eventRepository.GetByIdAsync(request.Id/*new ObjectId(request.*//*Event*//*Id)*/);
+           /* UpdateEventDto newResult = new UpdateEventDto() {
+            Id= new ObjectId(request.*//*Event*//*Id),
+            Name=request.Name,
+            Price=request.Price,
+            Artist= request.Artist,
+            Date=request.Date,
+            Description=request.Description,
+            ImageUrl =request.ImageUrl,
+            CategoryId= new ObjectId(request.CategoryId),
 
+            };*/
+          //  request.CategoryId = new ObjectId(request.CategoryId);
             if (eventToUpdate == null)
             {
                 throw new NotFoundException(nameof(Event), request./*Event*/Id);
@@ -39,11 +50,11 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
             if (validationResult.Errors.Count > 0)
                 throw new ValidationException(validationResult);
 
-            _mapper.Map(request, eventToUpdate, typeof(UpdateEventCommand), typeof(Event));
-
+             _mapper.Map(/*newResult*/request, eventToUpdate, typeof(UpdateEventCommand/*UpdateEventDto*/), typeof(Event));
+            
              await _eventRepository.UpdateAsync(eventToUpdate);
 
-            return new Response<string/*ObjectId*//*Guid*/>(request./*Event*/Id.ToString(), "Updated successfully ");
+            return new Response<string/*ObjectId*//*Guid*/>(request.Id/*Event*//*Id.ToString()*/, "Updated successfully ");
           
         }
     }

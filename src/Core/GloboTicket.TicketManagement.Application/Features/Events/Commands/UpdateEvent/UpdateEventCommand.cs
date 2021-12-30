@@ -14,6 +14,9 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
         public DateTime Date { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public /*Guid*/ string CategoryId { get; set; }
+        public /*Guid*/ string/*ObjectId*/ CategoryId { get; set; }
+
+
+
     }
 }

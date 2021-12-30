@@ -10,8 +10,8 @@ namespace GloboTicket.TicketManagement.Domain.Entities
     {
 
         [BsonId]
-        [BsonRepresentation(BsonType.String)]
-        public /*Guid*/ObjectId Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public /*Guid*/string Id { get; set; }
         //public Guid MessageId { get; set; } /*=> Id;*/
         public string Code { get; set; }
         public string MessageContent { get; set; }

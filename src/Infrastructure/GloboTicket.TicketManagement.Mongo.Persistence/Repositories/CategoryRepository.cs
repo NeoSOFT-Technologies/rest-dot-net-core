@@ -41,8 +41,9 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         }
         private static IEnumerable<Category> GetPreconfiguredCategory()
         {
-             var concertGuid = /*Guid*/ ObjectId.Parse("61cc58c88b8879cc049839a8");
-           // var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            var concertGuid  = new string("61cc58c88b8879cc049839a8");
+              //  /*Guid*/ ObjectId.Parse("61cc58c88b8879cc049839a8");
+              // var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
             return new List<Category>()
             {
                 new Category()

@@ -57,7 +57,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
                 _logger.LogError($"Mailing about event {@event./*Event*/Id} failed due to an error with the mail service: {ex.Message}");
             }
 
-            var response = new Response</*Guid*//*ObjectId*/string>(@event./*Event*/Id .ToString(), "Inserted successfully ");
+            var response = new Response</*Guid*//*ObjectId*/string>(@event./*Event*/Id /*.ToString()*/, "Inserted successfully ");
 
             _logger.LogInformation("Handle Completed");
 

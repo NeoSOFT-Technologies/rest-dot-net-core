@@ -40,13 +40,14 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         }
         private static IEnumerable<Message> GetPreconfiguredMessages()
         {
-          //  var concertGuid = Guid.Parse("{253C75D5-32AF-4DBF-AB63-1AF449BDE7BD}")//Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            //  var concertGuid = Guid.Parse("{253C75D5-32AF-4DBF-AB63-1AF449BDE7BD}")//Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
 
             return new List<Message>()
             {
                 new Message()
                 {
-                Id = ObjectId.Parse("61cc69962ff50bdbbb0ef1f7"),
+                    Id= new string("61cc69962ff50bdbbb0ef1f7"),
+               // Id = ObjectId.Parse("61cc69962ff50bdbbb0ef1f7"),
             //Guid.Parse("{253C75D5-32AF-4DBF-AB63-1AF449BDE7BD}"),
             Code = "1",
                 MessageContent = "{PropertyName} is required.",
@@ -55,7 +56,8 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
                 } ,
             new Message()
             {
-                 Id = ObjectId.Parse("61cc6987cd972a2af94a8e77"),
+                 Id= new string("61cc6987cd972a2af94a8e77"),
+                // Id = ObjectId.Parse("61cc6987cd972a2af94a8e77"),
             //Guid.Parse("{ED0CC6B6-11F4-4512-A441-625941917502}"),
             Code = "2",
                 MessageContent = "{PropertyName} must not exceed {MaxLength} characters.",
@@ -64,8 +66,8 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 
             },
             new Message()
-            {
-                Id =ObjectId.Parse("61cc697b02083af977eaff3f"),
+            { Id= new string("61cc697b02083af977eaff3f"),
+              //  Id =ObjectId.Parse("61cc697b02083af977eaff3f"),
             //Guid.Parse("{FAFE649A-3E2A-4153-8FD8-9DCD0B87E6D8}"),
             Code = "3",
                 MessageContent = "An event with the same name and date already exists.",

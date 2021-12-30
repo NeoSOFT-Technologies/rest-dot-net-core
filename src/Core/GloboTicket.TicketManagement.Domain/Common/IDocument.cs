@@ -10,6 +10,6 @@ namespace GloboTicket.TicketManagement.Domain.Common
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        /*Guid*/ ObjectId Id { get; set; }
+        /*Guid* ObjectId*/ string Id { get; set; }
     }
 }

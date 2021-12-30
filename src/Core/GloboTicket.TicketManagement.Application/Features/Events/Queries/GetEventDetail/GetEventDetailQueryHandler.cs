@@ -31,10 +31,10 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEv
         {           
             string id = _protector.Unprotect(request.Id);
 
-            var @event = await _eventRepository.GetByIdAsync(new /*Guid*/ObjectId(id));
+            var @event = await _eventRepository.GetByIdAsync(id/*new *//*Guid*//*ObjectId(id)*/);
             var eventDetailDto = _mapper.Map<EventDetailVm>(@event);
-            string catId = @event.CategoryId.ToString();
-            var category = await _categoryRepository.GetByIdAsync(/*@event.CategoryId*/new ObjectId(catId));
+         
+            var category = await _categoryRepository.GetByIdAsync(@event.CategoryId.ToString()/*@event.CategoryId*//*@event.CategoryId*/);
 
             if (category == null)
             {

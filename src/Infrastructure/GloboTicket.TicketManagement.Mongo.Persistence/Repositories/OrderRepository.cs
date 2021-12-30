@@ -43,12 +43,13 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             {
                 new Order()
                 {
-                 Id =ObjectId.Parse("61cc69962ff50bdbbb0ef1f7"),
+                Id= new string("61cc69962ff50bdbbb0ef1f7"),
+                // Id =ObjectId.Parse("61cc69962ff50bdbbb0ef1f7"),
                  //Guid.Parse("{7E94BC5B-71A5-4C8C-BC3B-71BB7976237E}"),
                 OrderTotal = 400,
                 OrderPaid = true,
                 OrderPlaced = DateTime.Now,
-                UserId =ObjectId.Parse("61cc6a3952c4e504b0742bba")
+               // UserId =ObjectId.Parse("61cc6a3952c4e504b0742bba")
                 //Guid.Parse("{A441EB40-9636-4EE6-BE49-A66C5EC1330B}")
                 }
             };

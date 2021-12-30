@@ -25,7 +25,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Dele
 
         public async Task<Unit> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
         {
-            var eventId = new ObjectId/*Guid*/(_protector.Unprotect(request./*Event*/Id));
+            var eventId = new string/*ObjectId*//*Guid*/(_protector.Unprotect(request./*Event*/Id));
             var eventToDelete = await _eventRepository.GetByIdAsync(eventId/*.ToString()*/);
 
             if (eventToDelete == null)

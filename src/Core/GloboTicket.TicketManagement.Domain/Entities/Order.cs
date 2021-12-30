@@ -10,7 +10,7 @@ namespace GloboTicket.TicketManagement.Domain.Entities
     {
 
      //   public Guid Id /*{ get; set; }*/ => Id;
-        public /*Guid*/ObjectId UserId { get; set; }
+        public /*Guid*//*ObjectId*/ string UserId { get; set; }
         public int OrderTotal { get; set; }
         public DateTime OrderPlaced { get; set; }
         public bool OrderPaid { get; set; }

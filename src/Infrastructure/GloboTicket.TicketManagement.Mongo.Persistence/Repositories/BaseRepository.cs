@@ -43,11 +43,11 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             return await all.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(ObjectId id)
+        public async Task<T> GetByIdAsync(/*ObjectId*/string id)
         {
-            // var objectId = new ObjectId(id);
+             var objectId = new ObjectId(id);
         
-            FilterDefinition<T> filter = Builders<T>.Filter.Eq("_id", id);
+            FilterDefinition<T> filter = Builders<T>.Filter.Eq("_id", objectId);
             var result= await _dbContext.FindAsync(filter).Result.FirstOrDefaultAsync();
             return result;
         }
@@ -116,22 +116,14 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             return Task.Run(() => _dbContext.Find(filterExpression).FirstOrDefaultAsync());
         }
 
-        public virtual T FindById(ObjectId id)
+        public virtual T FindById(string id)
         {
-            //var objectId = new ObjectId/*Guid*/(id);
+           // var objectId = new ObjectId/*Guid*/(id);
             var filter = Builders<T>.Filter.Eq(doc => doc.Id, id);
             return _dbContext.Find(filter).SingleOrDefault();
         }
 
-        public virtual Task<T> FindByIdAsync(ObjectId id)
-        {
-            return Task.Run(() =>
-            {
-                //var objectId = new /*Guid*/ObjectId(id);
-                var filter = Builders<T>.Filter.Eq(doc => doc.Id, id);
-                return _dbContext.Find(filter).SingleOrDefaultAsync();
-            });
-        }
+        
 
 
         public virtual void InsertOne(T document)
@@ -179,8 +171,8 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 
         public void DeleteById(string id)
         {
-            var objectId = new ObjectId/*Guid*/(id);
-            var filter = Builders<T>.Filter.Eq(doc => doc.Id, objectId);
+          //  var objectId = new ObjectId/*Guid*/(id);
+            var filter = Builders<T>.Filter.Eq(doc => doc.Id, id);
             _dbContext.FindOneAndDelete(filter);
         }
 
@@ -188,8 +180,8 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         {
             return Task.Run(() =>
             {
-                var objectId = new /*Guid*/ObjectId(id);
-                var filter = Builders<T>.Filter.Eq(doc => doc.Id, objectId);
+              //  var objectId = new /*Guid*/ObjectId(id);
+                var filter = Builders<T>.Filter.Eq(doc => doc.Id, id/*objectId*/);
                 _dbContext.FindOneAndDeleteAsync(filter);
             });
         }

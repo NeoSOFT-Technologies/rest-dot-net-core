@@ -39,14 +39,16 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         }
         private static IEnumerable<Event> GetPreconfiguredEvent()
         {
-            var concertGuid = ObjectId.Parse("61cc58c88b8879cc049839a8");
-                              //Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            var concertGuid = new string("61cc58c88b8879cc049839a8");
+            //ObjectId.Parse("61cc58c88b8879cc049839a8");
+            //Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
 
             return new List<Event>()
             {
                 new Event()
                 {
-                Id = ObjectId.Parse("61cc69c07753322250b9307b"),
+                Id =new string("61cc69c07753322250b9307b"),
+              //  ObjectId.Parse("61cc69c07753322250b9307b"),
             //Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
             Name = "John Egbert Live",
                 Price = 65,
