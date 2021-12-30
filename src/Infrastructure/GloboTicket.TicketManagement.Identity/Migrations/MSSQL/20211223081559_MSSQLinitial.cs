@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
 {
-    [ExcludeFromCodeCoverage]
     public partial class MSSQLinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

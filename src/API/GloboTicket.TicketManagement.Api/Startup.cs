@@ -60,7 +60,7 @@ namespace GloboTicket.TicketManagement.Api
             services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
             services.AddControllers();
             services.AddDataProtection()
-                .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"));
+                .PersistKeysToDbContext<GloboTicketDbContext>();
             services.AddHealthcheckExtensionService(Configuration);
         }
 

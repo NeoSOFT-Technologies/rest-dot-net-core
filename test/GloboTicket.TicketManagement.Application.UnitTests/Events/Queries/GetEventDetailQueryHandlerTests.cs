@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
 {
@@ -23,6 +24,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
         private readonly IMapper _mapper;
         private readonly Mock<IEventRepository> _mockEventRepository;
         private readonly Mock<ICategoryRepository> _mockCategoryRepository;
+        private readonly Mock<ILogger<GetEventDetailQueryHandler>> _logger;
  
         Mock<IDataProtectionProvider> mockDataProtectionProvider = new Mock<IDataProtectionProvider>();
         public GetEventDetailQueryHandlerTests()
@@ -34,6 +36,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
                 cfg.AddProfile<MappingProfile>();
             });
             _mapper = configurationProvider.CreateMapper();
+            _logger = new Mock<ILogger<GetEventDetailQueryHandler>>();
         }
 
         [Fact]
@@ -42,7 +45,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
             var eventId = _mockEventRepository.Object.ListAllAsync().Result.FirstOrDefault().EventId;
             CreateDataProtector(eventId.ToString());
             
-            var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object, mockDataProtectionProvider.Object);
+            var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object, mockDataProtectionProvider.Object, _logger.Object);
             var result = await handler.Handle(new GetEventDetailQuery() { Id = eventId.ToString() }, CancellationToken.None);
 
             result.ShouldBeOfType<Response<EventDetailVm>>();
@@ -54,7 +57,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
             var @event = _mockEventRepository.Object.ListAllAsync().Result.Skip(1).FirstOrDefault();
             CreateDataProtector(@event.EventId.ToString());
 
-            var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object, mockDataProtectionProvider.Object);
+            var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object, mockDataProtectionProvider.Object, _logger.Object);
 
             var result = await Should.ThrowAsync<Exceptions.NotFoundException>(() => handler.Handle(new GetEventDetailQuery() { Id = @event.EventId.ToString() }, CancellationToken.None));
             result.Message.ToLower().ShouldBe($"category ({@event.CategoryId.ToString().ToLower()}) is not found");
