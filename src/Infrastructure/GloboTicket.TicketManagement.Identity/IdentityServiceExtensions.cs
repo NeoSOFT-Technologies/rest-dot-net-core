@@ -24,6 +24,11 @@ namespace GloboTicket.TicketManagement.Identity
             var dbProvider = configuration.GetValue<string>("dbProvider");
             switch (dbProvider)
             {
+                case "Oracle":
+                    services.AddDbContext<GloboTicketIdentityDbContext>(
+                        options => options.UseOracle(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
+                        b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
+                    break;
                 case "MSSQL":
                     services.AddDbContext<GloboTicketIdentityDbContext>(
                         options => options.UseSqlServer(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),

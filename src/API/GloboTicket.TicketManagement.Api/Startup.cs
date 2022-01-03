@@ -61,7 +61,7 @@ namespace GloboTicket.TicketManagement.Api
             services.AddControllers();
             services.AddDataProtection()
                 .PersistKeysToFileSystem(new DirectoryInfo(@"bin\debug\configuration"));
-            services.AddHealthcheckExtensionService(Configuration);
+            //services.AddHealthcheckExtensionService(Configuration);
         }
 
         [ExcludeFromCodeCoverage]
@@ -102,19 +102,19 @@ namespace GloboTicket.TicketManagement.Api
                 endpoints.MapControllers();
             });
 
-            app.UseEndpoints(endpoints =>
-            {
-                //adding endpoint of health check for the health check ui in UI format
-                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions
-                {
-                    Predicate = _ => true,
-                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                });
+        //    app.UseEndpoints(endpoints =>
+        //    {
+        //        //adding endpoint of health check for the health check ui in UI format
+        //        endpoints.MapHealthChecks("/healthz", new HealthCheckOptions
+        //        {
+        //            Predicate = _ => true,
+        //            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+        //        });
 
-                //map healthcheck ui endpoing - default is /healthchecks-ui/
-                endpoints.MapHealthChecksUI();
+        //        //map healthcheck ui endpoing -default is / healthchecks - ui /
+        //        endpoints.MapHealthChecksUI();
 
-            });           
+        //});           
         }       
 
     }

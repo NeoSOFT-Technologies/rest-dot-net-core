@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Oracle.EntityFrameworkCore.Metadata;
 
-namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
+namespace GloboTicket.TicketManagement.Identity.Migrations.Oracle
 {
-    [ExcludeFromCodeCoverage]
-    public partial class MSSQLinitial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +54,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -76,7 +75,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -162,7 +161,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
                 {
                     ApplicationUserId = table.Column<string>(nullable: false),
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
                     Token = table.Column<string>(nullable: true),
                     Expires = table.Column<DateTime>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
@@ -182,12 +181,12 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3b0c9672-6a5e-4c76-b6b3-cac7ccd44950", "8dcc1cad-ce8a-4292-95cf-8d1e6e8b0abf", "Viewer", "VIEWER" });
+                values: new object[] { "6f36a07a-8378-461a-b6c5-a7fddf445213", "9bc0eeaf-e5c0-4446-9415-5a36a0226c3a", "Viewer", "VIEWER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "52f66ee1-8160-4c7b-8349-f1e82a2b5a8a", "70a33626-b8ba-4723-af1e-61cbbc1e481e", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "1c0ac54a-3f71-4490-933f-029d68b83e70", "f2949e45-4c36-470c-ba0c-f968f4e96ae8", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -198,8 +197,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -225,8 +223,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

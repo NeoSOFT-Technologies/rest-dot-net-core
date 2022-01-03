@@ -13,7 +13,7 @@ namespace Scrum.Demo.Persistence.Configurations
             //Not necessary if naming conventions are followed in model
             builder
                 .HasKey(b => b.CategoryId);
-
+                
             builder
                 .Property(b => b.CreatedBy)
                 .HasColumnType("varchar(450)");

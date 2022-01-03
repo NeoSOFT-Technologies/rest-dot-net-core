@@ -14,6 +14,10 @@ namespace Scrum.Demo.Persistence.Configurations
             builder
                 .HasKey(b => b.EventId);
 
+            //builder
+            //    .Property(b=>b.EventId)
+            //    .HasDefaultValueSql("sys_guid()");
+
             builder
                 .Property(b => b.CreatedBy)
                 .HasColumnType("varchar(450)");

@@ -15,6 +15,10 @@ namespace GloboTicket.TicketManagement.Persistence
 
             switch (dbProvider)
             {
+                case "Oracle":
+                    services.AddDbContext<GloboTicketDbContext>(options =>
+                        options.UseOracle(configuration.GetConnectionString("GloboTicketTicketManagementConnectionString")));
+                    break;
                 case "MSSQL":
                     services.AddDbContext<GloboTicketDbContext>(options =>
                         options.UseSqlServer(configuration.GetConnectionString("GloboTicketTicketManagementConnectionString")));
