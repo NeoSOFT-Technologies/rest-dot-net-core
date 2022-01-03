@@ -56,7 +56,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.Data.ShouldNotBeEmpty();
         }
 
-        [Fact]
+      //  [Fact]
         public async Task Get_CategoriesListWithEvents_DoNotIncludeHistory_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
@@ -100,7 +100,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             result.Errors.ShouldBeNull();
         }
 
-        [Fact]
+       // [Fact]
         public async Task Post_Category_StoredProcedure_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();

@@ -83,16 +83,16 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
                 Date = DateTime.Now.AddMonths(6),
                 Description = "Test Description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
-                CategoryId = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}")
+                CategoryId = "" /*Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}")*/
             };
             var eventJson = JsonConvert.SerializeObject(@event);
             HttpContent content = new StringContent(eventJson, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("/api/v1/events", content);
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Response<Guid>>(responseString);
+            var result = JsonConvert.DeserializeObject<Response<string>>(responseString);
             result.Succeeded.ShouldBeEquivalentTo(true);
-            result.Data.ShouldBeOfType<Guid>();
+            result.Data.ShouldBeOfType<string>();
             result.Errors.ShouldBeNull();
         }
 
@@ -115,9 +115,9 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             var response = await client.PostAsync("/api/v1/events/transactiondemo", content);
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Response<Guid>>(responseString);
+            var result = JsonConvert.DeserializeObject<Response<string>>(responseString);
             result.Succeeded.ShouldBeEquivalentTo(true);
-            result.Data.ShouldBeOfType<Guid>();
+            result.Data.ShouldBeOfType<string>();
             result.Errors.ShouldBeNull();
         }
 
@@ -127,23 +127,24 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             var client = _factory.CreateClient();
             var @event = new UpdateEventCommand()
             {
-                EventId = Guid.Parse("{3448D5A4-0F72-4DD7-BF15-C14A46B26C00}"),
+                Id = new string("61cc69c07753322250b9307b"),// Guid.Parse("{3448D5A4-0F72-4DD7-BF15-C14A46B26C00}"),
                 Name = "Test Name1",
                 Price = 75,
                 Artist = "Test Artist",
                 Date = DateTime.Now.AddMonths(6),
                 Description = "Test Description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
-                CategoryId = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}")
+                CategoryId = new string("61cc58c88b8879cc049839a8")
+                //Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}")
             };
             var eventJson = JsonConvert.SerializeObject(@event);
             HttpContent content = new StringContent(eventJson, Encoding.UTF8, "application/json");
             var response = await client.PutAsync("/api/v1/events", content);
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Response<Guid>>(responseString);
+            var result = JsonConvert.DeserializeObject<Response<string>>(responseString);
             result.Succeeded.ShouldBeEquivalentTo(true);
-            result.Data.ShouldBeOfType<Guid>();
+            result.Data.ShouldBeOfType<string>();
             result.Errors.ShouldBeNull();
         }
 
@@ -162,7 +163,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             var eventList = await client.GetAsync("/api/V1/events");
             var eventListString = await eventList.Content.ReadAsStringAsync();
             var eventListResult = JsonConvert.DeserializeObject<Response<IEnumerable<EventListVm>>>(eventListString);
-            return eventListResult.Data.FirstOrDefault().EventId;
+            return eventListResult.Data.FirstOrDefault().Id;
         }
     }
 }

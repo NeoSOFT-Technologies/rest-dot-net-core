@@ -17,7 +17,7 @@ namespace GloboTicket.TicketManagement.Application.Profiles
         {
             EventListVm dest = new EventListVm()
             {
-                /*Event*/Id = _protector.Protect(source./*Event*/Id.ToString()),
+                /*Event*/Id = _protector.Protect(source./*Event*/Id),
                 Name = source.Name,
                 ImageUrl = source.ImageUrl,
                 Date = source.Date

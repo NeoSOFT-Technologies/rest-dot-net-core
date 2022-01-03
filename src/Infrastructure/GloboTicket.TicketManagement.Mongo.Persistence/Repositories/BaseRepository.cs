@@ -81,7 +81,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 
         public async virtual Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size)
         {
-            return  _dbContext.AsQueryable<T>().Skip((page - 1) * size).Take(size).ToList();
+            return _dbContext.AsQueryable<T>().Skip((page - 1) * size).Take(size).ToList();
         }
 
 
@@ -186,7 +186,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             });
         }
 
-        public async void DeleteMany(Expression<Func<T, bool>> filterExpression)
+        public void DeleteMany(Expression<Func<T, bool>> filterExpression)
         {
              _dbContext.DeleteMany(filterExpression);
         }

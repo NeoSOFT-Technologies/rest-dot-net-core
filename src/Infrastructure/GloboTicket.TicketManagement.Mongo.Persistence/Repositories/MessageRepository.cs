@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 {
-    [ExcludeFromCodeCoverage]
+   // [ExcludeFromCodeCoverage]
     public class MessageRepository : BaseRepository<Message>, IMessageRepository
     {
         private readonly string cacheKey = $"{typeof(Message)}";

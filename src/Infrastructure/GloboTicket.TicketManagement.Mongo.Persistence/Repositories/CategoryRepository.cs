@@ -25,7 +25,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         public CategoryRepository(/*GloboTicketDbContext*//*IMongoDbContext*/IMongoDbSettings dbContext, ILogger<Category> logger) : base(dbContext, logger)
         {
             //dbContext = (IMongoDbSettings)_dbContext.Database.GetCollection<Category>("Category");
-          //_CatdbContext= Database.GetCollection<Category>("Category");
+            //_CatdbContext= Database.GetCollection<Category>("Category");
             _logger = logger;
             SeedData(_dbContext);
         }
@@ -41,15 +41,21 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         }
         private static IEnumerable<Category> GetPreconfiguredCategory()
         {
-            var concertGuid  = new string("61cc58c88b8879cc049839a8");
-              //  /*Guid*/ ObjectId.Parse("61cc58c88b8879cc049839a8");
-              // var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
+            var concertGuid = new string("61cc58c88b8879cc049839a8");
+            var musicalGuid = new string("61d1cc89ace80d15f6249a53");
+            //  /*Guid*/ ObjectId.Parse("61cc58c88b8879cc049839a8");
+            // var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
             return new List<Category>()
             {
                 new Category()
                 {
                     Id = concertGuid,
                     Name = "Concerts"
+                },
+                 new Category()
+                {
+                 Id = musicalGuid,
+                Name = "Musicals"
                 }
             };
         }
@@ -61,14 +67,15 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
 
-           //  var allCategories = await _dbContext.AsQueryable().Include(x => x.Events).ToListAsync();
-            FilterDefinition<Category> filter = Builders<Category>.Filter.Exists(x=>x.Events);
+            //  var allCategories = await _dbContext.AsQueryable().Include(x => x.Events).ToListAsync();
+            FilterDefinition<Category> filter = Builders<Category>.Filter.Exists(x => x.Events);
 
             var allCategories = await _dbContext.FindAsync(filter).Result.ToListAsync();
-            /*AsQueryable().Include(x => x.Events).ToListAsync()*/;
+            /*AsQueryable().Include(x => x.Events).ToListAsync()*/
+            ;
             if (!includePassedEvents)
             {
-                 allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
+                allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
             }
             _logger.LogInformation("GetCategoriesWithEvents Completed");
             return allCategories;
@@ -76,18 +83,18 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 
         public async Task<Category> AddCategory(Category category)
         {
-           /* var categoryId = Guid.NewGuid();
-            List<SqlParameter> parms = new List<SqlParameter>
-                 {
-                     // Create parameter(s)
-                     new SqlParameter { ParameterName = "@CategoryId", Value = categoryId },
-                     new SqlParameter { ParameterName = "@Name", Value = category.Name },
-                 };
-            await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
-            category = await GetByIdAsync(categoryId);
-            return category;*/
-             throw new NotImplementedException();
+            /* var categoryId = Guid.NewGuid();
+             List<SqlParameter> parms = new List<SqlParameter>
+                  {
+                      // Create parameter(s)
+                      new SqlParameter { ParameterName = "@CategoryId", Value = categoryId },
+                      new SqlParameter { ParameterName = "@Name", Value = category.Name },
+                  };
+             await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
+             category = await GetByIdAsync(categoryId);
+             return category;*/
+            throw new NotImplementedException();
         }
-      
+
     }
 }

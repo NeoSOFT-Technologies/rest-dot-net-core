@@ -23,10 +23,23 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
             {
                 config.AddInMemoryCollection(new[]
                 {
-                    new KeyValuePair<string, string>(
-                        "ConnectionStrings:GloboTicketTicketManagementConnectionString", _dbFixture.ApplicationConnString),
+                  /*  new KeyValuePair<string, string>(
+                        "ConnectionStrings:GloboTicketTicketManagementConnectionString", _dbFixture.ApplicationConnString),*/
+                  new KeyValuePair<string,string>(
+                      "MongoDbSettings:ConnectionString",_dbFixture.mongoDbSettings.ConnectionString),
                 });
+
             });
+            builder.ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddInMemoryCollection(new[]
+                {
+                  new KeyValuePair<string,string>(
+                      "MongoDbSettings:DatabaseName",_dbFixture.ApplicationDbName),
+                });
+
+            });
+
             builder.ConfigureAppConfiguration((context, config) =>
             {
                 config.AddInMemoryCollection(new[]

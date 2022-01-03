@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Base\Utilities.cs" />
+    <Compile Remove="Controllers\v1\OrderControllerTests.cs" />
     <Compile Remove="Controllers\v2\IntegrationDemo.cs" />
   </ItemGroup>
 
@@ -38,7 +40,8 @@
 	  <ProjectReference Include="..\..\src\Core\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
 	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Identity\GloboTicket.TicketManagement.Identity.csproj" />
 	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Infrastructure\GloboTicket.TicketManagement.Infrastructure.csproj" />
-	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Persistence\GloboTicket.TicketManagement.Persistence.csproj" />
+	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Mongo.Persistence\GloboTicket.TicketManagement.Mongo.Persistence.csproj" />
+
 	</ItemGroup>
 
 	<ItemGroup>

@@ -20,13 +20,13 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
             {
                 new Category
                 {
-                    CategoryId = concertGuid,
+                    /*Category*/Id = concertGuid,
                     Name = "Concerts",
                     Events = new List<Domain.Entities.Event>
                     {
                         new Domain.Entities.Event
                         {
-                            EventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
+                            /*Event*/Id = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
                             Name = "John Egbert Live",
                             Price = 65,
                             Artist = "John Egbert",
