@@ -20,7 +20,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
     ports:
-      - "5432:5432"
+      - "5430:5432"
     networks:
       - clean-network
 

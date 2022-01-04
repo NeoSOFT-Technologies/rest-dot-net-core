@@ -36,10 +36,9 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
                     identityBuilder.UseSqlServer(IdentityConnString);
                     break;
                 case "PGSQL":
-                    ApplicationConnString = $"Server=localhost;Port=5430;Database={ApplicationDbName};User Id=root;Password=root;CommandTimeout = 300;";
-                    IdentityConnString = $"Server=localhost;Port=5430;Database={IdentityDbName};User Id=root;Password=root;CommandTimeout = 300;";
-
-                    HealthCheckConnString = $"Server=localhost;Port=5430;Database={HealthCheckDbName};User Id=root;Password=root;CommandTimeout = 300;";
+                    ApplicationConnString = $"Server=localhost;Port=5432;Database={ApplicationDbName};User Id=root;Password=root;";
+                    IdentityConnString = $"Server=localhost;Port=5432;Database={IdentityDbName};User Id=root;Password=root;";
+                    HealthCheckConnString = $"Server=localhost;Port=5432;Database={HealthCheckDbName};User Id=root;Password=root;";
                     applicationBuilder.UseNpgsql(ApplicationConnString);
                     identityBuilder.UseNpgsql(IdentityConnString);
                     break;

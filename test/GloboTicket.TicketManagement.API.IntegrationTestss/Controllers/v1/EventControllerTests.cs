@@ -80,14 +80,14 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
                 Name = "Test Name",
                 Price = 75,
                 Artist = "Test Artist",
-                Date = DateTime.UtcNow.AddMonths(6),
+                Date = DateTime.Now.AddMonths(6),
                 Description = "Test Description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                 CategoryId = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}")
             };
             var eventJson = JsonConvert.SerializeObject(@event);
             HttpContent content = new StringContent(eventJson, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/api/v1/events/", content);
+            var response = await client.PostAsync("/api/v1/events", content);
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<Response<Guid>>(responseString);
@@ -105,7 +105,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
                 Name = "Test Name1",
                 Price = 75,
                 Artist = "Test Artist",
-                Date = DateTime.UtcNow.AddMonths(6),
+                Date = DateTime.Now.AddMonths(7),
                 Description = "Test Description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                 CategoryName = "TestCat"
@@ -131,7 +131,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
                 Name = "Test Name1",
                 Price = 75,
                 Artist = "Test Artist",
-                Date = DateTime.UtcNow.AddMonths(6),
+                Date = DateTime.Now.AddMonths(6),
                 Description = "Test Description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                 CategoryId = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}")
