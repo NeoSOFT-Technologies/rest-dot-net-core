@@ -1,6 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using Xunit;
 
@@ -23,6 +24,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
         {
             var applicationBuilder = new DbContextOptionsBuilder<GloboTicketDbContext>();
             var identityBuilder = new DbContextOptionsBuilder<GloboTicketIdentityDbContext>();
+
 
             var dbProvider = Environment.GetEnvironmentVariable("dbProvider") != null
                                 ? Environment.GetEnvironmentVariable("dbProvider") : "MSSQL";
