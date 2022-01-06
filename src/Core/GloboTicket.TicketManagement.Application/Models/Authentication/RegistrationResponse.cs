@@ -1,7 +1,11 @@
-﻿namespace GloboTicket.TicketManagement.Application.Models.Authentication
+﻿/*using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;*/
+
+namespace GloboTicket.TicketManagement.Application.Models.Authentication
 {
     public class RegistrationResponse
     {
+        
         public string UserId { get; set; }
     }
 }

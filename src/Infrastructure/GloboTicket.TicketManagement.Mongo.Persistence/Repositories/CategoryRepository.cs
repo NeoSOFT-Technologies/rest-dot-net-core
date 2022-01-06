@@ -68,11 +68,23 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
 
             //  var allCategories = await _dbContext.AsQueryable().Include(x => x.Events).ToListAsync();
+            //var allCategories = await _dbContext.AsQueryable().Select(x => x.Events).ToListAsync();
+            /* var allCategories1 = _dbContext.AsQueryable().Select(ev => new
+             {
+                 cat= ev.Name,
+                 Event = ev.Events.Select(e => e.Date)
+
+
+             }).ToListAsync();
+             */
+
             FilterDefinition<Category> filter = Builders<Category>.Filter.Exists(x => x.Events);
 
             var allCategories = await _dbContext.FindAsync(filter).Result.ToListAsync();
-            /*AsQueryable().Include(x => x.Events).ToListAsync()*/
-            ;
+
+            // AsQueryable().Include(x => x.Events).ToListAsync()
+
+
             if (!includePassedEvents)
             {
                 allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));

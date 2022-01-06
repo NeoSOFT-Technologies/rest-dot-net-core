@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using GloboTicket.TicketManagement.mongo.Identity;
 
 namespace GloboTicket.TicketManagement.Api
 {
@@ -56,7 +57,8 @@ namespace GloboTicket.TicketManagement.Api
             services.AddInfrastructureServices(Configuration);
            //services.AddPersistenceServices(Configuration);
             services.AddPersistenceMongoServices(Configuration);
-            services.AddIdentityServices(Configuration);
+           //  services.AddIdentityServices(Configuration);
+            services.AddMongoIdentityServices(Configuration);
             services.AddSwaggerExtension();
             services.AddSwaggerVersionedApiExplorer();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
