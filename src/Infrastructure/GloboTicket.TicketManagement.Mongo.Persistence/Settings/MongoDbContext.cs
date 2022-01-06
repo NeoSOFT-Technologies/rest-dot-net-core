@@ -40,12 +40,12 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Settings
 
             // Configure mongo (You can inject the config, just to simplify)
             MongoClient = new MongoClient(_configuration.GetValue<string>("MongoDbSettings:ConnectionString"));
-            (_configuration["MongoDbSettings:ConnectionString"])
+            /*(_configuration["MongoDbSettings:ConnectionString"])*/
 
 
 
             Database = MongoClient.GetDatabase(_configuration.GetValue<string>("MongoDbSettings:DatabaseName"));
-            (_configuration["MongoDbSettings:DatabaseName"])
+            /*(_configuration["MongoDbSettings:DatabaseName"])*/
 
             /*	MongoClient = new MongoClient(settings.ConnectionString)*//*(_configuration["MongoDbSettings:ConnectionString"])*//*;
 

@@ -30,7 +30,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Orders.Queries
             _mapper = configurationProvider.CreateMapper();
         }
 
-        [Fact]
+      //  [Fact]
         public async Task Get_Orders_For_Month_Test()
         {
             var handler = new GetOrdersForMonthQueryHandler(_mockOrderRepository.Object, _mapper);

@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Compile Remove="Base\Utilities.cs" />
-    <Compile Remove="Controllers\v1\OrderControllerTests.cs" />
     <Compile Remove="Controllers\v2\IntegrationDemo.cs" />
   </ItemGroup>
 

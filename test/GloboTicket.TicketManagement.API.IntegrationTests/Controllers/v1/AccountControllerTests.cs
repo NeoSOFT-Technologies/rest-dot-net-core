@@ -23,6 +23,24 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
         {
             var client = _factory.CreateClient();
 
+            var registerRequest = new RegistrationRequest()
+            {
+                FirstName = "Fname",
+                LastName = "Lname",
+                Email = "try@test.com",
+                UserName = "fname.lname",
+                Password = "User123!@#"
+            };
+
+            var reqJson = JsonConvert.SerializeObject(registerRequest);
+
+            HttpContent reqcontent = new StringContent(reqJson, Encoding.UTF8, "application/json");
+
+            var reqResponse = await client.PostAsync("/api/v1/Account/register", reqcontent);
+
+            reqResponse.EnsureSuccessStatusCode();
+
+
             var request = new AuthenticationRequest()
             {
                 Email = "john@test.com",

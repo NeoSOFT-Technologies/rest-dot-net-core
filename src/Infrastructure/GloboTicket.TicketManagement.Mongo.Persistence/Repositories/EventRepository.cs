@@ -71,6 +71,17 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
                 CategoryId = musicalGuid
                 }
+/*                 new Event()
+                 {
+                     Id = new string("61d69c55dc648e840908ad8a"),
+                    Name = "To the Moon",
+                    Price = 140,
+                    Artist = "Nick Sailor",
+                    Date = DateTime.Now.AddMonths(8),
+                    Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
+                    ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
+                    CategoryId =new string("61d6d5f89fbd7ef1ce7baf4d")
+                 }*/
             };
         }
 

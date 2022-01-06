@@ -51,7 +51,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None);
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -72,7 +72,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None);
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -92,7 +92,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -114,7 +114,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -135,7 +135,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Artist = "test",
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -157,7 +157,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2020, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -179,7 +179,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = DateTime.Now.AddMonths(8),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -200,7 +200,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
@@ -222,7 +222,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Event.Commands
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();

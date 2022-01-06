@@ -15,59 +15,59 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
             {
                 new Order
                 {
-                    Id = Guid.Parse("{7E94BC5B-71A5-4C8C-BC3B-71BB7976237E}"),
+                    Id = new string("61d69f9eeba87eb6b232ccca"),
                     OrderTotal = 400,
                     OrderPaid = true,
                     OrderPlaced = Convert.ToDateTime("2021-08-26 10:44:09.5406918"),
-                    UserId = Guid.Parse("{A441EB40-9636-4EE6-BE49-A66C5EC1330B}")
+                    UserId = new string("61d69fa8269cc27003d6ef4c")
                 },
                 new Order
                 {
-                    Id = Guid.Parse("{86D3A045-B42D-4854-8150-D6A374948B6E}"),
+                    Id = new string("61d69fb422b40326d8aaa00f"),
                     OrderTotal = 135,
                     OrderPaid = true,
                     OrderPlaced = Convert.ToDateTime("2021-08-26 10:44:09.5406918"),
-                    UserId = Guid.Parse("{AC3CFAF5-34FD-4E4D-BC04-AD1083DDC340}")
+                    UserId = new string("61d69fbdecfde870227a0211")
                 },
                 new Order
                 {
-                    Id = Guid.Parse("{771CCA4B-066C-4AC7-B3DF-4D12837FE7E0}"),
+                    Id = new string("61d69fc8a0030dde32b10ea8"),
                     OrderTotal = 85,
                     OrderPaid = true,
                     OrderPlaced = Convert.ToDateTime("2021-08-26 10:44:09.5406918"),
-                    UserId = Guid.Parse("{D97A15FC-0D32-41C6-9DDF-62F0735C4C1C}")
+                    UserId = new string("61d69fd0d832d1d6ed67acd8")
                 },
                 new Order
                 {
-                    Id = Guid.Parse("{3DCB3EA0-80B1-4781-B5C0-4D85C41E55A6}"),
+                    Id = new string("61d69fdfc0b6fea43acd0e29"),
                     OrderTotal = 245,
                     OrderPaid = true,
                     OrderPlaced = Convert.ToDateTime("2021-08-26 10:44:09.5406918"),
-                    UserId = Guid.Parse("{4AD901BE-F447-46DD-BCF7-DBE401AFA203}")
+                    UserId = new string("61d69feb429616f01390d772")
                 },
                 new Order
                 {
-                    Id = Guid.Parse("{E6A2679C-79A3-4EF1-A478-6F4C91B405B6}"),
+                    Id = new string("61d69ff78ebc2b8939c4f4d0"),
                     OrderTotal = 142,
                     OrderPaid = true,
                     OrderPlaced = Convert.ToDateTime("2021-08-26 10:44:09.5406918"),
-                    UserId = Guid.Parse("{7AEB2C01-FE8E-4B84-A5BA-330BDF950F5C}")
+                    UserId = new string("61d6a00490391af5ff18d6a7")
                 },
                 new Order
                 {
-                    Id = Guid.Parse("{F5A6A3A0-4227-4973-ABB5-A63FBE725923}"),
+                    Id = new string("61d6a00e325d74b3515046f4"),
                     OrderTotal = 40,
                     OrderPaid = true,
                     OrderPlaced = Convert.ToDateTime("2021-08-26 10:44:09.5406918"),
-                    UserId = Guid.Parse("{F5A6A3A0-4227-4973-ABB5-A63FBE725923}")
+                    UserId = new string("61d6a01710f9647b427c793e")
                 },
                 new Order
                 {
-                    Id = Guid.Parse("{BA0EB0EF-B69B-46FD-B8E2-41B4178AE7CB}"),
+                    Id =new string("61d6a0225f0f5144a393acdf"),
                     OrderTotal = 116,
                     OrderPaid = true,
                     OrderPlaced = Convert.ToDateTime("2021-08-26 10:44:09.5406918"),
-                    UserId = Guid.Parse("{7AEB2C01-FE8E-4B84-A5BA-330BDF950F5C}")
+                    UserId = new string("61d6a02b13fd010930249ac9")
                 }
             };
 

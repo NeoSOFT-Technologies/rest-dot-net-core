@@ -1,5 +1,6 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Domain.Entities;
+using MongoDB.Bson;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
             {
                 new Message
                 {
-                    MessageId = Guid.NewGuid(),
+                   Id = ObjectId.GenerateNewId().ToString(),
                     Code = "1",
                     MessageContent = "{PropertyName} is required.",
                     Language = "en",
@@ -23,7 +24,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
                 },
                 new Message
                 {
-                    MessageId = Guid.NewGuid(),
+                    Id = ObjectId.GenerateNewId().ToString()/*Guid.NewGuid()*/,
                     Code = "2",
                     MessageContent = "{PropertyName} must not exceed {MaxLength} characters.",
                     Language = "en",
@@ -31,7 +32,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Mocks
                 },
                 new Message
                 {
-                    MessageId = Guid.NewGuid(),
+                    Id = ObjectId.GenerateNewId().ToString(),
                     Code = "3",
                     MessageContent = "An event with the same name and date already exists.",
                     Language = "en",

@@ -1,13 +1,10 @@
-﻿//using AspNetCore.Identity.MongoDbCore.Infrastructure;
-using GloboTicket.TicketManagement.Application.Contracts.Identity;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
 using GloboTicket.TicketManagement.mongo.Identity.Models;
 using GloboTicket.TicketManagement.mongo.Identity.Services;
 using GloboTicket.TicketManagement.mongo.Identity.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;/*
-using Microsoft.AspNetCore.Identity;*/
-/*using Microsoft.EntityFrameworkCore;*/
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;

@@ -39,7 +39,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
         [Fact]
         public async Task Handle_GetEventDetail_FromEventsRepo()
         {
-            var eventId = _mockEventRepository.Object.ListAllAsync().Result.FirstOrDefault().EventId;
+            var eventId = _mockEventRepository.Object.ListAllAsync().Result.FirstOrDefault().Id;
             CreateDataProtector(eventId.ToString());
             
             var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object, mockDataProtectionProvider.Object);
@@ -52,18 +52,19 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Queries
         public async Task Handle_Category_NotFound()
         {
             var @event = _mockEventRepository.Object.ListAllAsync().Result.Skip(1).FirstOrDefault();
-            CreateDataProtector(@event.EventId.ToString());
+            CreateDataProtector(@event.Id.ToString());
 
             var handler = new GetEventDetailQueryHandler(_mapper, _mockEventRepository.Object, _mockCategoryRepository.Object, mockDataProtectionProvider.Object);
 
-            var result = await Should.ThrowAsync<Exceptions.NotFoundException>(() => handler.Handle(new GetEventDetailQuery() { Id = @event.EventId.ToString() }, CancellationToken.None));
+            var result = await Should.ThrowAsync<Exceptions.NotFoundException>(() => handler.Handle(new GetEventDetailQuery() { Id = @event.Id.ToString() }, CancellationToken.None));
             result.Message.ToLower().ShouldBe($"category ({@event.CategoryId.ToString().ToLower()}) is not found");
         }
 
         private void CreateDataProtector(string eventId)
         {
             Mock<IDataProtector> mockDataProtector = new Mock<IDataProtector>();
-            mockDataProtector.Setup(sut => sut.Protect(It.IsAny<byte[]>())).Returns(Encoding.UTF8.GetBytes("CfDJ8LIWbthOAQNJnkaD5psOVPeVho-pJeI37QJSSA2Yq5iVE-zn4-NZufSPnfi_bsi_Lhy9GMvMvgukkdQC8iJb_2EDge_YBi-P--kyu3BDBF-yDYHGATAABSLEhwKw_A6fIy_qrIgJaXkiilmFgQHYJnncaCdpjtfaEYnZzQaKc7KN"));
+            mockDataProtector.Setup(sut => sut.Protect(It.IsAny<byte[]>())).Returns(Encoding.UTF8.GetBytes("CfDJ8JLA655iHbpJoA_TsFgpf1YgyMHTzJG5cqWbwANhET2rAkkbG_tdsLNi9b5wBZ6FESe_4Qz1cGPznupRZIs-pRdb50aouS0L87Q7MtJ-5CFCEFJna-iW2XvJV7uTVGkBPcSO1C5QQedNtbx-rYclbjI"));
+            /*CfDJ8LIWbthOAQNJnkaD5psOVPeVho-pJeI37QJSSA2Yq5iVE-zn4-NZufSPnfi_bsi_Lhy9GMvMvgukkdQC8iJb_2EDge_YBi-P--kyu3BDBF-yDYHGATAABSLEhwKw_A6fIy_qrIgJaXkiilmFgQHYJnncaCdpjtfaEYnZzQaKc7KN*/
             mockDataProtector.Setup(sut => sut.Unprotect(It.IsAny<byte[]>())).Returns(Encoding.UTF8.GetBytes(eventId));
             mockDataProtectionProvider.Setup(s => s.CreateProtector(It.IsAny<string>())).Returns(mockDataProtector.Object);
         }

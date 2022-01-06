@@ -8,6 +8,7 @@ using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEvents
 using GloboTicket.TicketManagement.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using Moq;
 using Shouldly;
 using System;
@@ -44,7 +45,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         {
             var controller = new EventsController(_mockMediator.Object);
 
-            var result = await controller.GetEventById(Guid.NewGuid().ToString());
+            var result = await controller.GetEventById(/*Guid.NewGuid()*/ObjectId.GenerateNewId().ToString());
 
             result.ShouldBeOfType<OkObjectResult>();
             var okObjectResult = result as OkObjectResult;
@@ -76,7 +77,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
             var okObjectResult = result as OkObjectResult;
             okObjectResult.StatusCode.ShouldBe(200);
             okObjectResult.Value.ShouldNotBeNull();
-            okObjectResult.Value.ShouldBeOfType<Response<Guid>>();
+            okObjectResult.Value.ShouldBeOfType<Response<string>>();
         }
 
         [Fact]
@@ -90,7 +91,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
             var okObjectResult = result as OkObjectResult;
             okObjectResult.StatusCode.ShouldBe(200);
             okObjectResult.Value.ShouldNotBeNull();
-            okObjectResult.Value.ShouldBeOfType<Response<Guid>>();
+            okObjectResult.Value.ShouldBeOfType<Response<string>>();
         }
 
         [Fact]
@@ -98,7 +99,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         {
             var controller = new EventsController(_mockMediator.Object);
 
-            var result = await controller.Delete(Guid.NewGuid().ToString());
+            var result = await controller.Delete(/*Guid.NewGuid()*/ObjectId.GenerateNewId().ToString());
 
             result.ShouldBeOfType<NoContentResult>();
             var noContentResult = result as NoContentResult;
@@ -116,7 +117,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
             var okObjectResult = result as OkObjectResult;
             okObjectResult.StatusCode.ShouldBe(200);
             okObjectResult.Value.ShouldNotBeNull();
-            okObjectResult.Value.ShouldBeOfType<Response<Guid>>();
+            okObjectResult.Value.ShouldBeOfType<Response<string>>();
         }
     }
 }

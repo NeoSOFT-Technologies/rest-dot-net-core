@@ -26,12 +26,12 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         [Fact]
         public async Task Handle_Deleted_FromEventsRepo()
         {
-            var eventId = _mockEventRepository.Object.ListAllAsync().Result.FirstOrDefault().EventId;
+            var eventId = _mockEventRepository.Object.ListAllAsync().Result.FirstOrDefault().Id;
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
             CreateDataProtector(eventId.ToString());
 
             var handler = new DeleteEventCommandHandler(_mockEventRepository.Object, mockDataProtectionProvider.Object);
-            await handler.Handle(new DeleteEventCommand() { EventId = eventId.ToString() }, CancellationToken.None);
+            await handler.Handle(new DeleteEventCommand() { Id = eventId.ToString() }, CancellationToken.None);
             
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
             allEvents.ShouldNotContain(oldEvent);
@@ -45,7 +45,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
             CreateDataProtector(eventId.ToString());
 
             var handler = new DeleteEventCommandHandler(_mockEventRepository.Object, mockDataProtectionProvider.Object);
-            var result = await Should.ThrowAsync<Exceptions.NotFoundException>(() => handler.Handle(new DeleteEventCommand() { EventId = eventId }, CancellationToken.None));
+            var result = await Should.ThrowAsync<Exceptions.NotFoundException>(() => handler.Handle(new DeleteEventCommand() { Id = eventId }, CancellationToken.None));
 
             var allEvents = await _mockEventRepository.Object.ListAllAsync();
             result.Message.ToLower().ShouldBe($"event ({eventId.ToString().ToLower()}) is not found");

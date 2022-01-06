@@ -1,5 +1,4 @@
-﻿using AspNetCore.Identity.MongoDbCore.Models;
-using GloboTicket.TicketManagement.Application.Contracts.Identity;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
 using GloboTicket.TicketManagement.Identity.Seed;
 using GloboTicket.TicketManagement.mongo.Identity.Models;
@@ -36,13 +35,15 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             _signInManager = signInManager;
             _roleManager = roleManager;
 
-            UserCreator.SeedAsync(userManager);
             createRole();
+            UserCreator.SeedAsync(userManager);
+            
+            
         }
+
 
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)
         {
-
             /*var*/
             ApplicationUser user = await _userManager.FindByEmailAsync(request.Email);
             AuthenticationResponse response = new AuthenticationResponse();
@@ -63,8 +64,7 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
 
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
-            bool resActive = false;
-
+          
             if (user.RefreshTokens.Any(a => a.IsActive == true))
             {
                 var activeRefreshToken = user.RefreshTokens.FirstOrDefault(a => a.IsActive);

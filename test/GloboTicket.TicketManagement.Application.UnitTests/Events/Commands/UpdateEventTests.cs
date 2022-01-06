@@ -34,23 +34,23 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         public async Task Handle_ValidEvent_UpdatedEvent()
         {
             var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object, _mockMessageRepository.Object);
-            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}");
+            var eventId = new string("61d69c462686f643ccba5033");
             var newEvent = new Domain.Entities.Event
             {
-                EventId = eventId,
+                Id = eventId,
                 Name = "Test1",
                 Price = 25,
                 Artist = "test",
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             };
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
 
             await handler.Handle(new UpdateEventCommand()
             {
-                EventId = newEvent.EventId,
+                Id = newEvent.Id,
                 Name = newEvent.Name,
                 Price = newEvent.Price,
                 Artist = newEvent.Artist,
@@ -70,23 +70,23 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         public async Task Handle_EmptyEvent_UpdatedEvent()
         {
             var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object, _mockMessageRepository.Object);
-            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}");
+            var eventId = new string("61d69c462686f643ccba5033");
             var newEvent = new Domain.Entities.Event
             {
-                EventId = eventId,
+                Id = eventId,
                 Name = "",
                 Price = 25,
                 Artist = "test",
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             };
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
 
             var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new UpdateEventCommand()
             {
-                EventId = newEvent.EventId,
+                Id = newEvent.Id,
                 Name = newEvent.Name,
                 Price = newEvent.Price,
                 Artist = newEvent.Artist,
@@ -106,23 +106,23 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         public async Task Handle_EventLength_GreaterThan_50_UpdatedEvent()
         {
             var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object, _mockMessageRepository.Object);
-            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}");
+            var eventId = new string("61d69c462686f643ccba5033");
             var newEvent = new Domain.Entities.Event
             {
-                EventId = eventId,
+                Id = eventId,
                 Name = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
                 Price = 25,
                 Artist = "test",
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             };
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
 
             var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new UpdateEventCommand()
             {
-                EventId = newEvent.EventId,
+                Id = newEvent.Id,
                 Name = newEvent.Name,
                 Price = newEvent.Price,
                 Artist = newEvent.Artist,
@@ -142,22 +142,22 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         public async Task Handle_EmptyPrice_UpdatedEvent()
         {
             var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object, _mockMessageRepository.Object);
-            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}");
+            var eventId = new string("61d69c462686f643ccba5033");
             var newEvent = new Domain.Entities.Event
             {
-                EventId = eventId,
+                Id = eventId,
                 Name = "Test1",
                 Artist = "test",
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             };
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
 
             var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new UpdateEventCommand()
             {
-                EventId = newEvent.EventId,
+                Id = newEvent.Id,
                 Name = newEvent.Name,
                 Artist = newEvent.Artist,
                 Date = newEvent.Date,
@@ -176,23 +176,23 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         public async Task Handle_Price_NotGreaterThan_0_UpdatedEvent()
         {
             var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object, _mockMessageRepository.Object);
-            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}");
+            var eventId =new string("61d69c462686f643ccba5033");
             var newEvent = new Domain.Entities.Event
             {
-                EventId = eventId,
+                Id = eventId,
                 Name = "Test1",
                 Artist = "test",
                 Price = 0,
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             };
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
 
             var result = await Should.ThrowAsync<Exceptions.ValidationException>(() => handler.Handle(new UpdateEventCommand()
             {
-                EventId = newEvent.EventId,
+                Id = newEvent.Id,
                 Name = newEvent.Name,
                 Artist = newEvent.Artist,
                 Price = newEvent.Price,
@@ -212,23 +212,23 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Events.Commands
         public async Task Handle_Event_NotFound()
         {
             var handler = new UpdateEventCommandHandler(_mapper, _mockEventRepository.Object, _mockMessageRepository.Object);
-            var eventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8C}");
+            var eventId = new string("61d6a2f395b02a9df7bbe957");
             var newEvent = new Domain.Entities.Event
             {
-                EventId = eventId,
+                Id = eventId,
                 Name = "Test1",
                 Artist = "test",
                 Price = 0,
                 Date = new DateTime(2027, 1, 18),
                 Description = "description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
-                CategoryId = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}")
+                CategoryId = new string("61d6975072b43a1aa04fa2cb")
             };
             var oldEvent = await _mockEventRepository.Object.GetByIdAsync(eventId);
 
             var result = await Should.ThrowAsync<Exceptions.NotFoundException>(() => handler.Handle(new UpdateEventCommand()
             {
-                EventId = newEvent.EventId,
+                Id = newEvent.Id,
                 Name = newEvent.Name,
                 Artist = newEvent.Artist,
                 Price = newEvent.Price,
