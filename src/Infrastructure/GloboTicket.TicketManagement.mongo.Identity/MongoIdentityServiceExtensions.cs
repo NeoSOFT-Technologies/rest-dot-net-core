@@ -21,13 +21,7 @@ namespace GloboTicket.TicketManagement.mongo.Identity
     {
         public static void AddMongoIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-
-            /*  services.AddDbContext<GloboTicketIdentityDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
-                  b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
-
-              services.AddIdentity<ApplicationUser, IdentityRole>()
-                  .AddEntityFrameworkStores<GloboTicketIdentityDbContext>().AddDefaultTokenProviders();*/
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));           
 
             var mongoDbSettings = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 

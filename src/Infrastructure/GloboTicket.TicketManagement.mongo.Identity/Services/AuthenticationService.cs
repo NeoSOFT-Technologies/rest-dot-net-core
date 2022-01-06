@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.mongo.Identity.Services
 {
-    public class AuthenticationService: IAuthenticationService
+    public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -42,8 +42,9 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
 
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)
         {
-            
-               /*var*/ ApplicationUser user = await _userManager.FindByEmailAsync(request.Email);
+
+            /*var*/
+            ApplicationUser user = await _userManager.FindByEmailAsync(request.Email);
             AuthenticationResponse response = new AuthenticationResponse();
 
             if (user == null)
@@ -60,14 +61,11 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
                 throw new AuthenticationException($"Credentials for '{request.Email}' aren't valid'.");
             }
 
-             
+
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
             bool resActive = false;
-            // var resActive = user.RefreshTokens.Any(a => a.IsActive==true);
-            //'if (/*user.refreshToken.IsActive*/resActive == true/*user.RefreshTokens.AsQueryable<RefreshToken>().Any(a => a.IsActive)*/)
 
-/*
-            if (resActive)
+            if (user.RefreshTokens.Any(a => a.IsActive == true))
             {
                 var activeRefreshToken = user.RefreshTokens.FirstOrDefault(a => a.IsActive);
                 response.RefreshToken = activeRefreshToken.Token;
@@ -76,11 +74,11 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             else
             {
                 var refreshToken = GenerateRefreshToken();
-                response.RefreshToken = refreshToken.Token;*//* user.refreshToken.*//*
-                response.RefreshTokenExpiration = refreshToken.Expires; *//*user.refreshToken.*//*
+                response.RefreshToken = refreshToken.Token;
+                response.RefreshTokenExpiration = refreshToken.Expires;
                 user.RefreshTokens.Add(refreshToken);
-                 await _userManager.UpdateAsync(user);
-           }*/
+                await _userManager.UpdateAsync(user);
+            }
 
             response.IsAuthenticated = true;
             response.Id = user.Id;
@@ -93,7 +91,7 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
 
         public async Task<RegistrationResponse> RegisterAsync(RegistrationRequest request)
         {
-               var existingUser = await _userManager.FindByNameAsync(request.UserName);
+            var existingUser = await _userManager.FindByNameAsync(request.UserName);
 
             if (existingUser != null)
             {
@@ -114,7 +112,7 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             if (existingEmail == null)
             {
                 var result = await _userManager.CreateAsync(user, request.Password);
-                
+
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "Viewer");
@@ -145,11 +143,11 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("uid", user.Id)
-            }
+                            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                            new Claim("uid", user.Id)
+                        }
             .Union(userClaims)
             .Union(roleClaims);
 
@@ -173,7 +171,8 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             if (!roleCheck)
             {
                 //create the roles and seed them to the database  
-                roleResult = await _roleManager.CreateAsync(new ApplicationRole() {
+                roleResult = await _roleManager.CreateAsync(new ApplicationRole()
+                {
                     Name = "Administrator",
                     NormalizedName = "ADMINISTRATOR"
                 });
@@ -183,7 +182,8 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             if (!roleCheck)
             {
                 //create the roles and seed them to the database  
-                roleResult = await _roleManager.CreateAsync(new ApplicationRole() {
+                roleResult = await _roleManager.CreateAsync(new ApplicationRole()
+                {
                     Name = "Viewer",
                     NormalizedName = "VIEWER"
                 });
@@ -192,22 +192,23 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
         }
         private RefreshToken GenerateRefreshToken()
         {
-            
+
             RefreshToken refToken;
             var randomNumber = new byte[32];
             using (var generator = new RNGCryptoServiceProvider())
             {
                 generator.GetBytes(randomNumber);
-                 refToken=/*return*/ new RefreshToken
-                {
-                    Token = Convert.ToBase64String(randomNumber),
-                    Expires = DateTime.UtcNow.AddDays(10),
-                    Created = DateTime.UtcNow
-                };
+                refToken =/*return*/
+new RefreshToken
+{
+    Token = Convert.ToBase64String(randomNumber),
+    Expires = DateTime.UtcNow.AddDays(10),
+    Created = DateTime.UtcNow
+};
             }
             return refToken;
         }
-        
+
         public async Task<RefreshTokenResponse> RefreshTokenAsync(RefreshTokenRequest request)
         {
             var response = new RefreshTokenResponse();
