@@ -3,7 +3,7 @@ using GloboTicket.TicketManagement.mongo.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Identity.Seed
+namespace GloboTicket.TicketManagement.mongo.Identity.Seed
 {
     public static class UserCreator
     {

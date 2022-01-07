@@ -7,6 +7,6 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Models
     [CollectionName("Roles")]
     public class ApplicationRole : MongoIdentityRole<string>
     {
-       
+
     }
 }

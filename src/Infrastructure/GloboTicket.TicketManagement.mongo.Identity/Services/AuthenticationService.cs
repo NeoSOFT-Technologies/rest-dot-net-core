@@ -1,6 +1,6 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
-using GloboTicket.TicketManagement.Identity.Seed;
+using GloboTicket.TicketManagement.mongo.Identity.Seed;
 using GloboTicket.TicketManagement.mongo.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -36,9 +36,9 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             _roleManager = roleManager;
 
             createRole();
-            UserCreator.SeedAsync(userManager);
-            
-            
+            // UserCreator.SeedAsync(userManager);
+
+            IdentityDataInitializer.SeedData(userManager, roleManager);
         }
 
 

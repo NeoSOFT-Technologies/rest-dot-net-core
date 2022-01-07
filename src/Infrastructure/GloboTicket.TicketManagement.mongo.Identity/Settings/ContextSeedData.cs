@@ -1,6 +1,6 @@
 ﻿using GloboTicket.TicketManagement.Domain.Entities;
 using GloboTicket.TicketManagement.mongo.Identity.Models;
-
+using Microsoft.AspNetCore.Identity;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

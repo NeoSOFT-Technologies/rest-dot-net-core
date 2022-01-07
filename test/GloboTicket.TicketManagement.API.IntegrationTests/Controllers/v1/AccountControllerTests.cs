@@ -23,7 +23,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
         {
             var client = _factory.CreateClient();
 
-            var registerRequest = new RegistrationRequest()
+          /*  var registerRequest = new RegistrationRequest()
             {
                 FirstName = "Fname",
                 LastName = "Lname",
@@ -39,7 +39,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
             var reqResponse = await client.PostAsync("/api/v1/Account/register", reqcontent);
 
             reqResponse.EnsureSuccessStatusCode();
-
+*/
 
             var request = new AuthenticationRequest()
             {

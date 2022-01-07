@@ -6,14 +6,13 @@ using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent
 {
-    public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Response<string/*ObjectId*//*Guid*/>>
+    public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Response<string>>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
@@ -30,13 +29,13 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
             _messageRepository = messageRepository;
         }
 
-        public async Task<Response</*Guid*//*ObjectId*/string>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
+        public async Task<Response<string>> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Handle Initiated");
 
             var validator = new CreateEventCommandValidator(_eventRepository, _messageRepository);
             var validationResult = await validator.ValidateAsync(request);
-            
+
             if (validationResult.Errors.Count > 0)
                 throw new Exceptions.ValidationException(validationResult);
 
@@ -54,10 +53,10 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
             catch (Exception ex)
             {
                 //this shouldn't stop the API from doing else so this can be logged
-                _logger.LogError($"Mailing about event {@event./*Event*/Id} failed due to an error with the mail service: {ex.Message}");
+                _logger.LogError($"Mailing about event {@event.Id} failed due to an error with the mail service: {ex.Message}");
             }
 
-            var response = new Response</*Guid*//*ObjectId*/string>(@event./*Event*/Id /*.ToString()*/, "Inserted successfully ");
+            var response = new Response<string>(@event.Id, "Inserted successfully ");
 
             _logger.LogInformation("Handle Completed");
 

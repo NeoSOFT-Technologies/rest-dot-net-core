@@ -37,8 +37,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\API\GloboTicket.TicketManagement.Api\GloboTicket.TicketManagement.Api.csproj" />
 	  <ProjectReference Include="..\..\src\Core\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
-	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Identity\GloboTicket.TicketManagement.Identity.csproj" />
 	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Infrastructure\GloboTicket.TicketManagement.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.mongo.Identity\GloboTicket.TicketManagement.mongo.Identity.csproj" />
 	  <ProjectReference Include="..\..\src\Infrastructure\GloboTicket.TicketManagement.Mongo.Persistence\GloboTicket.TicketManagement.Mongo.Persistence.csproj" />
 
 	</ItemGroup>

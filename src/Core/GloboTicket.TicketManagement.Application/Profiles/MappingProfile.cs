@@ -14,18 +14,17 @@ using GloboTicket.TicketManagement.Domain.Entities;
 
 namespace GloboTicket.TicketManagement.Application.Profiles
 {
-    public class MappingProfile: Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
-        {          
+        {
             CreateMap<Event, CreateEventCommand>().ReverseMap();
             CreateMap<Event, TransactionCommand>().ReverseMap();
             CreateMap<Event, UpdateEventCommand>().ReverseMap();
             CreateMap<Event, EventDetailVm>().ReverseMap();
             CreateMap<Event, CategoryEventDto>().ReverseMap();
             CreateMap<Event, EventExportDto>().ReverseMap();
-           /* CreateMap<Event, UpdateEventDto>().ReverseMap();*/
-            
+
             CreateMap<Category, CategoryDto>();
             CreateMap<Category, CategoryListVm>();
             CreateMap<Category, CategoryEventListVm>().ReverseMap();

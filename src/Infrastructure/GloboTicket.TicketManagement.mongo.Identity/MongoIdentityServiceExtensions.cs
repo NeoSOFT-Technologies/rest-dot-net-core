@@ -1,10 +1,14 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
 using GloboTicket.TicketManagement.mongo.Identity.Models;
+using GloboTicket.TicketManagement.mongo.Identity.Seed;
 using GloboTicket.TicketManagement.mongo.Identity.Services;
 using GloboTicket.TicketManagement.mongo.Identity.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -78,6 +82,18 @@ namespace GloboTicket.TicketManagement.mongo.Identity
                         },
                     };
                 });
+        }
+
+
+
+        public static void ConfigureUser(IApplicationBuilder app,
+IHostingEnvironment env
+/*UserManager<ApplicationUser> userManager,
+RoleManager<ApplicationRole> roleManager*/)
+        {
+            app.UseAuthentication();
+
+            //IdentityDataInitializer.SeedData(userManager, roleManager);
         }
     }
 }

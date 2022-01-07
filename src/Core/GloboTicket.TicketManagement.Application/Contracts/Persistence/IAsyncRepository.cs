@@ -9,7 +9,7 @@ namespace GloboTicket.TicketManagement.Application.Contracts.Persistence
 {
     public interface IAsyncRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(/*Guid*/ string id);
+        Task<T> GetByIdAsync(string id);
         Task<IReadOnlyList<T>> ListAllAsync();
         Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);

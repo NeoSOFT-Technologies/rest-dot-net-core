@@ -5,12 +5,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace GloboTicket.TicketManagement.Domain.Entities
 {
-    /*[BsonCollection("Order")]*/
     public class Order : AuditableEntity
     {
-
-     //   public Guid Id /*{ get; set; }*/ => Id;
-        public /*Guid*//*ObjectId*/ string UserId { get; set; }
+        public string UserId { get; set; }
         public int OrderTotal { get; set; }
         public DateTime OrderPlaced { get; set; }
         public bool OrderPaid { get; set; }

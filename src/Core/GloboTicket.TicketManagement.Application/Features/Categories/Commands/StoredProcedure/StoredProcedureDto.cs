@@ -4,7 +4,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
 {
     public class StoredProcedureDto
     {
-        public Guid CategoryId { get; set; }
+        public string /*Category*/Id { get; set; }
         public string Name { get; set; }
     }
 }

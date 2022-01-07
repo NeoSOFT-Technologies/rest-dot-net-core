@@ -30,6 +30,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using GloboTicket.TicketManagement.mongo.Identity;
+using Microsoft.AspNetCore.Identity;
+using GloboTicket.TicketManagement.mongo.Identity.Models;
+using GloboTicket.TicketManagement.mongo.Identity.Seed;
 
 namespace GloboTicket.TicketManagement.Api
 {
@@ -70,7 +73,9 @@ namespace GloboTicket.TicketManagement.Api
         }
 
         [ExcludeFromCodeCoverage]
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<ApplicationRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -80,7 +85,8 @@ namespace GloboTicket.TicketManagement.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthentication();          
+            app.UseAuthentication();
+            IdentityDataInitializer.SeedData(userManager, roleManager);
 
             app.UseSwagger();
 

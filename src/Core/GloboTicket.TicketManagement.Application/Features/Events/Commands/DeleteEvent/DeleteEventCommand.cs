@@ -5,6 +5,6 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Dele
 {
     public class DeleteEventCommand: IRequest
     {
-        public string /*Event*/Id { get; set; }
+        public string Id { get; set; }
     }
 }

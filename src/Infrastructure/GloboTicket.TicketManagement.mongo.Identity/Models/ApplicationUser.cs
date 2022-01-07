@@ -10,7 +10,7 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
-      
+
 
 
     }
