@@ -22,7 +22,7 @@ namespace GloboTicket.TicketManagement.mongo.Identity
     {
         public static void AddMongoIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));           
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
             var mongoDbSettings = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 
@@ -31,19 +31,19 @@ namespace GloboTicket.TicketManagement.mongo.Identity
                 (
                     mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName
                 );
-            
+
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme =JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
                 .AddJwtBearer(o =>
                 {
                     o.RequireHttpsMetadata = false;
-                    o.SaveToken =true /*false*/;
+                    o.SaveToken = true /*false*/;
                     o.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
@@ -84,16 +84,5 @@ namespace GloboTicket.TicketManagement.mongo.Identity
                 });
         }
 
-
-
-        public static void ConfigureUser(IApplicationBuilder app,
-IHostingEnvironment env
-/*UserManager<ApplicationUser> userManager,
-RoleManager<ApplicationRole> roleManager*/)
-        {
-            app.UseAuthentication();
-
-            //IdentityDataInitializer.SeedData(userManager, roleManager);
-        }
     }
 }

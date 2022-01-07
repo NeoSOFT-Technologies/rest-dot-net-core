@@ -10,7 +10,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-//using IMongoDbSettings = GloboTicket.TicketManagement.Mongo.Persistence.Settings.IMongoDbSettings;
 
 namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 {
@@ -19,21 +18,16 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
     public class BaseRepository<T> : IAsyncRepository<T> where T : class, IDocument
     {
         
-
-        //protected readonly IMongoDbContext Context;
         protected IMongoCollection<T> _dbContext;//DbSet
         private readonly ILogger _logger;
-        //private readonly IMongoDatabase _database;
 
-
-        public BaseRepository(IMongoDbSettings settings/*IMongoDbContext settings*/, ILogger<T> logger)
+        public BaseRepository(IMongoDbSettings settings, ILogger<T> logger)
         {
             _logger = logger;
-           // Context = settings;
+           var Context1= new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
+           _dbContext = Context1.GetCollection<T>(typeof(T).Name);
 
-            var Context1= new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-
-            _dbContext = Context1.GetCollection<T>(typeof(T).Name);
+            SeedDataContext.SeedData(settings);
         }
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
@@ -43,7 +37,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             return await all.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(/*ObjectId*/string id)
+        public async Task<T> GetByIdAsync(string id)
         {
              var objectId = new ObjectId(id);
         
@@ -64,8 +58,6 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            /*  _dbContext.Entry(entity).State = EntityState.Modified;
-              await _dbContext.SaveChangesAsync();*/
             await _dbContext.ReplaceOneAsync(Builders<T>.Filter.Eq("_id", entity.Id), entity);
 
         }
@@ -74,16 +66,13 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         {
             var filter = Builders<T>.Filter.Eq(doc => doc.Id, entity.Id);
             await _dbContext.FindOneAndDeleteAsync(filter);
-           //  _dbContext.DeleteOneAsync(Builders<T>.Filter.Eq("_id", entity.Id));
 
         }
-
 
         public async virtual Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size)
         {
             return _dbContext.AsQueryable<T>().Skip((page - 1) * size).Take(size).ToList();
         }
-
 
 
 
@@ -171,7 +160,6 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 
         public void DeleteById(string id)
         {
-          //  var objectId = new ObjectId/*Guid*/(id);
             var filter = Builders<T>.Filter.Eq(doc => doc.Id, id);
             _dbContext.FindOneAndDelete(filter);
         }
@@ -180,8 +168,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         {
             return Task.Run(() =>
             {
-              //  var objectId = new /*Guid*/ObjectId(id);
-                var filter = Builders<T>.Filter.Eq(doc => doc.Id, id/*objectId*/);
+                var filter = Builders<T>.Filter.Eq(doc => doc.Id, id);
                 _dbContext.FindOneAndDeleteAsync(filter);
             });
         }

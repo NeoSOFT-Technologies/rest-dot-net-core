@@ -8,7 +8,5 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Settings
     {
         string DatabaseName { get; set; }
         string ConnectionString { get; set; }
-       
-        
     }
 }
