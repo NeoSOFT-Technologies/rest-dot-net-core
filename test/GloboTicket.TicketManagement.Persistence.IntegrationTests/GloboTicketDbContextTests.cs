@@ -10,7 +10,7 @@ namespace GloboTicket.TicketManagement.Persistence.IntegrationTests
 {
     public class GloboTicketDbContextTests
     {
-       // private readonly GloboTicketDbContext _globoTicketDbContext;
+        private readonly GloboTicketDbContext _globoTicketDbContext;
         private readonly Mock<ILoggedInUserService> _loggedInUserServiceMock;
         private readonly string _loggedInUserId;
 
@@ -29,7 +29,7 @@ namespace GloboTicket.TicketManagement.Persistence.IntegrationTests
        // [Fact]
         public async void Save_SetCreatedByProperty()
         {
-            var ev = new Event() { EventId = Guid.NewGuid(), Name = "Test event" };
+            var ev = new Event() { Id = Guid.NewGuid().ToString(), Name = "Test event" };
 
             _globoTicketDbContext.Events.Add(ev);
             await _globoTicketDbContext.SaveChangesAsync();

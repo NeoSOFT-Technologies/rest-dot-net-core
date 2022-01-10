@@ -1,7 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Domain.Entities;
 using Microsoft.Data.SqlClient;
-/*using Microsoft.EntityFrameworkCore;*/
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using MongoDB.Driver;
@@ -20,50 +20,19 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
     {
 
         private readonly ILogger _logger;
-        public CategoryRepository(/*GloboTicketDbContext*/IMongoDbSettings dbContext, ILogger<Category> logger) : base(dbContext, logger)
+        public CategoryRepository(GloboTicketDbContext dbContext, ILogger<Category> logger) : base(dbContext, logger)
         {
             _logger = logger;
-            SeedData(_dbContext);
         }
-        public static void SeedData(IMongoCollection<Category> dataCollection)
-        {
-            //check if there is any existing product collections
-            bool existProduct = dataCollection.Find(p => true).Any();
-            if (!existProduct)
-            {
-                dataCollection.InsertManyAsync(GetPreconfiguredCategory());
-
-            }
-        }
-        private static IEnumerable<Category> GetPreconfiguredCategory()
-        {
-            var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
-
-            return new List<Category>()
-            {
-                new Category()
-                {
-                    Id = concertGuid,
-                    Name = "Concerts"
-                }
-            };
-        }
-
-
-
 
         public async Task<List<Category>> GetCategoriesWithEvents(bool includePassedEvents)
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
 
-           //  var allCategories = await _dbContext.AsQueryable().Include(x => x.Events).ToListAsync();
-            FilterDefinition<Category> filter = Builders<Category>.Filter.Exists(x=>x.Events);
-
-            var allCategories = await _dbContext.FindAsync(filter).Result.ToListAsync();
-            /*AsQueryable().Include(x => x.Events).ToListAsync()*/;
+            var allCategories = await _dbContext.Categories.Include(x => x.Events).ToListAsync();
             if (!includePassedEvents)
             {
-                 allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
+                allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
             }
             _logger.LogInformation("GetCategoriesWithEvents Completed");
             return allCategories;
@@ -71,7 +40,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
 
         public async Task<Category> AddCategory(Category category)
         {
-           /* var categoryId = Guid.NewGuid();
+            var categoryId = Guid.NewGuid().ToString();
             List<SqlParameter> parms = new List<SqlParameter>
                  {
                      // Create parameter(s)
@@ -80,36 +49,8 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
                  };
             await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
             category = await GetByIdAsync(categoryId);
-            return category;*/
-             throw new NotImplementedException();
+            return category;
         }
-      
-        /* public async Task<List<Category>> GetCategoriesWithEvents(bool includePassedEvents)
-         {
-             _logger.LogInformation("GetCategoriesWithEvents Initiated");
-
-             var allCategories = await _dbContext.Categories.Include(x => x.Events).ToListAsync();
-             if (!includePassedEvents)
-             {
-                 allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
-             }
-             _logger.LogInformation("GetCategoriesWithEvents Completed");
-             return allCategories;
-         }
-
-         public async Task<Category> AddCategory(Category category)
-         {
-             var categoryId = Guid.NewGuid();
-             List<SqlParameter> parms = new List<SqlParameter>
-                 {
-                     // Create parameter(s)
-                     new SqlParameter { ParameterName = "@CategoryId", Value = categoryId },
-                     new SqlParameter { ParameterName = "@Name", Value = category.Name },
-                 };
-             await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
-             category = await GetByIdAsync(categoryId);
-             return category;
-         }*/
 
     }
 }

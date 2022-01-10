@@ -13,20 +13,16 @@ namespace GloboTicket.TicketManagement.Persistence
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            /*services.AddDbContext<GloboTicketDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("GloboTicketTicketManagementConnectionString")));*/
+            services.AddDbContext<GloboTicketDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("GloboTicketTicketManagementConnectionString")));
 
-            services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));/*ConnectionStrings1:*/
-
-            services.AddSingleton<IMongoDbSettings>(serviceProvider =>
-                serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
 
-            return services;    
+            return services;
         }
     }
 }

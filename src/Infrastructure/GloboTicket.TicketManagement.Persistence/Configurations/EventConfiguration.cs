@@ -12,7 +12,7 @@ namespace Scrum.Demo.Persistence.Configurations
         {
             //Not necessary if naming conventions are followed in model
             builder
-                .HasKey(b => b.EventId);
+                .HasKey(b => b.Id);
 
             builder
                 .Property(b => b.CreatedBy)

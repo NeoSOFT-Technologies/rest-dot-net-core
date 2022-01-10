@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GloboTicket.TicketManagemen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GloboTicket.TicketManagement.mongo.Identity", "src\Infrastructure\GloboTicket.TicketManagement.mongo.Identity\GloboTicket.TicketManagement.mongo.Identity.csproj", "{2AF84555-5BAB-4A06-9F98-54A506400E00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboTicket.TicketManagement.Mongo.Identity.UnitTests", "test\GloboTicket.TicketManagement.Mongo.Identity.UnitTests\GloboTicket.TicketManagement.Mongo.Identity.UnitTests.csproj", "{051084A2-C752-4F17-A965-DFCB4BACBFD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GloboTicket.TicketManagement.Mongo.Identity.UnitTests", "test\GloboTicket.TicketManagement.Mongo.Identity.UnitTests\GloboTicket.TicketManagement.Mongo.Identity.UnitTests.csproj", "{051084A2-C752-4F17-A965-DFCB4BACBFD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

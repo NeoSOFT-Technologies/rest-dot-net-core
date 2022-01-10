@@ -17,7 +17,7 @@ namespace GloboTicket.TicketManagement.Application.Contracts.Persistence
         Task<IReadOnlyList<T>> GetPagedReponseAsync(int page, int size);
 
 
-
+/*
         IQueryable<T> AsQueryable();
 
         IEnumerable<T> FilterBy(
@@ -55,6 +55,6 @@ namespace GloboTicket.TicketManagement.Application.Contracts.Persistence
 
         void DeleteMany(Expression<Func<T, bool>> filterExpression);
 
-        Task DeleteManyAsync(Expression<Func<T, bool>> filterExpression);
+        Task DeleteManyAsync(Expression<Func<T, bool>> filterExpression);*/
     }
 }
