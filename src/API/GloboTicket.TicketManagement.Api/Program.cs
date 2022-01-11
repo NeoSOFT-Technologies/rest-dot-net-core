@@ -16,6 +16,8 @@ using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using GloboTicket.TicketManagement.Api.SwaggerHelper;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
+using GloboTicket.TicketManagement.Identity.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,8 @@ IConfiguration configurationBuilder = new ConfigurationBuilder()
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(configurationBuilder)
     .CreateLogger();
+
+
 
 
 
@@ -85,6 +89,8 @@ using (var scope = app.Services.CreateScope())
     try
     {
         Log.Information("Application Starting");
+        var userManager = scope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
+        await GloboTicket.TicketManagement.Identity.Seed.UserCreator.SeedAsync(userManager);
     }
     catch (Exception ex)
     {
