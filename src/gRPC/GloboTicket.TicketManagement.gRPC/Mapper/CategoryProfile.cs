@@ -20,6 +20,14 @@ namespace GloboTicket.TicketManagement.gRPC.Mapper
             CreateMap<CategoryEventListVm, Category.V1.GetCategoriesListWithEvents>().ReverseMap();
             CreateMap<CategoryEventDto, Category.V1.CategoryEventDto1>().ReverseMap();
             CreateMap<Response<IEnumerable<CategoryEventListVm>>, Category.V1.GetCategoriesListWithEventsQueryResponse>().ReverseMap();
+
+
+            CreateMap<CreateCategoryCommand, Category.V2.AddCategoryRequest>().ReverseMap();
+            CreateMap<CreateCategoryDto, Category.V2.AddCategoryResponse>().ReverseMap();
+            CreateMap<Category.V2.CategoriesModel, CategoryListVm>().ReverseMap();
+            CreateMap<CategoryEventListVm, Category.V2.GetCategoriesListWithEvents>().ReverseMap();
+            CreateMap<CategoryEventDto, Category.V2.CategoryEventDto1>().ReverseMap();
+            CreateMap<Response<IEnumerable<CategoryEventListVm>>, Category.V2.GetCategoriesListWithEventsQueryResponse>().ReverseMap();
         }
     }
 }

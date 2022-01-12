@@ -1,0 +1,56 @@
+syntax = "proto3";
+package category.v2;
+option csharp_namespace = "GrpcCategoryClient.v2";
+
+service CategoryProtoService{
+	rpc GetAllCategories (GetCategoriesRequest) returns (ListOfCategories);
+	rpc AddCategory (AddCategoryRequest) returns (AddCategoryResponse);
+	rpc GetCategoriesListWithEventsQuery (GetCategoriesListWithEventsQueryRequest) returns (GetCategoriesListWithEventsQueryResponse);
+}
+
+message AddCategoryRequest{
+	string Name = 1;
+}
+
+message AddCategoryResponse{
+	string CategoryId = 1;
+	string Name = 2;
+}
+message GetCategoriesRequest{
+	string name = 1;
+}
+
+message ListOfCategories{
+	repeated CategoriesModel categoryModel = 1;
+}
+message CategoriesModel{
+	string CategoryId = 1;
+	string Name = 2;
+}
+message GetCategoriesListWithEventsQueryRequest{
+	bool IncludeHistory = 1;
+}
+
+message GetCategoriesListWithEventsQueryResponse{
+	bool Succeeded = 1;
+	string Message = 2;
+    repeated GetCategoriesListWithEvents getAllCategorieswithevents= 3;
+}
+
+message GetCategoriesListWithEvents{
+	string CategoryId = 1;
+	string Name = 2;
+	repeated CategoryEventDto1 catEventdto = 3;
+}
+
+message CategoryEventDto1{
+    string EventId = 8;
+	string Name = 1;
+	int32 price = 2;
+	string Artist = 3;
+	string Date = 4;
+	string Description = 5;
+	string ImageUrl = 6;
+	string CategoryId = 7;
+}
+

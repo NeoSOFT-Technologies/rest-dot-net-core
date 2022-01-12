@@ -1,0 +1,65 @@
+syntax = "proto3";
+package event.v1;
+option csharp_namespace = "GrpcEventClient";
+
+ 
+service EventProtoService{
+    rpc GetEventById (EventRequest) returns (EventModel);
+	rpc GetAllEvent (AllEventRequest) returns (EventModelList);
+	rpc CreateEvent (CreateEventRequest) returns (EventModelReturn);
+	rpc UpdateEvent (UpdateEventRequest) returns (EventModelReturn);
+	rpc DeleteEvent (DeleteEventRequest) returns (DeleteEventReturn);
+}
+
+message EventRequest{
+	string id = 1;
+}
+
+message AllEventRequest{
+	string Name = 1;
+}
+
+message EventModelList{
+	repeated EventModel eventmodel = 1;
+}
+
+message EventModel{
+	string EventId = 1;
+	string Name = 2;
+	string Date = 3;
+    string ImageUrl = 4;
+}
+
+message CreateEventRequest{
+	string Name = 1;
+	int32 price = 2;
+	string Artist = 3;
+	string Date = 4;
+	string Description = 5;
+	string ImageUrl = 6;
+	string CategoryId = 7;
+}
+
+message UpdateEventRequest{
+    string EventId = 8;
+	string Name = 1;
+	int32 price = 2;
+	string Artist = 3;
+	string Date = 4;
+	string Description = 5;
+	string ImageUrl = 6;
+	string CategoryId = 7;
+}
+
+message EventModelReturn{
+	bool Succeeded = 1;
+	string Message = 2;
+	string Data = 3;
+}
+message DeleteEventRequest{
+	string EventId = 10;
+}
+
+message DeleteEventReturn {
+	string message = 1;
+}

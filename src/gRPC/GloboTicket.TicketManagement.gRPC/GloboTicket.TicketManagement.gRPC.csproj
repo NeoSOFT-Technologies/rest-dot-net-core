@@ -19,6 +19,10 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
+<ItemGroup>
+  <InternalsVisibleTo Include="GloboTicket.TicketManagement.gRPC.IntegrationTests" />
+</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\Core\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GloboTicket.TicketManagement.Identity\GloboTicket.TicketManagement.Identity.csproj" />

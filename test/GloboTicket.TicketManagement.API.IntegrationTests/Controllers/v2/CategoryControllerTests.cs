@@ -23,8 +23,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v2
         {
             _factory = factory;
         }
-
-       
+               
 
         [Fact]
         public async Task Get_CategoriesList_ReturnsUnauthorizedResult()

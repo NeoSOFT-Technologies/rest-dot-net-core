@@ -5,6 +5,7 @@ using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCa
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using Grpc.Core;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
@@ -21,6 +22,8 @@ namespace GloboTicket.TicketManagement.gRPC.Services.v2
             _mapper = mapper;
         }
 
+
+        [Authorize(Roles = "Administrator")]
         public override async Task<ListOfCategories> GetAllCategories(GetCategoriesRequest request, ServerCallContext context)
         {
             //_logger.LogInformation("GetAllCategories Initiated");
@@ -34,6 +37,8 @@ namespace GloboTicket.TicketManagement.gRPC.Services.v2
             return allCategories;
         }
 
+
+        [Authorize]
         public override async Task<GetCategoriesListWithEventsQueryResponse> GetCategoriesListWithEventsQuery(GetCategoriesListWithEventsQueryRequest request, ServerCallContext context)
         {
             var response = new GetCategoriesListWithEventsQueryResponse();
