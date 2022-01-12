@@ -2,7 +2,6 @@
 using GloboTicket.TicketManagement.Domain.Entities;
 using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -29,15 +28,8 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         public async Task<bool> IsEventNameAndDateUnique(string name, DateTime eventDate)
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
-/*
-            FilterDefinition<Event> filter = Builders<Event>.Filter.AnyEq("Name", name) & Builders<Event>.Filter.AnyEq("Date", eventDate);
-            var matches = await _dbContext.FindAsync(filter).Result.AnyAsync();
-
-*/
             var matches = _dbContext.AsQueryable().Any(e => e.Name == name && e.Date == eventDate);
-          
-
-            // await  _dbContext.FindAsync(filter).Result.FirstOrDefaultAsync();
+           
             _logger.LogInformation("GetCategoriesWithEvents Completed");
             return await Task.FromResult(matches);
         }

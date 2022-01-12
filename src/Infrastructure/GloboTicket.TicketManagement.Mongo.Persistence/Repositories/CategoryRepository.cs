@@ -14,12 +14,13 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
     [ExcludeFromCodeCoverage]
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
-        protected readonly IMongoCollection<Category> _CatdbContext;
+        protected readonly IMongoCollection<Event> EventCollection;
         private readonly ILogger _logger;
+
         public CategoryRepository(IMongoDbSettings dbContext, ILogger<Category> logger) : base(dbContext, logger)
         {
             _logger = logger;
-            //SeedData(_dbContext);
+            EventCollection = _dbContext.Database.GetCollection<Event>("Event");
         }
 
         public async Task<List<Category>> GetCategoriesWithEvents(bool includePassedEvents)
@@ -27,19 +28,29 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
 
             FilterDefinition<Category> filter = Builders<Category>.Filter.Exists(x => x.Events);
-
             var allCategories = await _dbContext.FindAsync(filter).Result.ToListAsync();
+
+            var CategoryWithEvents = (from c in allCategories.AsQueryable()
+                                     join e in EventCollection.AsQueryable() on c.Id equals                     e.CategoryId into eventList
+                                     select new Category()
+                                     {
+                                         Id = c.Id,
+                                         Name = c.Name,
+                                         Events = (ICollection<Event>)eventList,
+                                     }).ToList();
 
             if (!includePassedEvents)
             {
-                allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
+                CategoryWithEvents.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
             }
             _logger.LogInformation("GetCategoriesWithEvents Completed");
-            return allCategories;
+            return CategoryWithEvents;
         }
 
         public async Task<Category> AddCategory(Category category)
         {
+            throw new NotImplementedException();
+
             /* var categoryId = Guid.NewGuid();
              List<SqlParameter> parms = new List<SqlParameter>
                   {
@@ -50,7 +61,6 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
              await StoredProcedureCommandAsync("CreateCategory", parms.ToArray());
              category = await GetByIdAsync(categoryId);
              return category;*/
-            throw new NotImplementedException();
         }
 
     }
