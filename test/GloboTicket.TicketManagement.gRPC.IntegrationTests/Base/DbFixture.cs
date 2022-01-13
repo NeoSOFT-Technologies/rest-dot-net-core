@@ -27,7 +27,7 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
 
 
             var dbProvider = Environment.GetEnvironmentVariable("dbProvider") != null
-                                ? Environment.GetEnvironmentVariable("dbProvider") : "MSSQL";
+                                ? Environment.GetEnvironmentVariable("dbProvider") : "PGSQL";
             switch (dbProvider)
             {
                 case "MSSQL":
@@ -42,6 +42,7 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
                     IdentityConnString = $"Server=localhost;Port=5430;Database={IdentityDbName};User Id=root;Password=root;CommandTimeout = 300;";
 
                     HealthCheckConnString = $"Server=localhost;Port=5430;Database={HealthCheckDbName};User Id=root;Password=root;CommandTimeout = 300;";
+                    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                     applicationBuilder.UseNpgsql(ApplicationConnString);
                     identityBuilder.UseNpgsql(IdentityConnString);
                     break;

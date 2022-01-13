@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using Xunit;
 //using static GrpcEventClient.EventProtoService;
 
-namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v1
+namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Services.v1
 {
     [Collection("Database")]
-    public class EventControllerTests : IClassFixture<CustomWebApplicationFactory>
+    public class EventServiceTests : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly EventProtoService.EventProtoServiceClient _client;
-        public EventControllerTests(CustomWebApplicationFactory factory)
+        public EventServiceTests(CustomWebApplicationFactory factory)
         {
             _client = new EventProtoService.EventProtoServiceClient(factory.channel);
         }
@@ -25,6 +25,7 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v1
         {
             EventModelList response = await _client.GetAllEventAsync(new AllEventRequest());
             response.Eventmodel.ShouldNotBeEmpty();
+            response.Eventmodel.Count.ShouldNotBe(0);
             response.ShouldBeOfType<EventModelList>();
         }
 

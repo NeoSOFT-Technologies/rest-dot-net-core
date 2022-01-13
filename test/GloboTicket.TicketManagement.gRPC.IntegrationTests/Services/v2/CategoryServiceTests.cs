@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 using Xunit;
 using Shouldly;
 
-namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v2
+namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Services.v2
 {
     [Collection("Database")]
-    public class CategoryControllerTests:IClassFixture<CustomWebApplicationFactory>
+    public class CategoryServiceTests:IClassFixture<CustomWebApplicationFactory>
     {
         private readonly CategoryProtoService.CategoryProtoServiceClient _client;
         private readonly AccountProtoService.AccountProtoServiceClient _accountClient;
 
-        public CategoryControllerTests(CustomWebApplicationFactory factory)
+        public CategoryServiceTests(CustomWebApplicationFactory factory)
         {
             _client = new CategoryProtoService.CategoryProtoServiceClient(factory.channel);
             _accountClient = new AccountProtoService.AccountProtoServiceClient(factory.channel);
@@ -45,6 +45,7 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v2
             var response = await _client.GetAllCategoriesAsync(new GetCategoriesRequest(),headers);
 
             response.CategoryModel.ShouldNotBeEmpty();
+            response.CategoryModel.Count.ShouldNotBe(0);
             response.ShouldBeOfType<ListOfCategories>();
         }
 
@@ -67,7 +68,6 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v2
             var response = await _client.AddCategoryAsync(category);
             response.CategoryId.ShouldNotBeNull();
             response.Name.ShouldNotBeNull();
-
             response.ShouldBeOfType<AddCategoryResponse>();
         }
 

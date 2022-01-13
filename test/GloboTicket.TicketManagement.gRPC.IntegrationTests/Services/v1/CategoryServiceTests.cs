@@ -10,23 +10,23 @@ using Xunit;
 using Shouldly;
 //using static Category.V2.CategoryProtoService;
 
-namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v1
+namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Services.v1
 {
     [Collection("Database")]
-    public class CategoryControllerTests : IClassFixture<CustomWebApplicationFactory>
+    public class CategoryServiceTests : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly CategoryProtoService.CategoryProtoServiceClient _client;
-        public CategoryControllerTests(CustomWebApplicationFactory factory)
+        public CategoryServiceTests(CustomWebApplicationFactory factory)
         {
             _client = new CategoryProtoService.CategoryProtoServiceClient(factory.channel);
         }
-
 
         [Fact]
         public async Task Get_CategoriesList_ReturnsSuccessResult()
         {
             var response = await _client.GetAllCategoriesAsync(new GetCategoriesRequest());
             response.CategoryModel.ShouldNotBeEmpty();
+            response.CategoryModel.Count.ShouldNotBe(0);
             response.ShouldBeOfType<ListOfCategories>();
         }
 
@@ -34,6 +34,8 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v1
         public async Task Get_CategoriesListWithEvents_IncludeHistory_ReturnsSuccessResult()
         {
             var response = await _client.GetCategoriesListWithEventsQueryAsync(new GetCategoriesListWithEventsQueryRequest());
+            response.GetAllCategorieswithevents.ShouldNotBeEmpty();
+            response.GetAllCategorieswithevents.Count.ShouldNotBe(0);
             response.ShouldNotBeNull();
             response.ShouldBeOfType<GetCategoriesListWithEventsQueryResponse>();
         }
@@ -57,7 +59,6 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v1
             var response = await _client.AddCategoryAsync(category);
             response.CategoryId.ShouldNotBeNull();
             response.Name.ShouldNotBeNull();
-
             response.ShouldBeOfType<AddCategoryResponse>();
         }
     } 

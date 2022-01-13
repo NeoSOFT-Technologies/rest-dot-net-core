@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 using Xunit;
 using Shouldly;
 
-namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v1
+namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Services.v1
 {
     [Collection("Database")]
-    public class AccountControllerTests:IClassFixture<CustomWebApplicationFactory>
+    public class AccountServiceTests:IClassFixture<CustomWebApplicationFactory>
     {
         private readonly AccountProtoService.AccountProtoServiceClient _client;
 
-        public AccountControllerTests(CustomWebApplicationFactory factory)
+        public AccountServiceTests(CustomWebApplicationFactory factory)
         {
             _client =new AccountProtoService.AccountProtoServiceClient(factory.channel);
         }
@@ -48,6 +48,7 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Controllers.v1
 
             var response = await _client.AuthenticateAsync(request);
 
+            response.ShouldBeOfType<AuthenticateResp>();
             response.IsAuthenticated.ShouldBeEquivalentTo(true);
             response.Token.ShouldNotBeNull();
             response.RefreshToken.ShouldNotBeNull();

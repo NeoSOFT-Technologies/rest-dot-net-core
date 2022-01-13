@@ -53,6 +53,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
