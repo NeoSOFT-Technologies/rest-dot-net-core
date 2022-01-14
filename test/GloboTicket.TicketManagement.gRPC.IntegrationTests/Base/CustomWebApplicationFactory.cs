@@ -52,14 +52,6 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
                 config.AddInMemoryCollection(new[]
                 {
                     new KeyValuePair<string, string>(
-                        "ConnectionStrings:GloboTicketHealthCheckConnectionString", _dbFixture.HealthCheckConnString)
-                });
-            });
-            builder.ConfigureAppConfiguration((context, config) =>
-            {
-                config.AddInMemoryCollection(new[]
-                {
-                    new KeyValuePair<string, string>(
                         "CacheConfiguration:AbsoluteExpirationInHours", "1")
                 });
             });

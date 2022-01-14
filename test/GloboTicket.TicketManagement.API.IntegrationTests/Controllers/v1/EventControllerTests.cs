@@ -105,7 +105,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v1
                 Name = "Test Name1",
                 Price = 75,
                 Artist = "Test Artist",
-                Date = DateTime.UtcNow.AddMonths(6),
+                Date = DateTime.UtcNow.AddMonths(7),
                 Description = "Test Description",
                 ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                 CategoryName = "TestCat"

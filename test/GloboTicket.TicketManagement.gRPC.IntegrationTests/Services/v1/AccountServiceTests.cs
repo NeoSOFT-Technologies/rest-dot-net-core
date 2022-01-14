@@ -33,7 +33,7 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Services.v1
                 Password = "User123!@#"
             };
 
-            var response = _client.RegisterAsync(request);
+            var response = await _client.RegisterAsync(request);
             response.ShouldNotBeNull();
         }
 
@@ -45,7 +45,6 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Services.v1
                 Email = "john@test.com",
                 Password = "User123!@#"
             };
-
             var response = await _client.AuthenticateAsync(request);
 
             response.ShouldBeOfType<AuthenticateResp>();

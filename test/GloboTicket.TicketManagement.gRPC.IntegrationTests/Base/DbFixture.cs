@@ -13,8 +13,6 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
         private readonly GloboTicketIdentityDbContext _identityDbContext;
         public readonly string ApplicationDbName = $"Application-{Guid.NewGuid()}";
         public readonly string IdentityDbName = $"Identity-{Guid.NewGuid()}";
-        public readonly string HealthCheckDbName = $"HealthCheck";
-        public readonly string HealthCheckConnString;
         public readonly string ApplicationConnString;
         public readonly string IdentityConnString;
 
@@ -33,15 +31,12 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
                 case "MSSQL":
                     ApplicationConnString = $"Server=localhost,1433;Database={ApplicationDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
                     IdentityConnString = $"Server=localhost,1433;Database={IdentityDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
-                    HealthCheckConnString = $"Server=localhost,1433;Database={HealthCheckDbName};User=sa;Password=2@LaiNw)PDvs^t>L!Ybt]6H^%h3U>M";
                     applicationBuilder.UseSqlServer(ApplicationConnString);
                     identityBuilder.UseSqlServer(IdentityConnString);
                     break;
                 case "PGSQL":
                     ApplicationConnString = $"Server=localhost;Port=5430;Database={ApplicationDbName};User Id=root;Password=root;CommandTimeout = 300;";
                     IdentityConnString = $"Server=localhost;Port=5430;Database={IdentityDbName};User Id=root;Password=root;CommandTimeout = 300;";
-
-                    HealthCheckConnString = $"Server=localhost;Port=5430;Database={HealthCheckDbName};User Id=root;Password=root;CommandTimeout = 300;";
                     AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                     applicationBuilder.UseNpgsql(ApplicationConnString);
                     identityBuilder.UseNpgsql(IdentityConnString);
@@ -49,7 +44,6 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
                 case "MySQL":
                     ApplicationConnString = $"Server=localhost;Port=3306;Database={ApplicationDbName};Userid=root;Password=root;";
                     IdentityConnString = $"Server=localhost;Port=3306;Database={IdentityDbName};Userid=root;Password=root;";
-                    HealthCheckConnString = $"Server=localhost;Port=3306;Database={HealthCheckDbName};Userid=root;Password=root;";
                     applicationBuilder.UseMySql(ApplicationConnString, new MySqlServerVersion(new Version(8, 0, 11)));
                     identityBuilder.UseMySql(IdentityConnString, new MySqlServerVersion(new Version(8, 0, 11)));
                     break;
