@@ -1,5 +1,6 @@
 ﻿using GloboTicket.TicketManagement.Domain.Entities;
 using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -109,6 +110,41 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence
                     OrderTotal = 400,
                     OrderPaid = true,
                     OrderPlaced = DateTime.Now
+                },
+                new Order()
+                {
+                    Id= ObjectId.GenerateNewId().ToString(),
+                    OrderTotal = 2400,
+                    OrderPaid = true,
+                    OrderPlaced = DateTime.Now
+                },
+                new Order()
+                {
+                    Id= ObjectId.GenerateNewId().ToString(),
+                    OrderTotal = 100,
+                    OrderPaid = true,
+                    OrderPlaced = DateTime.Now
+                },
+                new Order()
+                {
+                    Id= ObjectId.GenerateNewId().ToString(),
+                    OrderTotal = 300,
+                    OrderPaid = true,
+                    OrderPlaced = DateTime.Now
+                },
+                new Order()
+                {
+                    Id= ObjectId.GenerateNewId().ToString(),
+                    OrderTotal = 2100,
+                    OrderPaid = true,
+                    OrderPlaced = DateTime.Now
+                },
+                new Order()
+                {
+                    Id= ObjectId.GenerateNewId().ToString(),
+                    OrderTotal = 4500,
+                    OrderPaid = true,
+                    OrderPlaced = DateTime.Now.AddMonths(8)
                 }
                 };
                 dataCollection.InsertMany(orders);

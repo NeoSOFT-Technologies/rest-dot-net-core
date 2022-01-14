@@ -27,7 +27,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
             var allCategories = await _dbContext.FindAsync(Builders<Category>.Filter.Empty).Result.ToListAsync();
-            allCategories = (from c in allCategories.AsQueryable()
+           var CategoriesWithEvents = (from c in allCategories.AsQueryable()
                              join e in EventCollection.AsQueryable()
                              on c.Id equals e.CategoryId into eventList
                              select new Category()
@@ -39,10 +39,10 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
 
             if (!includePassedEvents)
             {
-                allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
+                CategoriesWithEvents.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
             }
             _logger.LogInformation("GetCategoriesWithEvents Completed");
-            return allCategories;
+            return CategoriesWithEvents;
         }
 
         public async Task<Category> AddCategory(Category category)
