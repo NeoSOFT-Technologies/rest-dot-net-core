@@ -45,7 +45,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         {
             var controller = new EventsController(_mockMediator.Object);
 
-            var result = await controller.GetEventById(/*Guid.NewGuid()*/ObjectId.GenerateNewId().ToString());
+            var result = await controller.GetEventById(ObjectId.GenerateNewId().ToString());
 
             result.ShouldBeOfType<OkObjectResult>();
             var okObjectResult = result as OkObjectResult;
@@ -99,7 +99,7 @@ namespace GloboTicket.TicketManagement.API.UnitTests.Controllers.v1
         {
             var controller = new EventsController(_mockMediator.Object);
 
-            var result = await controller.Delete(/*Guid.NewGuid()*/ObjectId.GenerateNewId().ToString());
+            var result = await controller.Delete(ObjectId.GenerateNewId().ToString());
 
             result.ShouldBeOfType<NoContentResult>();
             var noContentResult = result as NoContentResult;

@@ -24,14 +24,17 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         public async Task<List<Order>> GetPagedOrdersForMonth(DateTime date, int page, int size)
         {
             _logger.LogInformation("GetPagedOrdersForMonth Initiated");
-            return await _dbContext.AsQueryable<Order>().Where(p=> p.OrderPlaced.Month == date.Month && p.OrderPlaced.Year == date.Year).Skip((page - 1) * size).Take(size).ToListAsync();
+            
+            var allOrders = await _dbContext.FindAsync(Builders<Order>.Filter.Empty).Result.ToListAsync();
+
+            return allOrders.AsQueryable().Where(p => p.OrderPlaced.Month == date.Month && p.OrderPlaced.Year == date.Year).Skip((page - 1) * size).Take(size).ToList();
         }
 
         public async Task<int> GetTotalCountOfOrdersForMonth(DateTime date)
         {
             _logger.LogInformation("GetPagedOrdersForMonth Initiated");
-          
-            return await _dbContext.AsQueryable<Order>().CountAsync(p => p.OrderPlaced.Month == date.Month && p.OrderPlaced.Year == date.Year);
+            var allOrders = await _dbContext.FindAsync(Builders<Order>.Filter.Empty).Result.ToListAsync();
+            return allOrders.AsQueryable().Where(p => p.OrderPlaced.Month == date.Month && p.OrderPlaced.Year == date.Year).Count();
         }
 
     }

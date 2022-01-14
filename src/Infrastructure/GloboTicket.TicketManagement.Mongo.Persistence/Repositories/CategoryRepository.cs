@@ -26,25 +26,23 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         public async Task<List<Category>> GetCategoriesWithEvents(bool includePassedEvents)
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
-
-            FilterDefinition<Category> filter = Builders<Category>.Filter.Exists(x => x.Events);
-            var allCategories = await _dbContext.FindAsync(filter).Result.ToListAsync();
-
-            var CategoryWithEvents = (from c in allCategories.AsQueryable()
-                                     join e in EventCollection.AsQueryable() on c.Id equals                     e.CategoryId into eventList
-                                     select new Category()
-                                     {
-                                         Id = c.Id,
-                                         Name = c.Name,
-                                         Events = (ICollection<Event>)eventList,
-                                     }).ToList();
+            var allCategories = await _dbContext.FindAsync(Builders<Category>.Filter.Empty).Result.ToListAsync();
+            allCategories = (from c in allCategories.AsQueryable()
+                             join e in EventCollection.AsQueryable()
+                             on c.Id equals e.CategoryId into eventList
+                             select new Category()
+                             {
+                                 Id = c.Id,
+                                 Name = c.Name,
+                                 Events = (ICollection<Event>)eventList,
+                             }).ToList();
 
             if (!includePassedEvents)
             {
-                CategoryWithEvents.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
+                allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
             }
             _logger.LogInformation("GetCategoriesWithEvents Completed");
-            return CategoryWithEvents;
+            return allCategories;
         }
 
         public async Task<Category> AddCategory(Category category)

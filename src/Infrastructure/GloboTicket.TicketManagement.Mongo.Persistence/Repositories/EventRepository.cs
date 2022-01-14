@@ -4,7 +4,6 @@ using GloboTicket.TicketManagement.Mongo.Persistence.Settings;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,15 +27,18 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         public async Task<bool> IsEventNameAndDateUnique(string name, DateTime eventDate)
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
-            var matches = _dbContext.AsQueryable().Any(e => e.Name == name && e.Date == eventDate);
-           
+
+            var allEvents = await _dbContext.FindAsync(Builders<Event>.Filter.Empty).Result.ToListAsync();
+
+            var matches = allEvents.AsQueryable().Any(e => e.Name == name && e.Date.Date == eventDate.Date);
+
             _logger.LogInformation("GetCategoriesWithEvents Completed");
             return await Task.FromResult(matches);
         }
 
         public async Task<Event> AddEventWithCategory(Event @event)
         {
-            _logger.LogInformation("ListAllAsync Initiated");
+            _logger.LogInformation("AddEventWithCategory Initiated");
             var categories = await _categoryRepository.ListAllAsync();
             var category = categories.FirstOrDefault(x => x.Name == @event.Category.Name);
             if (category != null)
@@ -51,6 +53,7 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
             }
 
             await _dbContext.InsertOneAsync(@event);
+            _logger.LogInformation("AddEventWithCategory completed");
             return @event;
         }
 

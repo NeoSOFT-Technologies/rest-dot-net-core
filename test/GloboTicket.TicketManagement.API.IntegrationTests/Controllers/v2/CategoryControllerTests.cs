@@ -69,7 +69,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers.v2
             response.StatusCode.ShouldBe(System.Net.HttpStatusCode.Unauthorized);
         }
 
-       // [Fact]
+        [Fact]
         public async Task Get_CategoriesListWithEvents_DoNotIncludeHistory_ReturnsSuccessResult()
         {
             var client = _factory.CreateClient();
