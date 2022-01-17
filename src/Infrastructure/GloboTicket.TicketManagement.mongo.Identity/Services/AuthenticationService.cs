@@ -35,16 +35,13 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             _signInManager = signInManager;
             _roleManager = roleManager;
 
-            createRole();
-            // UserCreator.SeedAsync(userManager);
-
-            IdentityDataInitializer.SeedData(userManager, roleManager);
+           
+           IdentityDataInitializer.SeedData(userManager, roleManager);
         }
 
 
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)
         {
-            /*var*/
             ApplicationUser user = await _userManager.FindByEmailAsync(request.Email);
             AuthenticationResponse response = new AuthenticationResponse();
 
@@ -163,33 +160,7 @@ namespace GloboTicket.TicketManagement.mongo.Identity.Services
             return jwtSecurityToken;
         }
 
-        private async Task createRole()
-        {
-            IdentityResult roleResult;
-            // IdentityResult result = await _roleManager.CreateAsync(new ApplicationRole() { Name = "Viewer" });
-            var roleCheck = await _roleManager.RoleExistsAsync("Administrator");
-            if (!roleCheck)
-            {
-                //create the roles and seed them to the database  
-                roleResult = await _roleManager.CreateAsync(new ApplicationRole()
-                {
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR"
-                });
-            }
-
-            roleCheck = await _roleManager.RoleExistsAsync("Viewer");
-            if (!roleCheck)
-            {
-                //create the roles and seed them to the database  
-                roleResult = await _roleManager.CreateAsync(new ApplicationRole()
-                {
-                    Name = "Viewer",
-                    NormalizedName = "VIEWER"
-                });
-            }
-
-        }
+        
         private RefreshToken GenerateRefreshToken()
         {
 

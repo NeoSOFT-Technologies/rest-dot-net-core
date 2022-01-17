@@ -59,8 +59,8 @@ namespace GloboTicket.TicketManagement.Api
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
             services.AddInfrastructureServices(Configuration);
            //services.AddPersistenceServices(Configuration);
-            services.AddPersistenceMongoServices(Configuration);
-           //  services.AddIdentityServices(Configuration);
+           services.AddPersistenceMongoServices(Configuration);
+           // services.AddIdentityServices(Configuration);
             services.AddMongoIdentityServices(Configuration);
             services.AddSwaggerExtension();
             services.AddSwaggerVersionedApiExplorer();
@@ -73,9 +73,7 @@ namespace GloboTicket.TicketManagement.Api
         }
 
         [ExcludeFromCodeCoverage]
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider,
-            UserManager<ApplicationUser> userManager,
-            RoleManager<ApplicationRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -86,8 +84,6 @@ namespace GloboTicket.TicketManagement.Api
 
             app.UseRouting();
             app.UseAuthentication();
-            IdentityDataInitializer.SeedData(userManager, roleManager);
-
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),  
