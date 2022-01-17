@@ -27,19 +27,30 @@ namespace GloboTicket.TicketManagement.Mongo.Persistence.Repositories
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
             var allCategories = await _dbContext.FindAsync(Builders<Category>.Filter.Empty).Result.ToListAsync();
-           var CategoriesWithEvents = (from c in allCategories.AsQueryable()
-                             join e in EventCollection.AsQueryable()
-                             on c.Id equals e.CategoryId into eventList
-                             select new Category()
-                             {
-                                 Id = c.Id,
-                                 Name = c.Name,
-                                 Events = (ICollection<Event>)eventList,
-                             }).ToList();
+            var CategoriesWithEvents = (from c in allCategories.AsQueryable()
+                                        join e in EventCollection.AsQueryable()
+                                        on c.Id equals e.CategoryId into eventList
+                                        from e in eventList.DefaultIfEmpty()
+                                        select new Category()
+                                        {
+                                            Id = c.Id,
+                                            Name = c.Name,
+                                            Events = e == null ? Array.Empty<Event>() : (ICollection<Event>)eventList,
+                                        }).ToList();
 
             if (!includePassedEvents)
             {
-                CategoriesWithEvents.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
+                // CategoriesWithEvents.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
+                CategoriesWithEvents = (from c in allCategories.AsQueryable()
+                                        join e in EventCollection.AsQueryable()
+                                        on c.Id equals e.CategoryId into eventList
+                                        from e in eventList.Where(e => e.Date > DateTime.Today).DefaultIfEmpty()
+                                        select new Category()
+                                        {
+                                            Id = c.Id,
+                                            Name = c.Name,
+                                            Events = e == null ? Array.Empty<Event>() : (ICollection<Event>)eventList,
+                                        }).ToList();
             }
             _logger.LogInformation("GetCategoriesWithEvents Completed");
             return CategoriesWithEvents;
