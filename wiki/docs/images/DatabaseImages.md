@@ -26,6 +26,7 @@
 ![HealthCheckUI1](https://user-images.githubusercontent.com/80381121/147356687-2e4e1985-00fe-4764-9389-20bc4d96cadd.png)
 ![IntegrationTestCase](https://user-images.githubusercontent.com/87525401/147362122-bd750987-80f6-4584-8bed-ec6585a445a3.jpeg)
 ![MsSql](https://user-images.githubusercontent.com/80381121/150533234-f537d68e-f757-49dd-8a9f-4de7ee1d5b75.png)
+[MsSqlLoadTestingJmeterResult.docx](https://github.com/NeoSOFT-Technologies/rest-dot-net-core/files/7914704/MsSqlLoadTestingJmeterResult.docx)
 
 
 
