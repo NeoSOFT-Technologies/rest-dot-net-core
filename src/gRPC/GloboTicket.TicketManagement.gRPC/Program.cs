@@ -29,7 +29,12 @@ builder.Services.Configure<KestrelServerOptions>(options =>
     });
 });
 
-builder.Services.AddGrpc();
+//builder.Services.AddGrpc();
+builder.Services.AddGrpc(
+  options =>
+  {
+      options.Interceptors.Add<ExceptionInterceptor>();
+  });
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDataProtection();
 builder.Services.AddApplicationServices();
