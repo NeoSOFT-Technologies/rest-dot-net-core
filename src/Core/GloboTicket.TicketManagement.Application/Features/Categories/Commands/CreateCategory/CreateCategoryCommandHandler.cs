@@ -32,13 +32,6 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
 
             if (validationResult.Errors.Count > 0)
             {
-                //createCategoryCommandResponse = new Response<CreateCategoryDto>("failure");
-                //createCategoryCommandResponse.Errors = new List<string>();
-                //foreach (var error in validationResult.Errors)
-                //{
-                //    createCategoryCommandResponse.Errors.Add(error.ErrorMessage);
-                //}
-
                 throw new ValidationException(validationResult);
             }
             else

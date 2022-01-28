@@ -42,11 +42,9 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Services.v2
                     { "Authorization", $"Bearer {AdminUser.Token}" }
                 };
 
-            var response = await _client.GetAllCategoriesAsync(new GetCategoriesRequest(),headers);
-
-            response.CategoryModel.ShouldNotBeEmpty();
-            response.CategoryModel.Count.ShouldNotBe(0);
-            response.ShouldBeOfType<ListOfCategories>();
+            var response = await _client.GetCategoriesListWithEventsQueryAsync(new GetCategoriesListWithEventsQueryRequest(), headers);
+            response.ShouldNotBeNull();
+            response.ShouldBeOfType<GetCategoriesListWithEventsQueryResponse>();
         }
 
         //[Fact]
