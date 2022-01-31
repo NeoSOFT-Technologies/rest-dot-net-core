@@ -32,3 +32,13 @@ services:
       - '3307:3307'
     networks:
       - clean-network
+  
+  sqlite:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    networks:
+      - clean-network
+    volumes:
+      - ./test/GloboTicket.TicketManagement.API.IntegrationTests/./db:/root/db/REST
+      - ./test/GloboTicket.TicketManagement.gRPC.IntegrationTests/./db:/root/db/gRPC

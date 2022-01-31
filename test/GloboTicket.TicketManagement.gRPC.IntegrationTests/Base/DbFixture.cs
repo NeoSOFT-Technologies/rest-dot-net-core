@@ -25,7 +25,7 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
 
 
             var dbProvider = Environment.GetEnvironmentVariable("dbProvider") != null
-                                ? Environment.GetEnvironmentVariable("dbProvider") : "PGSQL";
+                                ? Environment.GetEnvironmentVariable("dbProvider") : "SQLite";
             switch (dbProvider)
             {
                 case "MSSQL":
@@ -46,6 +46,12 @@ namespace GloboTicket.TicketManagement.gRPC.IntegrationTests.Base
                     IdentityConnString = $"Server=localhost;Port=3306;Database={IdentityDbName};Userid=root;Password=root;";
                     applicationBuilder.UseMySql(ApplicationConnString, new MySqlServerVersion(new Version(8, 0, 11)));
                     identityBuilder.UseMySql(IdentityConnString, new MySqlServerVersion(new Version(8, 0, 11)));
+                    break;
+                case "SQLite":
+                    ApplicationConnString = $"Data Source=..//..//..//db//{ApplicationDbName}";
+                    IdentityConnString = $"Data Source=..//..//..//db//{IdentityDbName}";
+                    applicationBuilder.UseSqlite(ApplicationConnString);
+                    identityBuilder.UseSqlite(IdentityConnString);
                     break;
                 default:
                     break;

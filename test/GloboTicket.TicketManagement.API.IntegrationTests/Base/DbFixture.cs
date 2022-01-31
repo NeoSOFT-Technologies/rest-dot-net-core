@@ -27,7 +27,7 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
 
 
             var dbProvider = Environment.GetEnvironmentVariable("dbProvider") != null
-                                ? Environment.GetEnvironmentVariable("dbProvider") : "PGSQL";
+                                ? Environment.GetEnvironmentVariable("dbProvider") : "SQLite";
             switch (dbProvider)
             {
                 case "MSSQL":
@@ -51,6 +51,13 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
                     HealthCheckConnString = $"Server=localhost;Port=3306;Database={HealthCheckDbName};Userid=root;Password=root;";
                     applicationBuilder.UseMySql(ApplicationConnString, new MySqlServerVersion(new Version(8, 0, 11)));
                     identityBuilder.UseMySql(IdentityConnString, new MySqlServerVersion(new Version(8, 0, 11)));
+                    break;
+                case "SQLite":
+                    ApplicationConnString = $"Data Source=..//..//..//db//{ApplicationDbName}";
+                    IdentityConnString = $"Data Source=..//..//..//db//{IdentityDbName}";
+                    HealthCheckConnString = $"Data Source=..//..//..//db//{HealthCheckDbName}";
+                    applicationBuilder.UseSqlite(ApplicationConnString);
+                    identityBuilder.UseSqlite(IdentityConnString);
                     break;
                 default:
                     break;

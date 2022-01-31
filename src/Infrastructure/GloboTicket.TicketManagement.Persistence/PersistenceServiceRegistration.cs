@@ -29,6 +29,10 @@ namespace GloboTicket.TicketManagement.Persistence
             new MySqlServerVersion(new Version(8, 0, 11))
             ));
                     break;
+                case "SQLite":
+                    services.AddDbContext<GloboTicketDbContext>(options =>
+                        options.UseSqlite(configuration.GetConnectionString("GloboTicketTicketManagementConnectionString")));
+                    break;
                 default:
                     break;
             }
