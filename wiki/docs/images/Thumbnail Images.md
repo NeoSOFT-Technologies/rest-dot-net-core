@@ -6,6 +6,7 @@
 # Project-Setup
 
 ![ProjectSetup](https://user-images.githubusercontent.com/80381121/131613698-630e7eb2-a7f5-4d5d-8cab-c37cf6822f1e.png)
+![Thumbnail](https://user-images.githubusercontent.com/80381121/152143263-677002ff-5642-4a49-811a-77f15e89d7fd.png)
 
 
 
