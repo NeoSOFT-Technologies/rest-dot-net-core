@@ -5,6 +5,8 @@
 ![Select database](https://user-images.githubusercontent.com/92291258/147340568-1095b98d-aa45-4742-86f4-d777f900cbac.PNG)
 ![templateInstall](https://user-images.githubusercontent.com/92291258/147443335-59652d3f-de28-4f62-81a4-4370b69d804e.png)
 ![Template3 1](https://user-images.githubusercontent.com/87525401/152146308-189c4170-d8bf-461a-95e4-7917058003ac.PNG)
+![Template](https://user-images.githubusercontent.com/80381121/152287129-275249a9-797e-4eca-97ca-4d86e67cba0c.png)
+
 
 
 ## MySQL
