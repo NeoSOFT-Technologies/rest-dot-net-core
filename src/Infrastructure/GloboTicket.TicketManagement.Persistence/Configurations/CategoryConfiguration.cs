@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using GloboTicket.TicketManagement.Domain.Entities;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Scrum.Demo.Persistence.Configurations
+namespace GloboTicket.TicketManagement.Persistence.Configurations
 {
     [ExcludeFromCodeCoverage]
     public class CategoryConfiguration : IEntityTypeConfiguration<Category>

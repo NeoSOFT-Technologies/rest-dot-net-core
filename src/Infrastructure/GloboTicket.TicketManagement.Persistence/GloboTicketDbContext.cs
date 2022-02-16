@@ -1,6 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts;
 using GloboTicket.TicketManagement.Domain.Common;
 using GloboTicket.TicketManagement.Domain.Entities;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace GloboTicket.TicketManagement.Persistence
 {
     [ExcludeFromCodeCoverage]
-    public class GloboTicketDbContext: DbContext
+    public class GloboTicketDbContext: DbContext, IDataProtectionKeyContext
     {
         private readonly ILoggedInUserService _loggedInUserService;
 
@@ -30,6 +31,7 @@ namespace GloboTicket.TicketManagement.Persistence
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 
         private IDbContextTransaction _transaction;
 
