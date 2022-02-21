@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
 {
     [DbContext(typeof(GloboTicketIdentityDbContext))]
-    [Migration("20211223082003_MySQLinitial")]
+    [Migration("20220221061849_MySQLinitial")]
     partial class MySQLinitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -117,15 +117,15 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
                     b.HasData(
                         new
                         {
-                            Id = "3782c59f-c7dc-4349-9e40-0cff40b596c7",
-                            ConcurrencyStamp = "9ba0ae70-7b70-4419-ae2c-e4ea2839412a",
+                            Id = "eb2c4b75-3078-4ef5-aa7e-768a2809db82",
+                            ConcurrencyStamp = "5a74c994-e13f-489d-9524-db6c80ac9e50",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "865a3a19-4583-43f3-ace4-0b9baec4a4fb",
-                            ConcurrencyStamp = "ef0a005d-cd94-4a35-9ba0-4d9d32e04f02",
+                            Id = "cb813aed-557f-437c-b8ab-9a2bc282dc39",
+                            ConcurrencyStamp = "20733255-6f96-4512-bc08-e3bebdd67642",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -240,9 +240,9 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
                             b1.Property<string>("ApplicationUserId")
                                 .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
-                            b1.Property<int>("Id")
+                            b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("int");
+                                .HasColumnType("char(36)");
 
                             b1.Property<DateTime>("Created")
                                 .HasColumnType("datetime(6)");

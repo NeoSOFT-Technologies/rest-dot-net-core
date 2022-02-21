@@ -62,6 +62,23 @@ namespace GloboTicket.TicketManagement.Api.Extensions
                         opt.AddHealthCheckEndpoint("API", "/healthz"); //map health check api
                     }).AddMySqlStorage(configuration["ConnectionStrings:GloboTicketHealthCheckConnectionString"]);
                     break;
+                case "SQLite":
+                    services.AddHealthChecks()
+                        .AddSqlite(configuration["ConnectionStrings:GloboTicketIdentityConnectionString"], tags: new[] {
+                            "db",
+                            "all"})
+                        .AddUrlGroup(new Uri(configuration["API:WeatertherInfo"]), tags: new[] {
+                            "testdemoUrl",
+                            "all"
+                        });
+                    services.AddHealthChecksUI(opt =>
+                    {
+                        opt.SetEvaluationTimeInSeconds(15); //time in seconds between check
+                        opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks
+                        opt.SetApiMaxActiveRequests(1); //api requests concurrency
+                        opt.AddHealthCheckEndpoint("API", "/healthz"); //map health check api
+                    }).AddSqliteStorage(configuration["ConnectionStrings:GloboTicketHealthCheckConnectionString"]);
+                    break;
                 default:
                     break;
             }

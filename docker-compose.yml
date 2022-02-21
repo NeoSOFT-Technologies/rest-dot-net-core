@@ -32,3 +32,12 @@ services:
       - '3306:3306'
     networks:
       - clean-network
+  
+  sqlite:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    networks:
+      - clean-network
+    volumes:
+      - C:/Users/user/Desktop/./db:/root/db/

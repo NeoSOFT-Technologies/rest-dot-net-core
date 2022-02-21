@@ -158,9 +158,8 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
                 name: "RefreshToken",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Token = table.Column<string>(nullable: true),
                     Expires = table.Column<DateTime>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
@@ -180,12 +179,12 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MSSQL
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3b0c9672-6a5e-4c76-b6b3-cac7ccd44950", "8dcc1cad-ce8a-4292-95cf-8d1e6e8b0abf", "Viewer", "VIEWER" });
+                values: new object[] { "86b6a4b1-68b3-44e0-b4d0-dd7a138343d9", "4462b71e-ba99-41b6-8684-959200486206", "Viewer", "VIEWER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "52f66ee1-8160-4c7b-8349-f1e82a2b5a8a", "70a33626-b8ba-4723-af1e-61cbbc1e481e", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "44ebda66-4a9b-4c60-a4b9-7ee5258c1a1b", "781c6dbf-acc7-4e0f-8193-ff15da977116", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

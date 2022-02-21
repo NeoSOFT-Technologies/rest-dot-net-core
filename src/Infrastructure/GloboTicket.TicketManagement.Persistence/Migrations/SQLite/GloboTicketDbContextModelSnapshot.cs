@@ -3,41 +3,36 @@ using System;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
+namespace GloboTicket.TicketManagement.Persistence.Migrations.SQLite
 {
     [DbContext(typeof(GloboTicketDbContext))]
-    [Migration("20211230070101_inital")]
-    partial class inital
+    partial class GloboTicketDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("ProductVersion", "3.1.10");
 
             modelBuilder.Entity("GloboTicket.TicketManagement.Domain.Entities.Category", b =>
                 {
                     b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(450)");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(450)");
 
                     b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -78,23 +73,23 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                 {
                     b.Property<Guid>("EventId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Artist")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(450)");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -108,14 +103,14 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                         .HasColumnType("varchar(450)");
 
                     b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
                     b.Property<int>("Price")
-                        .HasColumnType("integer");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("EventId");
 
@@ -130,7 +125,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Artist = "John Egbert",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 6, 30, 12, 31, 0, 830, DateTimeKind.Local).AddTicks(4473),
+                            Date = new DateTime(2022, 8, 21, 11, 28, 6, 651, DateTimeKind.Local).AddTicks(5474),
                             Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                             Name = "John Egbert Live",
@@ -142,7 +137,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Artist = "Michael Johnson",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 9, 30, 12, 31, 0, 831, DateTimeKind.Local).AddTicks(8280),
+                            Date = new DateTime(2022, 11, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(6862),
                             Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
                             Name = "The State of Affairs: Michael Live!",
@@ -154,7 +149,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Artist = "DJ 'The Mike'",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 4, 30, 12, 31, 0, 831, DateTimeKind.Local).AddTicks(8454),
+                            Date = new DateTime(2022, 6, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(6983),
                             Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
                             Name = "Clash of the DJs",
@@ -166,7 +161,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Artist = "Manuel Santinonisi",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 4, 30, 12, 31, 0, 831, DateTimeKind.Local).AddTicks(8506),
+                            Date = new DateTime(2022, 6, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(7015),
                             Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
                             Name = "Spanish guitar hits with Manuel",
@@ -178,7 +173,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Artist = "Many",
                             CategoryId = new Guid("fe98f549-e790-4e9f-aa16-18c2292a2ee9"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 10, 30, 12, 31, 0, 831, DateTimeKind.Local).AddTicks(8556),
+                            Date = new DateTime(2022, 12, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(7041),
                             Description = "The best tech conference in the world",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/conf.jpg",
                             Name = "Techorama 2021",
@@ -190,7 +185,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Artist = "Nick Sailor",
                             CategoryId = new Guid("6313179f-7837-473a-a4d5-a5571b43e6a6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 30, 12, 31, 0, 831, DateTimeKind.Local).AddTicks(8607),
+                            Date = new DateTime(2022, 10, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(7071),
                             Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
                             Name = "To the Moon and Back",
@@ -202,20 +197,20 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                 {
                     b.Property<Guid>("MessageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Code")
-                        .HasColumnType("text");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Language")
-                        .HasColumnType("text");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("MessageContent")
-                        .HasColumnType("text");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("MessageId");
 
@@ -253,31 +248,31 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("OrderId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(450)");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("varchar(450)");
 
                     b.Property<DateTime?>("LastModifiedDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("OrderPaid")
-                        .HasColumnType("boolean");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("OrderPlaced")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("OrderTotal")
-                        .HasColumnType("integer");
+                        .HasColumnType("INTEGER");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -289,7 +284,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Id = new Guid("7e94bc5b-71a5-4c8c-bc3b-71bb7976237e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 12, 30, 12, 31, 0, 832, DateTimeKind.Local).AddTicks(147),
+                            OrderPlaced = new DateTime(2022, 2, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(8543),
                             OrderTotal = 400,
                             UserId = new Guid("a441eb40-9636-4ee6-be49-a66c5ec1330b")
                         },
@@ -298,7 +293,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Id = new Guid("86d3a045-b42d-4854-8150-d6a374948b6e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 12, 30, 12, 31, 0, 832, DateTimeKind.Local).AddTicks(1521),
+                            OrderPlaced = new DateTime(2022, 2, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(9479),
                             OrderTotal = 135,
                             UserId = new Guid("ac3cfaf5-34fd-4e4d-bc04-ad1083ddc340")
                         },
@@ -307,7 +302,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Id = new Guid("771cca4b-066c-4ac7-b3df-4d12837fe7e0"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 12, 30, 12, 31, 0, 832, DateTimeKind.Local).AddTicks(1596),
+                            OrderPlaced = new DateTime(2022, 2, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(9543),
                             OrderTotal = 85,
                             UserId = new Guid("d97a15fc-0d32-41c6-9ddf-62f0735c4c1c")
                         },
@@ -316,7 +311,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Id = new Guid("3dcb3ea0-80b1-4781-b5c0-4d85c41e55a6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 12, 30, 12, 31, 0, 832, DateTimeKind.Local).AddTicks(1632),
+                            OrderPlaced = new DateTime(2022, 2, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(9573),
                             OrderTotal = 245,
                             UserId = new Guid("4ad901be-f447-46dd-bcf7-dbe401afa203")
                         },
@@ -325,7 +320,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Id = new Guid("e6a2679c-79a3-4ef1-a478-6f4c91b405b6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 12, 30, 12, 31, 0, 832, DateTimeKind.Local).AddTicks(1660),
+                            OrderPlaced = new DateTime(2022, 2, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(9601),
                             OrderTotal = 142,
                             UserId = new Guid("7aeb2c01-fe8e-4b84-a5ba-330bdf950f5c")
                         },
@@ -334,7 +329,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Id = new Guid("f5a6a3a0-4227-4973-abb5-a63fbe725923"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 12, 30, 12, 31, 0, 832, DateTimeKind.Local).AddTicks(1695),
+                            OrderPlaced = new DateTime(2022, 2, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(9634),
                             OrderTotal = 40,
                             UserId = new Guid("f5a6a3a0-4227-4973-abb5-a63fbe725923")
                         },
@@ -343,7 +338,7 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                             Id = new Guid("ba0eb0ef-b69b-46fd-b8e2-41b4178ae7cb"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 12, 30, 12, 31, 0, 832, DateTimeKind.Local).AddTicks(1724),
+                            OrderPlaced = new DateTime(2022, 2, 21, 11, 28, 6, 653, DateTimeKind.Local).AddTicks(9661),
                             OrderTotal = 116,
                             UserId = new Guid("7aeb2c01-fe8e-4b84-a5ba-330bdf950f5c")
                         });
@@ -353,14 +348,13 @@ namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("FriendlyName")
-                        .HasColumnType("text");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Xml")
-                        .HasColumnType("text");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

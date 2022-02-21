@@ -117,15 +117,15 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.PGSQL
                     b.HasData(
                         new
                         {
-                            Id = "8fc03c70-d93a-49f8-85ee-b5bccd7e81a8",
-                            ConcurrencyStamp = "2aa03fe4-c71e-41c0-a541-c1ff4e6c5393",
+                            Id = "6d338070-e402-4338-876a-aa42359a1a25",
+                            ConcurrencyStamp = "0bd6a21a-e774-466d-871b-bec1eab6b6a5",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "e5bb5676-9be2-47bd-95d0-722e5532c69e",
-                            ConcurrencyStamp = "b772cb59-fe91-421b-afc9-13d16fbaccf4",
+                            Id = "b3bcb959-3bfd-46e5-8d7b-62c64cecccf0",
+                            ConcurrencyStamp = "791f60c8-2504-45f6-91d8-8c68e972bafc",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -242,10 +242,9 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.PGSQL
                             b1.Property<string>("ApplicationUserId")
                                 .HasColumnType("text");
 
-                            b1.Property<int>("Id")
+                            b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
-                                .HasColumnType("integer")
-                                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                                .HasColumnType("uuid");
 
                             b1.Property<DateTime>("Created")
                                 .HasColumnType("timestamp without time zone");
