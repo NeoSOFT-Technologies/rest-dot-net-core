@@ -50,9 +50,9 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Base
                     identityBuilder.UseMySql(IdentityConnString);
                     break;
                 case "SQLite":
-                    ApplicationConnString = $"Data Source=C:\\Users\\user\\Desktop\\db\\{ApplicationDbName}";
-                    IdentityConnString = $"Data Source=C:\\Users\\user\\Desktop\\db\\{IdentityDbName}";
-                    HealthCheckConnString = $"Data Source=C:\\Users\\user\\Desktop\\db\\{IdentityDbName}";
+                    ApplicationConnString = $"Data Source=..//..//..//db//{ApplicationDbName}";
+                    IdentityConnString = $"Data Source=..//..//..//db//{IdentityDbName}";
+                    HealthCheckConnString = $"Data Source=..//..//..//db//{HealthCheckDbName}";
                     applicationBuilder.UseSqlite(ApplicationConnString);
                     identityBuilder.UseSqlite(IdentityConnString);
                     break;
