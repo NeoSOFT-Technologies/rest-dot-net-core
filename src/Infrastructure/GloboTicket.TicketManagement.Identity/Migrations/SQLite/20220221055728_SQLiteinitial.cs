@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
+namespace GloboTicket.TicketManagement.Identity.Migrations.SQLite
 {
-    public partial class MySQLinitial : Migration
+    public partial class SQLiteinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +53,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -75,7 +74,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -159,9 +158,8 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
                 name: "RefreshToken",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Token = table.Column<string>(nullable: true),
                     Expires = table.Column<DateTime>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
@@ -181,12 +179,12 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3782c59f-c7dc-4349-9e40-0cff40b596c7", "9ba0ae70-7b70-4419-ae2c-e4ea2839412a", "Viewer", "VIEWER" });
+                values: new object[] { "28457d76-8540-40e4-8237-dce89ec2c58a", "458c7c59-b23f-40cf-badf-262422550c9a", "Viewer", "VIEWER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "865a3a19-4583-43f3-ace4-0b9baec4a4fb", "ef0a005d-cd94-4a35-9ba0-4d9d32e04f02", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "13b68595-b0ae-4376-ac1d-4fb58467e294", "c73696bd-b370-4efe-9248-c84c43e8b6f7", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

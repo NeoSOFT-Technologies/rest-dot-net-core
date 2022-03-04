@@ -43,3 +43,7 @@ jobs:
       env:
         dbProvider: MySQL
       run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal
+    - name: TestSQLite
+      env:
+        dbProvider: SQLite
+      run: dotnet test --filter FullyQualifiedName~IntegrationTests --verbosity normal

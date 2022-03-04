@@ -39,6 +39,11 @@ namespace GloboTicket.TicketManagement.Identity
                         options => options.UseMySql(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
                         b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
                     break;
+                case "SQLite":
+                    services.AddDbContext<GloboTicketIdentityDbContext>(
+                        options => options.UseSqlite(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
+                        b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
+                    break;
                 default:
                     break;
             }

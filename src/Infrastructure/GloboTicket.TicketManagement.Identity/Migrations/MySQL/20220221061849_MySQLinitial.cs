@@ -1,10 +1,10 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace GloboTicket.TicketManagement.Identity.Migrations.PGSQL
+namespace GloboTicket.TicketManagement.Identity.Migrations.MySQL
 {
-    public partial class PGSQLinitial : Migration
+    public partial class MySQLinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +54,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.PGSQL
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -75,7 +75,7 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.PGSQL
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -159,9 +159,8 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.PGSQL
                 name: "RefreshToken",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: false),
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Token = table.Column<string>(nullable: true),
                     Expires = table.Column<DateTime>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
@@ -181,11 +180,12 @@ namespace GloboTicket.TicketManagement.Identity.Migrations.PGSQL
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { "8fc03c70-d93a-49f8-85ee-b5bccd7e81a8", "2aa03fe4-c71e-41c0-a541-c1ff4e6c5393", "Viewer", "VIEWER" },
-                    { "e5bb5676-9be2-47bd-95d0-722e5532c69e", "b772cb59-fe91-421b-afc9-13d16fbaccf4", "Administrator", "ADMINISTRATOR" }
-                });
+                values: new object[] { "eb2c4b75-3078-4ef5-aa7e-768a2809db82", "5a74c994-e13f-489d-9524-db6c80ac9e50", "Viewer", "VIEWER" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "cb813aed-557f-437c-b8ab-9a2bc282dc39", "20733255-6f96-4512-bc08-e3bebdd67642", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

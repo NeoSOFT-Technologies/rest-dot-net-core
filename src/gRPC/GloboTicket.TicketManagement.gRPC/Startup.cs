@@ -8,6 +8,7 @@ using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -41,7 +42,8 @@ namespace GloboTicket.TicketManagement.gRPC
             });
             services.AddGrpc();
             services.AddAutoMapper(typeof(Startup));
-            services.AddDataProtection();
+            services.AddDataProtection()
+                .PersistKeysToDbContext<GloboTicketDbContext>();
             services.AddApplicationServices();
             services.AddInfrastructureServices(Configuration);
             services.AddPersistenceServices(Configuration);
