@@ -3,9 +3,12 @@ using GloboTicket.TicketManagement.Application.Models.Cache;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GloboTicket.TicketManagement.Infrastructure.Cache
 {
+    [ExcludeFromCodeCoverage]
+
     public class MemoryCacheService : ICacheService
     {
         private readonly IMemoryCache _memoryCache;

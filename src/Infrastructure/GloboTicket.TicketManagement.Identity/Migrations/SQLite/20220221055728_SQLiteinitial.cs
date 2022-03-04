@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GloboTicket.TicketManagement.Identity.Migrations.SQLite
 {
+    [ExcludeFromCodeCoverage]
+
     public partial class SQLiteinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

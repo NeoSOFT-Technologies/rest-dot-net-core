@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GloboTicket.TicketManagement.Persistence.Migrations.MySQL
 {
+    [ExcludeFromCodeCoverage]
+
     public partial class MySQLinitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
