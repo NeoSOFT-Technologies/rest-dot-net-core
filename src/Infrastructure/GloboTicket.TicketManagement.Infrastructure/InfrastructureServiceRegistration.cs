@@ -6,9 +6,12 @@ using GloboTicket.TicketManagement.Infrastructure.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SendGrid.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GloboTicket.TicketManagement.Infrastructure
 {
+
+    [ExcludeFromCodeCoverage]
     public static class InfrastructureServiceRegistration
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)

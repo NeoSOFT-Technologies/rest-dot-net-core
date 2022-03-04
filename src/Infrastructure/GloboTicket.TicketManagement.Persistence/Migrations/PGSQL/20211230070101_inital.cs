@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GloboTicket.TicketManagement.Persistence.Migrations.PGSQL
 {
+
+    [ExcludeFromCodeCoverage]
     public partial class inital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

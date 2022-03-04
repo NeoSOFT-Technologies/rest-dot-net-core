@@ -2,9 +2,12 @@
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
 using GloboTicket.TicketManagement.Domain.Entities;
 using Microsoft.AspNetCore.DataProtection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GloboTicket.TicketManagement.Application.Profiles
 {
+
+    [ExcludeFromCodeCoverage]
     public class EventVmCustomMapper : ITypeConverter<Event, EventListVm>
     {
         private readonly IDataProtector _protector;

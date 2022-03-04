@@ -1,9 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GloboTicket.TicketManagement.Api.Extensions
 {
+
+    [ExcludeFromCodeCoverage]
     public static class HealthcheckExtensionRegistration
     {
         public static IServiceCollection AddHealthcheckExtensionService(this IServiceCollection services, IConfiguration configuration)

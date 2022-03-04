@@ -11,10 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace GloboTicket.TicketManagement.Identity
 {
+
+    [ExcludeFromCodeCoverage]
     public static class IdentityServiceExtensions
     {
         public static void AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
