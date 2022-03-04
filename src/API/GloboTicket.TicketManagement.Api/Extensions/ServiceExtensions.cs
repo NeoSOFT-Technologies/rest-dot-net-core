@@ -4,10 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GloboTicket.TicketManagement.Api.Extensions
 {
 
+    [ExcludeFromCodeCoverage]
 
     public static class ServiceExtensions
     {
