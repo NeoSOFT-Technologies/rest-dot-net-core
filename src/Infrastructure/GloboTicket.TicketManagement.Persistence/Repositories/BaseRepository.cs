@@ -67,7 +67,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
         public async Task<int> StoredProcedureCommandAsync(string storedProcedureName, SqlParameter[] parameters = null)
         {
             var parameterNames = GetParameterNames(parameters);
-            return await _dbContext.Database.ExecuteSqlRawAsync(string.Format("{0} {1}", storedProcedureName, string.Join(",", parameterNames)), parameters);
+            return await _dbContext.Database.ExecuteSqlRawAsync($"{storedProcedureName} {string.Join(",", parameterNames)}", parameters);
         }
 
         private string[] GetParameterNames(SqlParameter[] parameters)
