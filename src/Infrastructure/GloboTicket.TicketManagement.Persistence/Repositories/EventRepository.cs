@@ -3,13 +3,11 @@ using GloboTicket.TicketManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Persistence.Repositories
 {
-    [ExcludeFromCodeCoverage]
     public class EventRepository : BaseRepository<Event>, IEventRepository
     {
         private readonly ILogger _logger;
@@ -21,7 +19,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
         public Task<bool> IsEventNameAndDateUnique(string name, DateTime eventDate)
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
-            var matches =  _dbContext.Events.Any(e => e.Name.Equals(name) && e.Date.Date.Equals(eventDate.Date));
+            var matches =  _dbContext.Set<Event>().Any(e => e.Name.Equals(name) && e.Date.Date.Equals(eventDate.Date));
             _logger.LogInformation("GetCategoriesWithEvents Completed");
             return Task.FromResult(matches);
         }
