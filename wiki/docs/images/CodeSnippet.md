@@ -137,4 +137,5 @@
 ![Caching5](https://user-images.githubusercontent.com/80381121/137333180-dfd1a2df-f173-4a5e-8f39-efe1ac57be3a.PNG)
 
 
+![EncodingDecoding](https://user-images.githubusercontent.com/80381121/176607356-0d725f66-bc92-4c83-bd5b-1e6088fdb40f.png)
 
