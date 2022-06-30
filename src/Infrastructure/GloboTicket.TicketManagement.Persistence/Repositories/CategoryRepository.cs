@@ -5,13 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Persistence.Repositories
 {
-    [ExcludeFromCodeCoverage]
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
 
@@ -24,7 +22,7 @@ namespace GloboTicket.TicketManagement.Persistence.Repositories
         public async Task<List<Category>> GetCategoriesWithEvents(bool includePassedEvents)
         {
             _logger.LogInformation("GetCategoriesWithEvents Initiated");
-            var allCategories = await _dbContext.Categories.Include(x => x.Events).ToListAsync();
+            var allCategories = await _dbContext.Set<Category>().Include(x => x.Events).ToListAsync();
             if(!includePassedEvents)
             {
                 allCategories.ForEach(p => p.Events.ToList().RemoveAll(c => c.Date < DateTime.Today));
